@@ -2,8 +2,8 @@
 
 PROMPT_VERSIONS = {
     "story_discovery": "v2_visual_story",
-    "script_generation": "v5_grounded_duration",
-    "match_judge": "v1",
+    "script_generation": "v6_causal_spine",
+    "match_judge": "v2_action_anchor",
     "qc_semantic": "v6_approved_script_visual_alignment",
     "reference_style": "v1",
     "visual_analysis": "v1",

@@ -1,7 +1,7 @@
 """Shared editorial policy used by the GUI, automatic director and local presets."""
-VERSION = "simple_story_v4_causal_dense"
+VERSION = "simple_story_v5_causal_order"
 # LENGTH_HINT is stripped by some rewrite prompts that only need causal rules.
-LENGTH_HINT = "7至8句，每句18至26字，整段150至190字；目标成片约22至36秒，句句推进事件，避免注水。"
+LENGTH_HINT = "7至8句，每句18至26字，整段150至190字；目标成片约24至36秒，句句推进事件，避免注水。"
 STORY_RULES = (
     "模仿参考示例的直白故事：一名主角、一种危险、一次发现、一个结果。"
     "按时间顺序讲，" + LENGTH_HINT +
@@ -21,7 +21,7 @@ STORY_RULES += (
     "每个转折由前一事件触发，不能只串联惊吓镜头。"
     "有人帮助时交代主角如何求助或援手为何帮助，最后交代人是否安全或失踪，别以警方突然出现草草收尾。"
     "用户的评论引导话术属于独立插话，由软件另外加入；正文不要模仿参考中的玫瑰花插话，不为它编造物件、折返、对话或支线。"
-    "密度要求：22至36秒内至少完成一次遇险、一次主动应对、一次危险升级、一个有画面的结果；禁止注水形容外貌或重复同一动作。"
+    "密度要求：24至36秒内至少完成一次遇险、一次主动应对、一次危险升级、一个有画面的结果；禁止注水形容外貌或重复同一动作。"
 )
 
 

@@ -199,7 +199,7 @@ def test_cached_call_restores_provider_limits_and_reuses_same_facts(tmp_path):
     provider = Provider()
     first = director._cached_call(p, 'facts', 'fixture prompt', [str(image)], provider)
     second = director._cached_call(p, 'facts', 'fixture prompt', [str(image)], provider)
-    assert first == second and calls == [(2000, 1, [str(image)])]
+    assert first == second and calls == [(2800, 1, [str(image)])]
     assert provider.conf['max_tokens'] == 700 and provider.max_retry == 3
     assert p.state.artifacts['token_saving']['cache_hits'] == 1
 

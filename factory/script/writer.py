@@ -6,12 +6,12 @@ from pathlib import Path
 from ..log import get_logger
 from ..models import Evidence, SceneSegment, ScriptVariant, ScriptSentence
 from ..utils import clamp, estimate_speech_seconds, ffmpeg_bin, normalize_space, run_cmd, tokenize
-from ..style.short_story import STORY_RULES, REFERENCE_EXAMPLES
+from ..style.short_story import LENGTH_HINT, STORY_RULES
 
 FLAVORS = [
-    {"flavor": "suspense", "name": "悬疑型", "tone": "压低信息量，保留悬念，用疑问句结尾"},
-    {"flavor": "conflict", "name": "强冲突型", "tone": "直接放大冲突，强调对立与对抗"},
-    {"flavor": "twist", "name": "反转型", "tone": "先给预期，再反转揭示真相"},
+    {"flavor": "suspense", "name": "悬疑型", "tone": "压低信息量，但结尾必须写明逃脱、获救、失踪或真相，不用空泛疑问句"},
+    {"flavor": "conflict", "name": "强冲突型", "tone": "直接写对立与对抗，每一句由上一句的事件触发"},
+    {"flavor": "twist", "name": "反转型", "tone": "先给可见预期，再用画面里的新发现反转，不靠短信、标签或小字"},
 ]
 
 
@@ -227,6 +227,8 @@ def _llm_variants(candidate, style_profile, transcript, flavor_conf, provider, i
     window = _transcript_in(candidate, transcript)
     visuals = _window_visuals(candidate, index, language)
     target = int(clamp(candidate.duration, float(min_dur), float(max_dur)))
+    story_rules = STORY_RULES.replace(
+        LENGTH_HINT, "目标成片约%d至%d秒，句句由上一句触发，避免注水。" % (int(min_dur), int(max_dur)))
     flavor_names = json.dumps([f["name"] for f in flavor_conf[:3]], ensure_ascii=False)
     n = len(flavor_conf[:3])
     lang_hint = "用简体中文" if language == "zh" else "用英文"
@@ -261,8 +263,8 @@ def _llm_variants(candidate, style_profile, transcript, flavor_conf, provider, i
 【因果密度】
 %s
 1. 口吻分别为: %s
-2. 结构因果链: 遇险 → 行动理由 → 行动 → 危险升级/新发现 → 解决办法 → 结果；首句直接进入危险，禁止注水外貌描写；每句只推进一件事。
-3. 句数 6~9，整体朗读时长约 %d 秒（贴近参考片22–36秒密度），不要留大段空白。
+2. 结构因果链: 遇险 → 行动理由 → 行动 → 危险升级/新发现 → 解决办法 → 结果；首句直接进入危险，禁止注水外貌描写；每句只推进一件事。后句必须由前句触发，不能只串惊吓镜头。
+3. 句数 6~9，整体朗读时长约 %d 秒（贴近参考片24–36秒密度），不要留大段空白。
 4. 每句给出 evidence_start / evidence_end（秒）对齐画面。
 5. 只输出 JSON 对象，格式 {"variants": [ 恰好 %d 个元素 ]}，每个元素 {flavor, sentences:[{text, role, evidence_start, evidence_end}]}。
 
@@ -274,7 +276,7 @@ def _llm_variants(candidate, style_profile, transcript, flavor_conf, provider, i
 %s"""
         ) % (
             lang_hint, n, target,
-            STORY_RULES[:220],
+            story_rules,
             flavor_names,
             target,
             n,
@@ -320,12 +322,17 @@ def _creative_anchored(candidate, style_profile, flavor_conf, provider, language
                  % reference_text[:2500]) if reference_text else "（未提供参考文案，仅用风格画像）"
     templates = "\n".join("- %s" % s for s in _ref_sentence_template(reference_text)) or "（无）"
     shot_block = _shot_visual_block(shots)
+    story_rules = STORY_RULES.replace(
+        LENGTH_HINT, "目标成片约%d至%d秒，句句由上一句触发，避免注水。" % (int(min_dur), int(max_dur)))
     prompt = """你是短视频惊悚解说编剧。核心铁律是「音画一一对应」：我已给出候选片段内每个镜头的关键帧画像，句子必须绑定镜头（shot_index），只描述该镜头画面上真实可见的元素（人物、动作、环境、光影、可读字幕）。
 
 同时你要像一个真正的惊悚片解说员那样讲故事，而不是罗列画面：
 - 允许基于「可见画面」的合理氛围联想与因果推断——比如把楼梯旁的黑影读作“有人慢慢上楼”、把孩子紧盯着空处读作“她在看一个我们看不见的东西”。这种推断是惊悚叙事的一部分，参考文案也是这么写气氛的。
 - 严禁写与画面冲突的具体内容：错误的房间/人物、画面里不存在的物件、别的镜头才有的东西；推断只能建立在同镜/紧邻可见的信息上，不得空降设定。
-- 必须依据镜头顺序构建完整因果小故事（遇险→行动→升级→解决→结果），有结尾爆点或明确结局；情绪曲线照参考模板，禁止只串惊吓镜头。
+- 必须写成完整因果小故事（遇险→行动理由→行动→升级→解决→结果）。后一句由前一句触发。结尾写明逃脱、获救、失踪或真相，并交代它如何由前面的行动造成。禁止一句一镜的流水账，也禁止只串惊吓镜头。
+
+因果规则：
+%s
 
 风格必须与下面的参考文案高度相似：一样的题材取向、人称、句式长短、节奏快慢、语气和收尾。参考里怎么断句、怎么吊胃口、怎么收尾，你就照那个语感组织句子（用词可换，语感照抄）。
 
@@ -339,8 +346,8 @@ def _creative_anchored(candidate, style_profile, flavor_conf, provider, language
 
 要求:
 1. 生成恰好 %d 个风格变体，口吻分别为: %s。
-2. 每个变体 %d 句（等于上面镜头数，每个镜头**一次且仅一次**按顺序使用），整段朗读时长约 %d 秒。
-3. 句子顺序与镜头顺序一致，绝不回退、不跳镜头；已按画面去重，全部是真实不同的画面，严禁任何一句描述重复出现过的画面。
+2. 每个变体 6至9 句（不必等于镜头数；合并相邻镜头写成一个因果事件），整段朗读时长约 %d 秒。
+3. 句子按镜头时间向前，不回退；每句用 shot_index 绑定主要动作镜头。已按画面去重，严禁重复描述同一画面。
 4. 首句是 1-3 秒的 hook，结尾落在最后 1-2 个镜头上，要有爆点/反转/悬念，不要平淡收尾。
 5. 每句必须给出: text, role, shot_index(对应上面镜头 id), evidence_start/evidence_end（必须落在该镜头的起止时间内）, seconds(该句配音时长的估计)。
 6. 只要关键帧里有可读文字（门牌/申请单/标语/字幕），就引用来强化悬念。
@@ -349,10 +356,11 @@ def _creative_anchored(candidate, style_profile, flavor_conf, provider, language
 风格画像: %s
 原片台词（仅当对应镜头画面字幕可读时参考，其余忽略）:
 %s""" % (
+        story_rules,
         ref_block,
         templates,
         shot_block,
-        n, flavor_names, len(shots), target, n,
+        n, flavor_names, target, n,
         json.dumps(_profile_dict(style_profile), ensure_ascii=False),
         json.dumps(window[:12], ensure_ascii=False)[:1200],
     )

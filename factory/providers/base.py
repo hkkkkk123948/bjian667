@@ -3,13 +3,13 @@ import hashlib
 import json
 import os
 import re
-import time
 from pathlib import Path
 
 from ..log import get_logger
 from ..utils import clamp
 
 CODE_FENCE_RE = re.compile(r"```(?:json)?\s*(.*?)```", re.S)
+_TRAILING_COMMA = re.compile(r",\s*([}\]])")
 
 _CACHE = {"dir": None, "enabled": False}
 _USAGE = {"models": {}, "requests": 0, "cache_hits": 0, "cache_misses": 0}
@@ -146,6 +146,19 @@ class ProviderBlockedError(ProviderError):
     """
 
 
+def _loads_lenient(blob):
+    try:
+        return json.loads(blob)
+    except json.JSONDecodeError:
+        repaired = _TRAILING_COMMA.sub(r"\1", blob)
+        if repaired == blob:
+            return None
+        try:
+            return json.loads(repaired)
+        except json.JSONDecodeError:
+            return None
+
+
 def extract_json(text):
     if text is None:
         return None
@@ -164,10 +177,9 @@ def extract_json(text):
         for end in range(len(chunk) - 1, start, -1):
             if chunk[end] not in "}]" :
                 continue
-            try:
-                return json.loads(chunk[start:end + 1])
-            except json.JSONDecodeError:
-                continue
+            parsed = _loads_lenient(chunk[start:end + 1])
+            if parsed is not None:
+                return parsed
     return None
 
 

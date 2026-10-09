@@ -22,7 +22,8 @@
       "timeout": 120,
       "max_retry": 1,
       "enable_thinking": false,
-      "max_tokens": 1600
+      "thinking": {"type": "disabled"},
+      "max_tokens": 4096
     },
     "reference_analysis": {
       "type": "openai",
@@ -33,7 +34,8 @@
       "timeout": 120,
       "max_retry": 1,
       "enable_thinking": false,
-      "max_tokens": 1600
+      "thinking": {"type": "disabled"},
+      "max_tokens": 4096
     },
     "script_generation": {
       "type": "openai",
@@ -43,7 +45,7 @@
       "backup_models": [],
       "timeout": 240,
       "max_retry": 1,
-      "max_tokens": 2200
+      "max_tokens": 3600
     },
     "match_judge": {
       "type": "openai",
@@ -65,7 +67,7 @@
       "backup_models": [],
       "timeout": 120,
       "max_retry": 1,
-      "max_tokens": 2200
+      "max_tokens": 3600
     }
   },
   "tts": {

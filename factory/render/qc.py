@@ -3,7 +3,7 @@ import re
 from pathlib import Path
 
 from ..log import get_logger
-from ..utils import ffmpeg_bin, run_cmd
+from ..utils import ffmpeg_bin, ffprobe_bin, run_cmd
 
 
 def final_qc(clip, script_text, params, min_duration=8.0, max_duration=60.0, source_size=None,
@@ -158,7 +158,7 @@ def _semantic_cache_key(path, text, timeline, provider, params):
 
 def _probe(path):
     out, _, code = run_cmd([
-        "ffprobe", "-v", "error", "-show_entries", "stream=codec_type,width,height",
+        ffprobe_bin(), "-v", "error", "-show_entries", "stream=codec_type,width,height",
         "-show_entries", "format=duration", "-of", "json", str(path)
     ], check=False, timeout=60)
     data = {}

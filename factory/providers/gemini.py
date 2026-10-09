@@ -1,4 +1,5 @@
 import base64
+import json
 import os
 import time
 from pathlib import Path
@@ -9,6 +10,11 @@ from ..log import get_logger
 from .base import LLMProvider, ProviderBlockedError, ProviderError
 
 BLOCK_PATTERNS = ("prohibited_content", "prompt_blocked", "content_filter", "safety", "blocked")
+
+
+def _transient_provider_error(exc):
+    text = str(exc).lower()
+    return any(code in text for code in ("http 429", "http 500", "http 502", "http 503", "http 504"))
 
 
 def _is_blocked(text):
@@ -96,11 +102,19 @@ class GeminiProvider(LLMProvider):
                     last = exc
                     get_logger().warning("gemini %s 被内容策略拒绝，切换后备模型: %s", model, str(exc)[:120])
                     break
-                except ProviderError:
-                    raise
-                except Exception as exc:
+                except ProviderError as exc:
+                    if not _transient_provider_error(exc):
+                        raise
                     last = exc
                     time.sleep(2.0 * (attempt + 1))
+                    get_logger().warning("gemini %s 暂时失败，重试 %s: %s", model, attempt + 1, str(exc)[:160])
+                except Exception as exc:
+                    last = exc
+                    message = str(exc).lower()
+                    ssl_like = "ssl" in message or "unexpected_eof" in message or "connection" in message
+                    time.sleep((3.0 if ssl_like else 2.0) * (attempt + 1))
+                    if ssl_like or isinstance(exc, json.JSONDecodeError):
+                        get_logger().warning("gemini 请求网络/JSON异常，重试 %s: %s", attempt + 1, str(exc)[:160])
         if isinstance(last, ProviderBlockedError):
             raise last
         raise ProviderError(str(last))
