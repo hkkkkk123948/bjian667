@@ -1,0 +1,16 @@
+[info] 评论引导话术插在第1句后（user_review）：忘记带玫瑰花了
+[23:16:07] INFO 评论引导话术插在第1句后（user_review）：忘记带玫瑰花了
+→ QUALITY_CHECK 
+  [ 88%] 最终质量检查
+[23:16:08] INFO QC clip_001.mp4: pass duration=29.6 issues=[]
+✓ QUALITY_CHECK 
+→ DRAFT_EXPORT 
+  [ 94%] 剪映草稿导出
+[23:16:11] INFO 剪映草稿已导出: C:\Users\Administrator\AppData\Local\JianyingPro\User Data\Projects\com.lveditor.draft\clip_001_仓库门后的白眼怪人
+[23:16:11] INFO 剪映草稿导出: 1/1 部成片
+[info] 剪映草稿导出: 1/1 部成片
+✓ DRAFT_EXPORT 
+→ COMPLETED 
+  [100%] 完成
+✓ COMPLETED 
+FORMAL_RESULT 20261008_230044_95e6cd COMPLETED

@@ -1,0 +1,34 @@
+[23:40:00] INFO 复用已保存文案 雨夜窗外怪人: 深夜同伴突然叫醒熟睡的男孩并示意他查看窗外。男孩起身查看后发现怪人正把双手紧贴在玻璃上。怪人已经潜入屋内并躲在床下露出诡异笑脸。男孩和同伴发现后立刻跑下楼梯远离藏身的房间。男人看见男孩跑来便牵着两条恶犬挡在他们前面。可怪人很快亮出尖刀沿着地上脚印继续追赶。两条恶犬随即扑向怪人把他死死压倒在泥地上。最后男孩与同伴守着熟睡恶犬安全熬过雨夜。
+[23:41:51] INFO 导演稿 木屋里的大锅: 女孩被陌生人围住时，还以为他们只是在热情招呼。女孩随后蹲在林边，把散落的石头装进黑袋。回到木屋后，她看见男人把石头丢进火上大锅。女孩凑近大锅查看，发现里面竟然全是大块生肉。她抬头发现男人们都在怪笑，这才意识到自己被包围。女人赶到木屋门外，正好看见女孩被几个人围住。女人抓住女孩快步离开，那几个人只能守在门口。女孩最终安全坐到餐桌前，却因那口大锅始终不敢抬头。
+[23:41:51] INFO 评论引导话术插在第1句后（manual）：忘记带玫瑰花了
+[23:41:51] INFO 评论引导话术插在第1句后（manual）：忘记带玫瑰花了
+  0%|          | 0/2602 [00:00<?, ?frames/s]C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:42: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower median kernel implementation...
+  warnings.warn(
+C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:146: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower DTW implementation...
+  warnings.warn(
+ 93%|█████████▎| 2424/2602 [00:07<00:00, 308.38frames/s]C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:42: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower median kernel implementation...
+  warnings.warn(
+C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:146: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower DTW implementation...
+  warnings.warn(
+100%|██████████| 2602/2602 [00:08<00:00, 306.66frames/s]100%|██████████| 2602/2602 [00:08<00:00, 307.14frames/s]
+[00:02:51] ERROR 任务失败: 'ScriptSentence' object has no attribute 'comment_hooks'
+Traceback (most recent call last):
+  File "D:\惊悚短片剪辑\factory\pipeline.py", line 210, in produce
+    self._do_timeline(queue)
+  File "D:\惊悚短片剪辑\factory\pipeline.py", line 737, in _do_timeline
+    return do_timeline(self, queue)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\production.py", line 200, in do_timeline
+    timeline = build_timeline(cand, variant, tts_data, pipeline.config.params,
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\render\timeline.py", line 80, in build_timeline
+    picture_timings, comments, comment_mode, preface = prepare_comment_picture(variant,timings,tts_result,params)
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\render\comment_visuals.py", line 51, in prepare_comment_picture
+    comments = comment_timings(variant,timings,tts_result)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\render\comment_visuals.py", line 27, in comment_timings
+    hooks = sent.comment_hooks or ([{"text":sent.comment_hook,"offset":len(body.rstrip("。！？!?")),
+            ^^^^^^^^^^^^^^^^^^
+AttributeError: 'ScriptSentence' object has no attribute 'comment_hooks'. Did you mean: 'comment_hook'?
+[00:02:51] ERROR 任务失败: 'ScriptSentence' object has no attribute 'comment_hooks'

@@ -1,0 +1,3783 @@
+我这次不是只看 README，而是按**当前主仓库 `main` 的实际代码结构、核心 Python 后端、AI 工作流、转录、选片、视觉重构、FFmpeg、API/MCP、任务服务和测试/部署结构**重新梳理了一遍。当前仓库已经有约 420 次提交，核心文件包括 `main.py`、`app.py`、`clip_selection.py`、`gemini_worker.py`、`transcribe_backends.py`、`scene_detection.py`、`reframe_v2.py`、`layout_picker.py`、`hook_grounding.py`、`edit_builder.py`、`editor.py`、`subtitles.py`、`ffmpeg_utils.py`、`mcp_server.py` 等。([GitHub][1])
+
+我下面给你的不是“怎么改几个文件”的小方案，而是一份**以 OpenShorts 为底座、重新做成你需要的“长视频 → 多故事 → 参考风格 → 脚本 → 画面匹配 → TTS → 竖屏短视频”系统的完整改造方案**。
+
+[OpenShorts 当前主仓库](https://github.com/MSShohag/openshorts?utm_source=chatgpt.com)
+
+# OpenShorts → AI长视频故事短视频生产系统
+
+## V1.0 完整改造设计文档
+
+---
+
+# 一、项目最终目标
+
+我们不应该把 OpenShorts 简单改成“另一个 Opus Clip”。
+
+真正目标应该是：
+
+> **输入一个或多个 YouTube 长视频 URL + 用户提供的参考短视频脚本 → AI 自动理解长视频 → 从一部视频中发现多个独立故事 → 按参考脚本风格重新编写旁白 → 检查旁白与原始画面是否匹配 → 淘汰不合格脚本 → TTS → 自动剪辑 → 9:16 → 字幕 → 输出多个短视频。**
+
+最终系统：
+
+```text
+YouTube URL
+    │
+    ▼
+Source Analyzer
+    │
+    ├── 视频标题/描述/章节/元数据
+    ├── YouTube字幕
+    └── 视频源状态
+    │
+    ▼
+Transcript Engine
+    │
+    ├── YouTube字幕优先
+    └── Whisper兜底
+    │
+    ▼
+Media Understanding
+    │
+    ├── Scene
+    ├── Keyframe
+    ├── OCR
+    ├── 人物
+    ├── 屏幕内容
+    └── Audio/Event
+    │
+    ▼
+Story Discovery Engine
+    │
+    ├── Story A
+    ├── Story B
+    ├── Story C
+    ├── Story D
+    └── ...
+    │
+    ▼
+Reference Style Engine
+    │
+    ▼
+Script Generation
+    │
+    ├── Script A1
+    ├── Script A2
+    └── Script A3
+    │
+    ▼
+Video-Script Match Engine
+    │
+    ├── Visual Match
+    ├── Temporal Match
+    ├── Narrative Match
+    ├── Fact Match
+    └── Coverage
+    │
+    ├──────────── FAIL
+    │               │
+    │               ▼
+    │          重新生成/淘汰
+    │
+    ▼ PASS
+TTS
+    │
+    ▼
+Timeline Builder
+    │
+    ▼
+OpenShorts Reframe Engine
+    │
+    ▼
+Subtitle / Hook / Layout
+    │
+    ▼
+Final QC
+    │
+    ▼
+15–35s / 9:16 MP4
+```
+
+---
+
+# 二、首先必须明确：OpenShorts现在到底是什么
+
+当前 OpenShorts 的核心 Clip Generator 是：
+
+```text
+Ingest
+ ↓
+Transcribe
+ ↓
+Scene Detect
+ ↓
+Gemini Moment Selection
+ ↓
+FFmpeg Extract
+ ↓
+9:16 Reframe
+ ↓
+Subtitle / Hook / Effects
+ ↓
+Publish
+```
+
+官方 README 也是这样定义的。它目前已经具备 YouTube URL 输入、faster-whisper、场景检测、AI 选片、FFmpeg、9:16 重构、字幕、Hook、AI效果、TTS/Dubbing、MCP/API 等能力。([GitHub][1])
+
+**所以它最有价值的地方不是 AI，而是已经把“视频生产基础设施”做出来了。**
+
+我们不要推倒重来。
+
+---
+
+# 三、哪些东西直接保留
+
+## A. 必须保留
+
+### 1. yt-dlp
+
+负责：
+
+* YouTube URL解析
+* 视频元数据
+* 视频下载
+* 字幕获取
+* 音视频资源获取
+
+当前项目已经有 `yt_clients.py` 和下载相关逻辑。([GitHub][1])
+
+---
+
+### 2. faster-whisper
+
+保留。
+
+但是：
+
+> **从主路径变成 Fallback。**
+
+现在 OpenShorts 使用 faster-whisper，并且 `transcribe_backends.py` 已经做了模型缓存、GPU/CPU切换以及 CUDA 失败后回退 CPU。([GitHub][2])
+
+以后：
+
+```text
+YouTube字幕
+      ↓
+成功
+      ↓
+跳过Whisper
+
+失败
+      ↓
+Whisper
+```
+
+这会成为整个系统第一个重要优化。
+
+---
+
+### 3. Scene Detection
+
+保留。
+
+OpenShorts 已经有：
+
+```text
+scene_detection.py
+```
+
+以及基于场景的视觉重构逻辑。
+
+这一层不要删。
+
+---
+
+### 4. FFmpeg
+
+全部保留。
+
+它负责：
+
+* clip cut
+* encode
+* audio
+* subtitle burn
+* 9:16
+* output
+* final mux
+
+---
+
+### 5. Reframe
+
+这是 OpenShorts 很有价值的一块。
+
+当前已经有：
+
+```text
+reframe_v2.py
+layout_picker.py
+split_layout.py
+screencast_layout.py
+camera_inset.py
+active_speaker.py
+```
+
+而且已经针对：
+
+* 单人
+* 多人
+* screen recording
+* screencast
+* landscape
+* speaker tracking
+
+做了大量处理。([GitHub][1])
+
+**不要重新写。**
+
+---
+
+# 四、哪些东西必须重做
+
+核心有五个。
+
+```text
+1. Transcript Acquisition
+2. Story Discovery
+3. Reference Style Engine
+4. Script Generation
+5. Video-Script Match Engine
+```
+
+尤其是：
+
+> **Story Discovery + Video-Script Match Engine**
+
+这是整个产品和 OpenShorts 原版的本质区别。
+
+---
+
+# 五、最重要的架构升级：字幕优先
+
+## 当前 OpenShorts
+
+```text
+YouTube
+ ↓
+下载
+ ↓
+Whisper
+ ↓
+Transcript
+```
+
+这是最大的时间瓶颈。
+
+官方自己给出的 CPU 情况是，8分钟视频大约需要 5–8 分钟；GPU 环境则明显更快。([GitHub][1])
+
+---
+
+# 六、改成 Analysis-First
+
+新系统：
+
+```text
+YouTube URL
+    │
+    ▼
+Metadata
+    │
+    ▼
+Subtitle Fetch
+    │
+    ├── 人工字幕
+    ├── 自动字幕
+    └── 无字幕
+           │
+           ▼
+        Whisper
+```
+
+所以：
+
+### 有 YouTube 字幕
+
+完全不运行 Whisper。
+
+### 没字幕
+
+才运行 Whisper。
+
+---
+
+# 七、字幕获取器设计
+
+新增：
+
+```text
+subtitle_sources.py
+```
+
+接口：
+
+```python
+class SubtitleSource:
+    def fetch(self, source_url) -> SubtitleResult:
+        ...
+```
+
+返回：
+
+```json
+{
+    "source": "youtube_auto",
+    "language": "en",
+    "is_auto": true,
+    "format": "vtt",
+    "segments": [
+        {
+            "start": 12.31,
+            "end": 15.82,
+            "text": "..."
+        }
+    ]
+}
+```
+
+---
+
+# 八、字幕优先级
+
+推荐：
+
+```text
+Priority 1
+用户指定字幕语言
+
+Priority 2
+视频主语言人工字幕
+
+Priority 3
+视频主语言自动字幕
+
+Priority 4
+英语人工字幕
+
+Priority 5
+英语自动字幕
+
+Priority 6
+Whisper
+```
+
+不能简单：
+
+```text
+--sub-langs all
+```
+
+因为语言太多会浪费时间。
+
+先读取字幕轨信息，再选目标语言。
+
+---
+
+# 九、字幕质量检查
+
+不能拿到字幕就直接相信。
+
+必须检查：
+
+### 1. 时间覆盖率
+
+例如：
+
+```text
+视频 3600s
+字幕覆盖 3510s
+```
+
+覆盖率：
+
+```text
+97.5%
+```
+
+可以。
+
+---
+
+### 2. 字幕密度
+
+例如：
+
+```text
+每分钟平均字符数
+```
+
+如果：
+
+```text
+3600秒
+只有300个字
+```
+
+明显不正常。
+
+---
+
+### 3. 时间轴合法性
+
+检查：
+
+```text
+start >= 0
+end > start
+end <= video_duration
+```
+
+---
+
+### 4. 重复字幕
+
+YouTube VTT可能存在重复/滚动字幕。
+
+统一：
+
+```text
+normalize_subtitle()
+dedupe_subtitle()
+merge_adjacent_subtitle()
+```
+
+---
+
+# 十、统一 Transcript 数据结构
+
+这是整个系统最重要的数据结构之一。
+
+不要再让不同模块自己定义 transcript。
+
+统一：
+
+```json
+{
+  "video_id": "...",
+  "duration": 3520.3,
+  "language": "en",
+  "source": "youtube_auto",
+  "segments": [
+    {
+      "id": "seg_000001",
+      "start": 12.31,
+      "end": 15.82,
+      "text": "...",
+      "words": [
+        {
+          "word": "...",
+          "start": 12.31,
+          "end": 12.72,
+          "end": 13.01
+        }
+      ]
+    }
+  ]
+}
+```
+
+如果是 YouTube 字幕没有 word-level：
+
+可以：
+
+```text
+segment timestamp
+```
+
+先工作。
+
+真正需要 word-level 时：
+
+```text
+局部 Whisper
+```
+
+只识别最终候选片段。
+
+---
+
+# 十一、一个非常重要的优化
+
+## 不要对整部视频做 Whisper
+
+即使 YouTube 没字幕。
+
+应该：
+
+```text
+YouTube无字幕
+    ↓
+粗略故事发现
+    ↓
+找到候选区域
+    ↓
+只对候选区域 Whisper
+```
+
+如果必须全文：
+
+才跑全文 Whisper。
+
+因此系统有三个 Transcript Level：
+
+```text
+L1
+YouTube Caption
+
+L2
+Segment Transcript
+
+L3
+Word-level Whisper
+```
+
+按需升级。
+
+---
+
+# 十二、Video Analysis也采用“延迟下载”
+
+这是第二个非常重要的架构。
+
+以前：
+
+```text
+YouTube
+ ↓
+下载完整视频
+ ↓
+分析
+```
+
+我们改：
+
+```text
+YouTube
+ ↓
+字幕/元数据
+ ↓
+故事候选
+ ↓
+只获取候选需要的视觉信息
+```
+
+如果使用支持在线视频 URL 的视频理解模型：
+
+```text
+YouTube URL
+ ↓
+Video Understanding API
+```
+
+直接分析。
+
+如果模型不支持：
+
+```text
+YouTube
+ ↓
+下载低分辨率代理/候选片段
+ ↓
+视觉分析
+```
+
+最后只有通过质量门禁的候选才需要进入完整渲染。
+
+---
+
+# 十三、因此整个系统采用双通道
+
+```text
+                 YouTube URL
+                     │
+          ┌──────────┴──────────┐
+          ↓                     ↓
+     Text Channel          Visual Channel
+          │                     │
+     字幕/Transcript         视频/Frames
+          │                     │
+          └──────────┬──────────┘
+                     ↓
+              Story Engine
+```
+
+这是整个项目真正应该采用的架构。
+
+---
+
+# 十四、OpenShorts原来的 Clip Selection 怎么处理
+
+当前 `clip_selection.py` 已经做了：
+
+* transcript window
+* window overlap
+* clip count target
+* score
+* dedupe
+* trim
+* word snapping
+
+例如现在默认会把 Transcript 建成大约 90 秒窗口，并有约 30 秒重叠，同时尽量对齐到 transcript segment 边界。([GitHub][3])
+
+这部分不要扔。
+
+但是要改变它的角色。
+
+---
+
+# 十五、原来的 Clip Selection
+
+```text
+Transcript
+ ↓
+Window
+ ↓
+Score
+ ↓
+Clip
+```
+
+改成：
+
+```text
+Transcript
+ ↓
+Semantic Blocks
+ ↓
+Story Events
+ ↓
+Story Candidate
+ ↓
+Story Score
+```
+
+---
+
+# 十六、Story Discovery Engine
+
+新增：
+
+```text
+story_engine/
+    __init__.py
+    segmenter.py
+    event_extractor.py
+    story_builder.py
+    story_ranker.py
+    story_deduper.py
+```
+
+---
+
+# 十七、第一阶段：Semantic Segmentation
+
+不能固定：
+
+```text
+90秒一块
+```
+
+而应该首先按照语义划分：
+
+```text
+人物/事件开始
+      ↓
+背景
+      ↓
+行动
+      ↓
+冲突
+      ↓
+变化
+      ↓
+结果
+```
+
+例如：
+
+```text
+00:00–02:30
+介绍
+
+02:30–05:40
+发现问题
+
+05:40–08:20
+尝试解决
+
+08:20–10:15
+失败
+
+10:15–12:10
+找到解决方案
+
+12:10–13:20
+结果
+```
+
+这才是故事结构。
+
+---
+
+# 十八、Story Candidate 数据结构
+
+建议：
+
+```json
+{
+  "story_id": "story_001",
+
+  "source": {
+    "start": 632.4,
+    "end": 804.7
+  },
+
+  "title": "...",
+
+  "summary": "...",
+
+  "language": "en",
+
+  "characters": [
+    {
+      "id": "person_01",
+      "description": "..."
+    }
+  ],
+
+  "events": [
+    {
+      "start": 632.4,
+      "end": 650.2,
+      "type": "setup",
+      "description": "..."
+    },
+    {
+      "start": 650.2,
+      "end": 710.4,
+      "type": "conflict",
+      "description": "..."
+    },
+    {
+      "start": 710.4,
+      "end": 750.3,
+      "type": "turn",
+      "description": "..."
+    },
+    {
+      "start": 750.3,
+      "end": 804.7,
+      "type": "payoff",
+      "description": "..."
+    }
+  ],
+
+  "hook_visual": "...",
+
+  "best_visual_moments": [],
+
+  "story_completeness": 0.91,
+
+  "short_potential": 0.88,
+
+  "visual_potential": 0.93
+}
+```
+
+---
+
+# 十九、Story不是越多越好
+
+比如一小时视频：
+
+```text
+候选故事 1
+候选故事 2
+候选故事 3
+候选故事 4
+候选故事 5
+候选故事 6
+候选故事 7
+候选故事 8
+候选故事 9
+候选故事 10
+```
+
+先全部发现。
+
+再：
+
+```text
+Story Ranker
+```
+
+排序。
+
+最终可能：
+
+```text
+S1 92
+S2 90
+S3 87
+S4 84
+S5 82
+S6 61
+S7 55
+```
+
+低于门槛：
+
+```text
+discard
+```
+
+---
+
+# 二十、故事去重必须比 OpenShorts 原版更强
+
+OpenShorts原版主要解决：
+
+> 时间区间重叠
+
+我们的系统还必须解决：
+
+> **语义重复。**
+
+例如：
+
+```text
+Story A:
+“男子发现汽车故障”
+
+Story B:
+“汽车突然出现故障”
+
+Story C:
+“男子解决汽车故障”
+```
+
+实际上可能是同一个事件。
+
+所以需要：
+
+```text
+Temporal overlap
++
+Semantic similarity
++
+Character overlap
++
+Scene overlap
++
+Event overlap
+```
+
+综合判断。
+
+---
+
+# 二十一、Story Dedup Score
+
+建议：
+
+```text
+DuplicateScore =
+0.30 * temporal_overlap
++
+0.25 * semantic_similarity
++
+0.15 * character_overlap
++
+0.15 * scene_overlap
++
+0.15 * event_overlap
+```
+
+例如：
+
+```text
+> 0.80
+```
+
+视为重复。
+
+---
+
+# 二十二、参考脚本系统
+
+新增：
+
+```text
+style_engine/
+    analyzer.py
+    profile.py
+    retriever.py
+    prompt_builder.py
+```
+
+用户可以上传：
+
+```text
+参考脚本1
+参考脚本2
+参考脚本3
+...
+```
+
+---
+
+# 二十三、不要让模型简单“模仿文章”
+
+必须先抽取 Style Profile。
+
+例如：
+
+```json
+{
+  "hook": {
+    "avg_words": 17,
+    "question_ratio": 0.35,
+    "shock_ratio": 0.25
+  },
+
+  "sentence": {
+    "avg_length": 13,
+    "max_length": 28
+  },
+
+  "pacing": {
+    "words_per_second": 2.7
+  },
+
+  "narration": {
+    "person": "third_person",
+    "tone": "suspense"
+  },
+
+  "structure": [
+    "hook",
+    "context",
+    "escalation",
+    "turn",
+    "payoff"
+  ],
+
+  "ending": {
+    "type": "reveal"
+  }
+}
+```
+
+---
+
+# 二十四、Style Profile不是抄原文
+
+必须明确：
+
+```text
+STYLE
+≠
+CONTENT
+```
+
+Style：
+
+```text
+句长
+节奏
+结构
+叙事视角
+情绪
+Hook形式
+转折形式
+结尾形式
+```
+
+Content：
+
+```text
+人物
+事件
+事实
+地点
+时间
+数字
+结果
+```
+
+两者必须完全分开。
+
+---
+
+# 二十五、Script Generation
+
+每个 Story Candidate：
+
+```text
+Story
++
+Style Profile
++
+Output Constraints
+```
+
+生成：
+
+```text
+Script A
+Script B
+Script C
+```
+
+而不是一次只生成一个。
+
+---
+
+# 二十六、为什么要生成3个版本
+
+因为：
+
+```text
+版本A
+故事完整，但Hook一般
+
+版本B
+Hook很好，但画面不匹配
+
+版本C
+画面完全匹配，但语言不够自然
+```
+
+最后由 Match Engine 选。
+
+---
+
+# 二十七、Script必须是结构化的
+
+不能只返回：
+
+```text
+一段文字
+```
+
+应该：
+
+```json
+{
+  "script_id": "script_001",
+
+  "duration_target": 28,
+
+  "hook": "...",
+
+  "sentences": [
+    {
+      "id": "s1",
+      "text": "...",
+      "purpose": "hook"
+    },
+    {
+      "id": "s2",
+      "text": "...",
+      "purpose": "setup"
+    },
+    {
+      "id": "s3",
+      "text": "...",
+      "purpose": "conflict"
+    }
+  ],
+
+  "ending": "..."
+}
+```
+
+---
+
+# 二十八、最关键：每一句旁白必须有 Evidence
+
+这是整个系统的核心设计。
+
+例如：
+
+```json
+{
+  "sentence_id": "s3",
+  "text": "女孩突然打开了箱子",
+
+  "evidence": {
+    "source_start": 742.3,
+    "source_end": 746.8,
+
+    "evidence_type": [
+      "visual",
+      "transcript"
+    ]
+  }
+}
+```
+
+这样才能验证。
+
+---
+
+# 二十九、Video-Script Match Engine
+
+新增：
+
+```text
+match_engine/
+    matcher.py
+    visual_matcher.py
+    temporal_matcher.py
+    fact_matcher.py
+    narrative_matcher.py
+    evidence_checker.py
+    score.py
+```
+
+---
+
+# 三十、Match Engine不能只看一个总分
+
+必须拆成：
+
+```text
+Visual Alignment
+Temporal Alignment
+Narrative Alignment
+Fact Alignment
+Coverage
+Style
+Audio Fit
+```
+
+---
+
+# 三十一、Visual Alignment
+
+判断：
+
+> 旁白说的东西，画面有没有？
+
+例如：
+
+旁白：
+
+> “男人拿起了桌上的钥匙。”
+
+画面：
+
+```text
+男人
++
+桌子
++
+钥匙
++
+拿起动作
+```
+
+高分。
+
+---
+
+如果画面只有：
+
+```text
+男人站着
+```
+
+低分。
+
+---
+
+# 三十二、Temporal Alignment
+
+最容易被忽略。
+
+例如：
+
+旁白：
+
+```text
+“接下来，他打开了门。”
+```
+
+但画面：
+
+```text
+打开门
+发生在后面5秒
+```
+
+那么：
+
+```text
+Temporal mismatch
+```
+
+必须检查。
+
+---
+
+# 三十三、Fact Alignment
+
+旁白：
+
+> “这是他第一次来到这里。”
+
+如果原始视频没有证据。
+
+不能通过。
+
+因为这是：
+
+```text
+AI hallucination
+```
+
+必须：
+
+```text
+UNSUPPORTED FACT
+```
+
+---
+
+# 三十四、Narrative Alignment
+
+判断：
+
+> AI有没有改变原故事因果关系。
+
+例如原视频：
+
+```text
+A发现问题
+→
+B解释
+→
+A解决
+```
+
+脚本不能写成：
+
+```text
+A发现问题
+→
+A自己解决
+```
+
+即使画面“看起来像”，也不行。
+
+---
+
+# 三十五、Evidence Types
+
+统一：
+
+```text
+TRANSCRIPT
+VISUAL
+OCR
+TEMPORAL
+AUDIO
+METADATA
+INFERENCE
+```
+
+其中：
+
+```text
+INFERENCE
+```
+
+默认不能作为关键事实证据。
+
+---
+
+# 三十六、Match Score
+
+推荐：
+
+```text
+MatchScore =
+
+0.25 * Visual
++
+0.20 * Temporal
++
+0.20 * Fact
++
+0.15 * Narrative
++
+0.10 * Coverage
++
+0.10 * Style
+```
+
+然后设置硬门槛：
+
+```text
+Visual >= 0.75
+Fact >= 0.90
+Temporal >= 0.80
+Narrative >= 0.80
+```
+
+即使总分很高：
+
+```text
+Fact = 0.55
+```
+
+也：
+
+```text
+FAIL
+```
+
+---
+
+# 三十七、为什么必须设置“硬门槛”
+
+因为：
+
+```text
+视觉漂亮
++
+文案非常好
++
+Hook非常强
+```
+
+不能掩盖：
+
+> **事实是假的。**
+
+---
+
+# 三十八、Match Engine的工作方式
+
+```text
+Script
+ ↓
+拆成Sentence
+ ↓
+每句提取Claims
+ ↓
+每个Claim寻找Evidence
+ ↓
+Evidence → Video/Transcript/OCR
+ ↓
+AI Judge
+ ↓
+Sentence Score
+ ↓
+整篇Script Score
+```
+
+---
+
+# 三十九、Claim Extraction
+
+例如：
+
+> “女孩看到门后站着一个男人。”
+
+拆成：
+
+```text
+Claim 1:
+主体 = 女孩
+
+Claim 2:
+动作 = 看到
+
+Claim 3:
+对象 = 男人
+
+Claim 4:
+位置 = 门后
+
+Claim 5:
+状态 = 男人站立
+```
+
+然后分别验证。
+
+---
+
+# 四十、这比“让模型看完视频判断匹配吗”可靠
+
+不要：
+
+```text
+AI：
+这个脚本和视频匹配吗？
+
+YES
+```
+
+这种方式太容易误判。
+
+必须：
+
+```text
+Claim-level verification
+```
+
+---
+
+# 四十一、视觉证据采样
+
+不需要整部视频逐帧。
+
+采用三级：
+
+### Level 1
+
+全局：
+
+```text
+0.5 FPS
+```
+
+寻找候选区域。
+
+### Level 2
+
+候选：
+
+```text
+2–5 FPS
+```
+
+### Level 3
+
+最终验证：
+
+```text
+5–10 FPS
+```
+
+这样计算量可控。
+
+---
+
+# 四十二、关键帧索引
+
+新增：
+
+```text
+media_index.py
+```
+
+保存：
+
+```json
+{
+  "scene_id": "scene_023",
+  "start": 732.2,
+  "end": 748.7,
+
+  "keyframes": [
+    {
+      "time": 733.0,
+      "path": "...",
+      "description": "..."
+    }
+  ]
+}
+```
+
+---
+
+# 四十三、OCR
+
+如果视频存在：
+
+* 软件界面
+* PPT
+* 图表
+* 商品
+* 文件
+* 数字
+* 地图
+
+必须增加 OCR。
+
+原因：
+
+视觉模型可能知道：
+
+> “屏幕上有文字”
+
+但 OCR可以提供：
+
+```text
+Tesla
+$39,990
+2026
+```
+
+这些对脚本事实验证非常重要。
+
+---
+
+# 四十四、Screen Content
+
+OpenShorts已经有 Grounded Hook。
+
+当前设计甚至明确要求：
+
+> 对于 screencast / screen-heavy clip，Hook必须根据实际屏幕内容，而不是泛泛总结视频主题。([GitHub][4])
+
+这个思路直接升级为：
+
+```text
+OnScreen Evidence
+```
+
+---
+
+# 四十五、Layout Engine直接保留
+
+当前 OpenShorts 的布局判断已经相当成熟。
+
+例如：
+
+```text
+none
+screencast
+split
+```
+
+以及基于人脸检测的 TRACK/GENERAL 等路径。([GitHub][4])
+
+不要重写。
+
+---
+
+# 四十六、Reframe要改的一点
+
+现在它是：
+
+```text
+Clip
+ ↓
+Reframe
+```
+
+以后：
+
+```text
+Story
+ ↓
+Script sentence timing
+ ↓
+Visual evidence
+ ↓
+Reframe priority
+```
+
+也就是说：
+
+**脚本知道当前画面应该强调什么。**
+
+例如：
+
+```text
+旁白：
+“注意屏幕右下角这个数字。”
+```
+
+那么竖屏裁剪不能把右下角裁掉。
+
+---
+
+# 四十七、最终视频不应该只是“裁剪”
+
+应该：
+
+```text
+Story Timeline
+     ↓
+Visual Timeline
+     ↓
+Narration Timeline
+     ↓
+Caption Timeline
+     ↓
+Layout Timeline
+     ↓
+Final Render
+```
+
+---
+
+# 四十八、TTS必须放在 Match 之后
+
+顺序一定是：
+
+```text
+Story
+ ↓
+Script
+ ↓
+Match
+ ↓
+PASS
+ ↓
+TTS
+```
+
+不能：
+
+```text
+Script
+ ↓
+TTS
+ ↓
+发现画面不匹配
+ ↓
+废掉TTS
+```
+
+这样浪费钱。
+
+---
+
+# 四十九、TTS Provider Manager
+
+新增：
+
+```text
+tts_provider.py
+```
+
+统一接口：
+
+```python
+class TTSProvider:
+
+    def synthesize(
+        self,
+        text,
+        voice,
+        language,
+        speed
+    ):
+        ...
+```
+
+支持：
+
+```text
+Edge TTS
+ElevenLabs
+火山
+Azure
+Google
+自定义HTTP
+```
+
+---
+
+# 五十、API Provider Manager
+
+不要把 Gemini 写死。
+
+统一：
+
+```text
+providers/
+    base.py
+    video.py
+    llm.py
+    tts.py
+    transcription.py
+```
+
+---
+
+# 五十一、至少支持四类 Provider
+
+```text
+Video Understanding
+Story/LLM
+TTS
+Transcription
+```
+
+---
+
+# 五十二、LLM配置
+
+每个 Provider：
+
+```json
+{
+  "name": "my_llm",
+
+  "base_url": "...",
+
+  "api_key": "...",
+
+  "model": "...",
+
+  "temperature": 0.3,
+
+  "max_tokens": 8192
+}
+```
+
+---
+
+# 五十三、Video Provider
+
+例如：
+
+```text
+Gemini
+```
+
+如果支持：
+
+```text
+YouTube URL
+```
+
+则：
+
+```text
+URL → Video Model
+```
+
+如果不支持：
+
+```text
+URL
+ ↓
+Local/remote media
+ ↓
+Video Model
+```
+
+---
+
+# 五十四、Provider必须支持Fallback
+
+例如：
+
+```text
+Primary:
+Gemini
+
+失败
+ ↓
+OpenAI-compatible
+
+失败
+ ↓
+Local Ollama
+```
+
+但不同任务不一定用同一个模型。
+
+---
+
+# 五十五、模型应该按任务分工
+
+例如：
+
+```text
+Subtitle normalization
+→ 小模型
+
+Story Discovery
+→ 中大型模型
+
+Script
+→ 强语言模型
+
+Match
+→ 强推理/视觉模型
+
+Final QC
+→ 中型模型
+```
+
+不要所有东西都用一个模型。
+
+---
+
+# 五十六、成本控制
+
+每个任务必须有：
+
+```text
+token_input
+token_output
+duration
+model
+cost
+```
+
+OpenShorts 当前 `gemini_worker.py` 已经有 token/cost 统计逻辑，可以保留并扩大到所有 Provider。([GitHub][4])
+
+---
+
+# 五十七、任务系统必须重构成 DAG
+
+不要：
+
+```text
+main.py
+从头跑到尾
+```
+
+而是：
+
+```text
+Job
+ ├── Source
+ ├── Transcript
+ ├── Scene
+ ├── Story
+ ├── Script
+ ├── Match
+ ├── TTS
+ ├── Render
+ └── QC
+```
+
+每个都是独立 Task。
+
+---
+
+# 五十八、任务状态
+
+统一：
+
+```text
+PENDING
+RUNNING
+SUCCESS
+FAILED
+SKIPPED
+RETRY
+CANCELLED
+```
+
+---
+
+# 五十九、断点续跑
+
+例如：
+
+```text
+Story discovery成功
+Script成功
+Match成功
+TTS成功
+Render失败
+```
+
+重新运行：
+
+```text
+Render
+```
+
+而不是从头开始。
+
+---
+
+# 六十、Job Manifest
+
+每个项目：
+
+```text
+project/
+    source.json
+    transcript.json
+    scenes.json
+    media_index.json
+
+    stories/
+        story_001.json
+        story_002.json
+
+    scripts/
+        story_001_v1.json
+        story_001_v2.json
+
+    matches/
+        story_001_v1.json
+
+    audio/
+        story_001.wav
+
+    renders/
+        story_001.mp4
+
+    task_state.json
+```
+
+---
+
+# 六十一、核心数据库
+
+如果做正式版本：
+
+```text
+SQLite
+```
+
+足够。
+
+表：
+
+```text
+projects
+sources
+transcripts
+scenes
+stories
+scripts
+claims
+evidence
+matches
+tts_assets
+renders
+tasks
+providers
+```
+
+---
+
+# 六十二、数据库关系
+
+```text
+Project
+  │
+  ├── Source
+  │     │
+  │     └── Transcript
+  │
+  ├── Story
+  │     │
+  │     ├── Script
+  │     │     │
+  │     │     └── Claims
+  │     │             │
+  │     │             └── Evidence
+  │     │
+  │     └── Match
+  │
+  └── Render
+```
+
+---
+
+# 六十三、OpenShorts现有 `app.py`
+
+当前 `app.py` 已经承担大量服务端工作，当前版本规模已经很大，约 6200 行。([GitHub][5])
+
+所以：
+
+**不要继续把 Story Engine 塞进 app.py。**
+
+应该拆：
+
+```text
+app.py
+ ↓
+orchestrator.py
+ ↓
+pipeline/
+```
+
+---
+
+# 六十四、新目录结构
+
+建议最终：
+
+```text
+openshorts/
+│
+├── app.py
+├── main.py
+│
+├── pipeline/
+│   ├── orchestrator.py
+│   ├── task_graph.py
+│   ├── state.py
+│   └── checkpoints.py
+│
+├── source/
+│   ├── youtube.py
+│   ├── metadata.py
+│   └── subtitles.py
+│
+├── transcript/
+│   ├── models.py
+│   ├── normalizer.py
+│   ├── caption_backend.py
+│   └── whisper_backend.py
+│
+├── media/
+│   ├── scenes.py
+│   ├── sampler.py
+│   ├── ocr.py
+│   ├── keyframes.py
+│   └── index.py
+│
+├── story/
+│   ├── discovery.py
+│   ├── events.py
+│   ├── builder.py
+│   ├── ranker.py
+│   └── dedupe.py
+│
+├── style/
+│   ├── analyzer.py
+│   ├── profile.py
+│   └── prompt.py
+│
+├── script/
+│   ├── generator.py
+│   ├── validator.py
+│   └── claims.py
+│
+├── match/
+│   ├── engine.py
+│   ├── visual.py
+│   ├── temporal.py
+│   ├── factual.py
+│   ├── narrative.py
+│   └── scoring.py
+│
+├── providers/
+│   ├── registry.py
+│   ├── llm.py
+│   ├── video.py
+│   ├── tts.py
+│   └── transcription.py
+│
+├── render/
+│   ├── timeline.py
+│   ├── narration.py
+│   ├── subtitles.py
+│   └── final.py
+│
+├── existing OpenShorts modules...
+```
+
+---
+
+# 六十五、现有文件如何处理
+
+## `main.py`
+
+保留：
+
+* media processing
+* legacy clip pipeline
+* reframe
+* extraction
+
+但逐步变成：
+
+```text
+worker
+```
+
+而不是业务大脑。
+
+---
+
+## `app.py`
+
+保留：
+
+* REST
+* job API
+* authentication
+* dashboard backend
+
+但把：
+
+```text
+Story
+Script
+Match
+```
+
+全部移出去。
+
+---
+
+## `clip_selection.py`
+
+保留底层：
+
+```text
+windowing
+score
+dedupe
+word snapping
+```
+
+新增：
+
+```text
+StoryCandidate ranking
+```
+
+但最好最终拆成：
+
+```text
+clip_selection.py
+story_selection.py
+```
+
+---
+
+## `gemini_worker.py`
+
+这是一个必须拆的文件。
+
+现在它同时负责：
+
+* score
+* detail
+* visual selection
+* grounded hook
+* layout choice
+* JSON parsing
+* cost
+* safety handling
+
+已经过于臃肿。
+
+应该拆：
+
+```text
+ai/
+    scoring.py
+    visual.py
+    hook.py
+    layout.py
+    response.py
+```
+
+---
+
+## `transcribe_backends.py`
+
+保留。
+
+但增加：
+
+```text
+YouTubeCaptionBackend
+```
+
+成为：
+
+```text
+Caption
+ ↓
+Whisper
+```
+
+Fallback chain。
+
+---
+
+## `scene_detection.py`
+
+基本保留。
+
+---
+
+## `reframe_v2.py`
+
+尽量不动。
+
+这是底座资产。
+
+---
+
+## `layout_picker.py`
+
+保留。
+
+---
+
+## `hook_grounding.py`
+
+升级为：
+
+```text
+Evidence Grounding
+```
+
+不仅验证 Hook。
+
+也验证：
+
+```text
+Script Claims
+```
+
+---
+
+## `subtitles.py`
+
+保留。
+
+但增加：
+
+```text
+NarrationSubtitle
+```
+
+因为以后字幕来自：
+
+```text
+TTS Script
+```
+
+而不是原始字幕。
+
+---
+
+## `editor.py`
+
+保留。
+
+---
+
+## `edit_builder.py`
+
+保留并升级为：
+
+```text
+Timeline Builder
+```
+
+---
+
+# 六十六、原始字幕和新旁白字幕必须分开
+
+非常重要：
+
+```text
+Source Transcript
+```
+
+和：
+
+```text
+Generated Narration
+```
+
+不是一回事。
+
+---
+
+# 六十七、时间轴设计
+
+最终视频时间轴：
+
+```text
+00.00
+│
+├── Hook
+│
+├── Scene 1
+│
+├── Scene 2
+│
+├── Scene 3
+│
+└── Ending
+```
+
+旁白：
+
+```text
+VO 1
+VO 2
+VO 3
+VO 4
+```
+
+字幕：
+
+```text
+Caption 1
+Caption 2
+...
+```
+
+必须全部统一到：
+
+```text
+final_timeline
+```
+
+---
+
+# 六十八、TTS速度必须自动适配
+
+例如脚本预计：
+
+```text
+28秒
+```
+
+TTS出来：
+
+```text
+34秒
+```
+
+不能直接压缩到：
+
+```text
+0.82x
+```
+
+应该：
+
+```text
+先重新生成更短脚本
+```
+
+只有小幅偏差才调整语速。
+
+---
+
+# 六十九、脚本长度控制
+
+例如：
+
+```text
+15秒
+≈ 35–45中文字符
+```
+
+或者：
+
+```text
+30秒
+≈ 70–90中文字符
+```
+
+英文则根据：
+
+```text
+words/sec
+```
+
+计算。
+
+最终不能：
+
+```text
+写完脚本
+→
+才发现30秒视频需要55秒
+```
+
+---
+
+# 七十、TTS前必须做一次 Duration Prediction
+
+```text
+Script
+ ↓
+TTS duration estimator
+ ↓
+Expected duration
+```
+
+如果：
+
+```text
+target = 30s
+predicted = 39s
+```
+
+自动：
+
+```text
+Script Compression
+```
+
+---
+
+# 七十一、Final QC
+
+必须有。
+
+最终：
+
+```text
+Video
++
+Script
++
+Audio
++
+Subtitle
+```
+
+全部检查。
+
+---
+
+# 七十二、Final QC项目
+
+### 视频
+
+```text
+分辨率
+9:16
+FPS
+时长
+黑帧
+卡帧
+编码
+```
+
+### 音频
+
+```text
+存在
+响度
+峰值
+爆音
+静音
+```
+
+### 字幕
+
+```text
+越界
+重叠
+太快
+太长
+```
+
+### 画面
+
+```text
+人脸被切
+重要文字被切
+画面冻结
+```
+
+---
+
+# 七十三、最重要的最终语义检查
+
+最后再让视觉模型检查：
+
+```text
+“这个成片是不是在讲它声称讲的事情？”
+```
+
+但这次不是替代 Match Engine。
+
+而是：
+
+```text
+Final QC
+```
+
+最后一道防线。
+
+---
+
+# 七十四、自动模式
+
+用户：
+
+```text
+输入URL
++
+参考脚本
++
+短视频长度
++
+语言
++
+TTS
+```
+
+点击：
+
+```text
+Generate
+```
+
+系统：
+
+```text
+自动运行全部流程
+```
+
+---
+
+# 七十五、半自动模式
+
+建议非常重要。
+
+UI显示：
+
+```text
+Story Candidates
+
+┌────────────────────────────┐
+│ Story 01                   │
+│ Score: 92                  │
+│ 02:31 → 04:02              │
+│                            │
+│ [Preview] [Accept] [Reject]│
+└────────────────────────────┘
+```
+
+用户可以：
+
+```text
+接受
+拒绝
+重新生成脚本
+修改脚本
+重新Match
+```
+
+---
+
+# 七十六、用户真正应该能看到什么
+
+不是一堆技术参数。
+
+而是：
+
+```text
+故事：
+“男人发现这个房间有问题”
+
+原视频：
+08:32–10:11
+
+故事完整度：
+93
+
+画面匹配：
+91
+
+事实可信度：
+97
+
+参考风格：
+89
+
+最终：
+PASS
+```
+
+---
+
+# 七十七、失败原因必须可解释
+
+例如：
+
+```text
+FAIL
+
+Visual Match: 61
+Fact Match: 94
+Temporal Match: 52
+
+原因：
+
+第3句声称“女孩打开了保险箱”，
+但对应视频画面只显示女孩站在保险箱旁，
+没有发现打开动作。
+```
+
+这比简单：
+
+```text
+score = 67
+```
+
+有用得多。
+
+---
+
+# 七十八、自动修复循环
+
+```text
+Generate
+ ↓
+Match
+ ↓
+FAIL
+ ↓
+分析失败句子
+ ↓
+只修改失败部分
+ ↓
+重新Match
+ ↓
+PASS
+```
+
+不要每次整篇重写。
+
+---
+
+# 七十九、最大重试次数
+
+建议：
+
+```text
+MAX_SCRIPT_RETRY = 3
+```
+
+超过：
+
+```text
+discard
+```
+
+避免无限循环。
+
+---
+
+# 八十、Story也可以重建
+
+如果：
+
+```text
+Script 3次都无法通过
+```
+
+不要继续硬改。
+
+执行：
+
+```text
+Story Rebuild
+```
+
+也就是说：
+
+```text
+Story A
+ ↓
+Script失败
+ ↓
+换Story边界
+```
+
+---
+
+# 八十一、最终质量门
+
+最终：
+
+```text
+Story Score >= 75
+Script Match >= 80
+Fact >= 90
+Visual >= 75
+Temporal >= 80
+```
+
+才允许：
+
+```text
+TTS
+```
+
+---
+
+# 八十二、一个完整例子
+
+假设 YouTube：
+
+```text
+60分钟视频
+```
+
+系统第一阶段：
+
+```text
+字幕：
+成功
+
+耗时：
+几秒～几十秒级
+```
+
+得到：
+
+```text
+Transcript
+```
+
+然后：
+
+```text
+Story Discovery
+```
+
+找到：
+
+```text
+Story 01
+04:31–07:12
+
+Story 02
+12:20–15:04
+
+Story 03
+21:11–24:42
+
+Story 04
+38:02–42:17
+```
+
+---
+
+# 八十三、生成脚本
+
+Story 02：
+
+```text
+版本A
+版本B
+版本C
+```
+
+---
+
+# 八十四、Match
+
+```text
+A
+Visual 82
+Fact 95
+Temporal 88
+Style 91
+
+PASS
+```
+
+```text
+B
+Visual 93
+Fact 61
+Temporal 90
+
+FAIL
+```
+
+```text
+C
+Visual 89
+Fact 94
+Temporal 92
+Style 86
+
+PASS
+```
+
+最终选：
+
+```text
+C
+```
+
+---
+
+# 八十五、再进行TTS
+
+```text
+Script C
+ ↓
+TTS
+ ↓
+27.8s
+```
+
+符合：
+
+```text
+15–35s
+```
+
+---
+
+# 八十六、画面时间轴
+
+```text
+Source 12:20–12:27
+Source 12:27–12:39
+Source 12:39–12:48
+Source 12:48–12:57
+```
+
+拼成：
+
+```text
+0–7
+7–19
+19–28
+28–35
+```
+
+---
+
+# 八十七、最终输出
+
+```text
+1080 × 1920
+
+H.264
+AAC
+
+字幕
++
+旁白
++
+9:16
++
+人物跟踪
+```
+
+最终：
+
+```text
+story_02_final.mp4
+```
+
+---
+
+# 八十八、性能优化路线
+
+## 第一优先级
+
+去掉：
+
+```text
+全文Whisper
+```
+
+如果有 YouTube 字幕。
+
+---
+
+## 第二优先级
+
+不要完整下载再分析。
+
+采用：
+
+```text
+Metadata
+→ Subtitle
+→ Story
+→ Candidate Visual
+→ Final Download
+```
+
+---
+
+## 第三优先级
+
+视觉分析只看：
+
+```text
+keyframes
+```
+
+而不是：
+
+```text
+30 FPS全部视频
+```
+
+---
+
+## 第四优先级
+
+Whisper只做：
+
+```text
+Final candidate
+```
+
+---
+
+# 八十九、缓存必须建立
+
+例如：
+
+```text
+video_id
+```
+
+作为主 Key。
+
+缓存：
+
+```text
+metadata
+subtitle
+transcript
+scene
+keyframes
+story
+style
+script
+match
+tts
+```
+
+再次运行同一个视频：
+
+**不要重新分析。**
+
+---
+
+# 九十、Provider缓存
+
+例如：
+
+```text
+prompt_hash
++
+input_hash
++
+model
+```
+
+生成：
+
+```text
+cache_key
+```
+
+同样请求直接取缓存。
+
+---
+
+# 九十一、模型输出必须版本化
+
+例如：
+
+```json
+{
+  "model": "gemini-xxx",
+  "prompt_version": "story-v3.2",
+  "schema_version": "1.1",
+  "created_at": "...",
+  "result": {}
+}
+```
+
+以后改 Prompt 可以比较：
+
+```text
+v3.1
+vs
+v3.2
+```
+
+---
+
+# 九十二、评测体系
+
+这个系统不能只看：
+
+> 视频能不能生成。
+
+必须建立数据集。
+
+建议第一批：
+
+```text
+30部YouTube长视频
+```
+
+每部人工标：
+
+```text
+真实故事数量
+故事起止
+故事核心事实
+最佳画面
+```
+
+---
+
+# 九十三、Story Discovery指标
+
+```text
+Recall
+Precision
+Duplicate Rate
+Story Completeness
+```
+
+---
+
+# 九十四、Script指标
+
+```text
+Fact Accuracy
+Visual Grounding
+Temporal Accuracy
+Style Similarity
+Narrative Completeness
+```
+
+---
+
+# 九十五、最终产品指标
+
+最重要：
+
+```text
+生成100个候选
+↓
+最终人工认为“可直接发布”的数量
+```
+
+即：
+
+```text
+Publishable Rate
+```
+
+这个才是真正的商业指标。
+
+---
+
+# 九十六、OpenShorts现有验证代码也不要浪费
+
+仓库里已经有：
+
+```text
+verify_aesthetic.py
+verify_custom_hook.py
+verify_hooks.py
+quality_probe.py
+```
+
+这些应该统一进入：
+
+```text
+Final QC
+```
+
+而不是继续散落在主流程里。([GitHub][1])
+
+---
+
+# 九十七、MCP/API继续保留
+
+OpenShorts当前已经提供：
+
+```text
+REST API
+MCP
+Webhook
+CLI
+```
+
+而且 MCP 工具包括视频处理、状态查询、clips、字幕、发布等能力。([GitHub][1])
+
+以后增加：
+
+```text
+discover_stories
+generate_scripts
+check_script_match
+render_story
+```
+
+例如：
+
+```text
+discover_stories(url)
+```
+
+返回：
+
+```json
+{
+  "stories": [...]
+}
+```
+
+---
+
+# 九十八、最终API设计
+
+```text
+POST /api/projects
+```
+
+创建项目。
+
+```text
+POST /api/projects/{id}/sources
+```
+
+添加YouTube。
+
+```text
+POST /api/projects/{id}/analyze
+```
+
+开始分析。
+
+```text
+GET /api/projects/{id}/stories
+```
+
+获取故事。
+
+```text
+POST /api/stories/{id}/scripts
+```
+
+生成脚本。
+
+```text
+POST /api/scripts/{id}/match
+```
+
+进行Match。
+
+```text
+POST /api/stories/{id}/render
+```
+
+渲染。
+
+---
+
+# 九十九、UI最终流程
+
+建议不要继续沿用原版“自动找几个clip”的产品逻辑。
+
+改成：
+
+```text
+01 Source
+02 Story
+03 Script
+04 Match
+05 Voice
+06 Render
+07 Export
+```
+
+---
+
+# 一百、Source页面
+
+输入：
+
+```text
+YouTube URL
+```
+
+显示：
+
+```text
+Title
+Duration
+Language
+Subtitle
+Subtitle source
+```
+
+例如：
+
+```text
+✓ YouTube auto captions
+✓ 58:32
+✓ English
+```
+
+---
+
+# 一百零一、Story页面
+
+显示：
+
+```text
+发现 8 个故事
+
+01
+02:31–04:02
+Score 92
+
+02
+08:17–10:44
+Score 88
+```
+
+用户选择。
+
+---
+
+# 一百零二、Script页面
+
+左边：
+
+```text
+原视频字幕
+```
+
+右边：
+
+```text
+生成旁白
+```
+
+下方：
+
+```text
+Style Match
+```
+
+---
+
+# 一百零三、Match页面
+
+必须显示：
+
+```text
+Overall       91
+Visual        94
+Temporal      90
+Fact          96
+Narrative     88
+Style         91
+```
+
+点击某句话：
+
+```text
+“女孩打开了门”
+```
+
+右边直接显示：
+
+```text
+00:14.2–00:17.8
+```
+
+对应视频证据。
+
+这是这个系统最有价值的UI之一。
+
+---
+
+# 一百零四、Render页面
+
+显示：
+
+```text
+TTS
+27.8s
+
+Video
+31.2s
+
+Final
+29.4s
+```
+
+以及：
+
+```text
+1080×1920
+H.264
+AAC
+```
+
+---
+
+# 一百零五、最终架构
+
+最终应该变成：
+
+```text
+                         ┌───────────────┐
+                         │   YouTube URL │
+                         └───────┬───────┘
+                                 │
+                         Source Analyzer
+                                 │
+               ┌─────────────────┴─────────────────┐
+               │                                   │
+        Subtitle Channel                    Video Channel
+               │                                   │
+        YouTube Caption                    URL Video API
+               │                                   │
+        Whisper Fallback                    Local Video
+               │                                   │
+               └─────────────────┬─────────────────┘
+                                 │
+                         Unified Media Index
+                                 │
+                    ┌────────────┴────────────┐
+                    │                         │
+              Story Engine             Reference Style
+                    │                         │
+                    └────────────┬────────────┘
+                                 │
+                         Script Generator
+                                 │
+                         3 candidates/story
+                                 │
+                       Video-Script Match
+                                 │
+                 ┌───────────────┴───────────────┐
+                 │                               │
+                FAIL                            PASS
+                 │                               │
+            Rewrite/Reject                      TTS
+                                                 │
+                                          Timeline Builder
+                                                 │
+                                           OpenShorts Core
+                                                 │
+                                 ┌───────────────┼───────────────┐
+                                 │               │               │
+                              Reframe         Subtitle        Effects
+                                 │               │               │
+                                 └───────────────┼───────────────┘
+                                                 │
+                                             Final QC
+                                                 │
+                                             MP4
+```
+
+---
+
+# 一百零六、最终“保留 / 修改 / 新增”清单
+
+## 保留
+
+```text
+yt-dlp
+FFmpeg
+faster-whisper
+PySceneDetect
+MediaPipe
+YOLO
+reframe_v2
+layout_picker
+split_layout
+screencast_layout
+subtitles
+ffmpeg_utils
+editor
+edit_builder
+quality_probe
+MCP
+REST API
+Webhook
+CLI
+```
+
+OpenShorts目前这些模块已经形成比较完整的视频生产基础设施。([GitHub][1])
+
+---
+
+## 修改
+
+```text
+main.py
+app.py
+clip_selection.py
+gemini_worker.py
+transcribe_backends.py
+hook_grounding.py
+edit_builder.py
+layout_picker.py
+```
+
+---
+
+## 新增
+
+```text
+subtitle_sources.py
+
+media_index.py
+
+story_engine/
+style_engine/
+script_engine/
+match_engine/
+
+providers/
+
+pipeline/
+
+project_store.py
+
+evidence_store.py
+
+timeline_engine.py
+
+tts_manager.py
+```
+
+---
+
+# 一百零七、最关键的改造顺序
+
+**不要一次全部改。**
+
+正确顺序：
+
+## Phase 1
+
+```text
+OpenShorts正常运行
+```
+
+先确保底座不坏。
+
+---
+
+## Phase 2
+
+加入：
+
+```text
+YouTube Subtitle First
+```
+
+实现：
+
+```text
+有字幕 → 不Whisper
+无字幕 → Whisper
+```
+
+这是第一收益点。
+
+---
+
+## Phase 3
+
+加入：
+
+```text
+Story Discovery
+```
+
+暂时不生成视频。
+
+只输出：
+
+```text
+Story candidates
+```
+
+---
+
+## Phase 4
+
+加入：
+
+```text
+Reference Style
++
+Script Generation
+```
+
+输出：
+
+```text
+Story
++
+Script
+```
+
+---
+
+## Phase 5
+
+加入：
+
+```text
+Video-Script Match
+```
+
+这是整个项目最重要的研发阶段。
+
+---
+
+## Phase 6
+
+加入：
+
+```text
+TTS
+```
+
+---
+
+## Phase 7
+
+接入：
+
+```text
+OpenShorts Reframe
++
+Subtitle
++
+FFmpeg
+```
+
+---
+
+## Phase 8
+
+最后再做：
+
+```text
+UI
++
+Batch
++
+MCP
++
+API
+```
+
+---
+
+# 一百零八、最终产品和原 OpenShorts 的区别
+
+OpenShorts：
+
+```text
+长视频
+ ↓
+精彩片段
+ ↓
+Short
+```
+
+我们最终：
+
+```text
+长视频
+ ↓
+理解整部视频
+ ↓
+发现多个完整故事
+ ↓
+分析参考脚本风格
+ ↓
+重新编剧
+ ↓
+验证每句话是否有视频证据
+ ↓
+验证时间关系
+ ↓
+验证事实
+ ↓
+淘汰错误脚本
+ ↓
+TTS
+ ↓
+智能重构画面
+ ↓
+Short
+```
+
+这已经不是简单的：
+
+> **AI自动剪辑工具**
+
+而是：
+
+> **AI短视频编导系统。**
+
+---
+
+# 一百零九、我认为这个方案里最重要的三个技术决策
+
+### 第一
+
+**YouTube字幕优先，Whisper兜底。**
+
+直接解决现在最明显的速度瓶颈。
+
+---
+
+### 第二
+
+**故事和片段彻底分开。**
+
+OpenShorts找的是：
+
+```text
+moment
+```
+
+我们找的是：
+
+```text
+story
+```
+
+这是产品核心差异。
+
+---
+
+### 第三
+
+**Match Engine必须在TTS之前。**
+
+顺序永远：
+
+```text
+Story
+→ Script
+→ Evidence
+→ Match
+→ PASS
+→ TTS
+```
+
+而不是：
+
+```text
+Story
+→ Script
+→ TTS
+→ Render
+→ 才发现脚本和画面不一致
+```
+
+---
+
+# 一百一十、最终建议
+
+我现在对 OpenShorts 的判断已经和最开始不同：
+
+**它不是一个需要“大改才能用”的垃圾底座。**
+
+恰恰相反：
+
+> **它的视频工程部分已经非常成熟，真正欠缺的是“内容理解层”。**
+
+目前仓库已经有成熟的：
+
+```text
+下载
+转录
+场景
+AI选片
+视觉分析
+人物跟踪
+9:16
+字幕
+Hook
+FFmpeg
+任务
+API
+MCP
+CLI
+```
+
+甚至已经有视觉 Clip Selection、Grounded Hook、布局选择等能力。([GitHub][4])
+
+所以最合理的研发策略不是：
+
+> “重新开发一个 AI 视频生成软件。”
+
+而是：
+
+> **把 OpenShorts 当作 Video Production Engine，在它上面增加 Story Intelligence Layer。**
+
+最终形成：
+
+```text
+                 OpenShorts
+              Video Production
+                     +
+              ┌─────────────┐
+              │ Story Engine│
+              ├─────────────┤
+              │ Style Engine│
+              ├─────────────┤
+              │Script Engine│
+              ├─────────────┤
+              │ Match Engine│
+              └─────────────┘
+                     ↓
+              AI Short Factory
+```
+
+**这条路线是我认为目前开发量、技术风险、最终效果三者之间最优的方案。**
+
+尤其是第一步，我建议马上改成：
+
+```text
+YouTube URL
+ ↓
+获取字幕
+ ↓
+如果有字幕：
+    完全跳过 Whisper
+ ↓
+Story Discovery
+```
+
+因为当前 OpenShorts 的默认核心链路确实仍把 `faster-whisper` 放在分析前面，而仓库本身的转录后端已经为我们提供了非常好的替换接口。([GitHub][1])
+
+**下一阶段真正应该进入“代码级设计”：我建议直接按照这份文档，把当前 OpenShorts 的文件逐个标成 `保留 / 修改 / 拆分 / 新增`，然后给出每个文件具体改什么、函数级接口怎么定义、JSON Schema 怎么定义、任务状态怎么流转。这样下一步就可以直接开始改代码，而不是再讨论概念。**
+
+补充一点：我这次重点审查的是**当前 `main` 分支中与这次改造直接相关的完整后端/AI/媒体处理链路和仓库工程结构**；仓库还有 dashboard、cloud、Remotion、部署、营销页面等大量与核心算法无关的前端/运营代码，我没有把每一个前端组件逐行复述，因为它们不会改变这套核心改造架构。当前仓库的目录结构和核心文件可以直接在官方仓库看到。([GitHub][1])
+
+[1]: https://github.com/MSShohag/openshorts "GitHub - MSShohag/openshorts: Open source AI clip generator: turns long videos into viral 9:16 shorts with AI moment detection, face tracking, subtitles and dubbing. Self-host free with Docker (MIT), or use the cloud with GPU speed from $12/mo. MCP server and API for AI agents. · GitHub"
+[2]: https://github.com/MSShohag/openshorts/blob/main/transcribe_backends.py "openshorts/transcribe_backends.py at main · MSShohag/openshorts · GitHub"
+[3]: https://github.com/MSShohag/openshorts/blob/main/clip_selection.py "openshorts/clip_selection.py at main · MSShohag/openshorts · GitHub"
+[4]: https://github.com/MSShohag/openshorts/blob/main/gemini_worker.py "openshorts/gemini_worker.py at main · MSShohag/openshorts · GitHub"
+[5]: https://github.com/MSShohag/openshorts/blob/main/app.py "openshorts/app.py at main · MSShohag/openshorts · GitHub"

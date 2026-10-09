@@ -1,0 +1,68 @@
+{
+  "policy": "continuous_context_v3",
+  "logical_segments": 11,
+  "rendered_shots": 10,
+  "context_joins": 1,
+  "shots": [
+    {
+      "start": 0.0,
+      "duration": 4.67,
+      "parts": 2,
+      "kind": "context_run"
+    },
+    {
+      "start": 4.67,
+      "duration": 1.6982400000000006,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 6.36824,
+      "duration": 1.83976,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 8.208,
+      "duration": 3.8200000000000003,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 12.028,
+      "duration": 3.6799999999999997,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 15.708,
+      "duration": 3.395999999999999,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 19.104,
+      "duration": 1.188600000000001,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 20.2926,
+      "duration": 2.2074,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 22.5,
+      "duration": 3.254999999999999,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 25.755,
+      "duration": 3.8210000000000015,
+      "parts": 1,
+      "kind": "source"
+    }
+  ]
+}

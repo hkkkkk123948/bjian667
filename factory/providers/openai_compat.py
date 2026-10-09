@@ -80,6 +80,14 @@ class OpenAICompatProvider(LLMProvider):
         if resp.status_code in (400, 402, 403, 429) and any(marker in resp.text.lower() for marker in (
                 "insufficient_user_quota", "insufficient_quota", "额度不足", "余额不足", "credit balance", "arrearage", "overdue-payment")):
             raise ProviderQuotaError("模型账户额度不足，请补充额度或使用render-plan导入已审阅的故事方案")
+        # Some relays abort json_object mode mid-generation; fall back to plain text JSON once.
+        if (resp.status_code == 400 and json_mode and body.get("response_format")
+                and any(marker in resp.text.lower() for marker in (
+                    "response_format", "invalid json", "invalid_parameter", "abnormal", "json response"))):
+            body = dict(body)
+            body.pop("response_format", None)
+            get_logger().warning("模型 %s JSON response_format 失败，改用纯文本JSON重试", model)
+            resp = requests.post(self.endpoint(), headers=headers, json=body, timeout=timeout or self.timeout)
         if resp.status_code in (429, 500, 502, 503, 504):
             raise ProviderError("openai http %s: %s" % (resp.status_code, resp.text[:300]))
         if resp.status_code >= 400:

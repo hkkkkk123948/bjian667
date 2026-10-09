@@ -1,0 +1,27 @@
+.F
+================================== FAILURES ===================================
+_______________ test_subpixel_pan_does_not_jump_by_whole_pixels _______________
+
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-223/test_subpixel_pan_does_not_jum0')
+
+    def test_subpixel_pan_does_not_jump_by_whole_pixels(tmp_path):
+        cv2 = pytest.importorskip("cv2")
+        im = np.zeros((180, 320), dtype=np.uint8)
+        cv2.circle(im, (175, 90), 25, 240, -1)
+        cv2.rectangle(im, (75, 45), (100, 140), 120, -1)
+        source = tmp_path / "grid.png"
+        cv2.imwrite(str(source), im)
+        data = subprocess.check_output([ffmpeg_bin(), "-v", "error", "-filter_threads", "1", "-loop", "1", "-framerate", "24",
+                                        "-i", str(source), "-vf", motion_filter("pan_right", 320, 180, 2, 48),
+                                        "-frames:v", "48", "-f", "rawvideo", "-pix_fmt", "gray", "-"])
+        frames = np.frombuffer(data, dtype=np.uint8).reshape(-1, 180, 320)
+        shifts = [cv2.phaseCorrelate(a.astype(np.float32), b.astype(np.float32))[0][0]
+                  for a, b in zip(frames, frames[1:])]
+>       assert max(abs(s) for s in shifts) < .8
+E       assert 0.8298241848186763 < 0.8
+E        +  where 0.8298241848186763 = max(<generator object test_subpixel_pan_does_not_jump_by_whole_pixels.<locals>.<genexpr> at 0x0000027D35919FF0>)
+
+tests\test_picture_pipeline.py:37: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_picture_pipeline.py::test_subpixel_pan_does_not_jump_by_whole_pixels
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!

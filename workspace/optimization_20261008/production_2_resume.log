@@ -1,0 +1,21 @@
+→ MEDIA_INDEXING 读取全片分镜，寻找完整故事
+  [ 18%] 建立媒体索引
+✓ MEDIA_INDEXING 
+→ STORY_MINING 从画面选有开端、危险升级与结果的故事
+  [ 29%] 故事挖掘
+[19:57:21] WARNING llm attempt 1 failed: openai http 403: {"error":{"message":"用户[58254]额度不足, 剩余额度: ฿-0.072124 (request id: EMaster202610081157181440448648268d9d6QM6BTkcC)","type":"new_api_error","param":"","code":"insufficient_user_quota"}}
+[19:57:22] ERROR 任务失败: openai http 403: {"error":{"message":"用户[58254]额度不足, 剩余额度: ฿-0.072124 (request id: EMaster202610081157181440448648268d9d6QM6BTkcC)","type":"new_api_error","param":"","code":"insufficient_user_quota"}}
+Traceback (most recent call last):
+  File "D:\惊悚短片剪辑\factory\pipeline.py", line 144, in analyze
+    return analyze(self)
+           ^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\mining\visual_story.py", line 105, in analyze
+    selection = scout.complete_json(prompt, images=sheets, json_mode=True, default=None)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\providers\base.py", line 219, in complete_json
+    raise ProviderError(str(last_err))
+factory.providers.base.ProviderError: openai http 403: {"error":{"message":"用户[58254]额度不足, 剩余额度: ฿-0.072124 (request id: EMaster202610081157181440448648268d9d6QM6BTkcC)","type":"new_api_error","param":"","code":"insufficient_user_quota"}}
+✗ FAILED openai http 403: {"error":{"message":"用户[58254]额度不足, 剩余额度: ฿-0.072124 (request id: EMaster202610081157181440448648268d9d6QM6BTkcC)","type":"new_api_error","param":"","code":"insufficient_user_quota"}}
+[19:57:22] ERROR 任务失败: openai http 403: {"error":{"message":"用户[58254]额度不足, 剩余额度: ฿-0.072124 (request id: EMaster202610081157181440448648268d9d6QM6BTkcC)","type":"new_api_error","param":"","code":"insufficient_user_quota"}}
+[error] 任务失败: openai http 403: {"error":{"message":"用户[58254]额度不足, 剩余额度: ฿-0.072124 (request id: EMaster202610081157181440448648268d9d6QM6BTkcC)","type":"new_api_error","param":"","code":"insufficient_user_quota"}}
+任务失败: openai http 403: {"error":{"message":"用户[58254]额度不足, 剩余额度: ฿-0.072124 (request id: EMaster202610081157181440448648268d9d6QM6BTkcC)","type":"new_api_error","param":"","code":"insufficient_user_quota"}}

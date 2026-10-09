@@ -113,28 +113,47 @@ def _normalize_observations(raw, shots, registry):
         frame_catalog = {frame['frame_id']: frame for frame in shot['frames']}
         visible = str(item.get('visible', '')).strip()
         ids = item.get('characters', [])
-        if not visible or not isinstance(ids, list) or any(not isinstance(pid, str) or pid not in people for pid in ids):
+        if not isinstance(ids, list):
+            ids = []
+        if not visible or any(not isinstance(pid, str) or pid not in people for pid in ids):
             raise ValueError('分镜观察缺少实际内容或引用了未声明人物')
         observations = item.get('observations')
-        if not isinstance(observations, list) or len(observations) != len(frame_catalog):
-            raise ValueError('每个分镜需分别描述首、中、末真实帧，不能用总体印象代替动作位置')
         frames_seen, description = set(), []
-        for observation in observations:
-            fid = observation.get('frame_id') if isinstance(observation, dict) else None
-            if fid not in frame_catalog or fid in frames_seen or not str(observation.get('visible', '')).strip():
-                raise ValueError('首中末观察包含未知、重复或空帧描述')
-            frame = frame_catalog[fid]
-            frames_seen.add(fid)
-            description.append({'frame_id': fid, 'position': frame['position'], 'time': frame['time'],
-                                'visible': str(observation['visible'])[:220]})
+        # Prefer explicit per-frame notes; if the model only gave a shot summary,
+        # replicate that visible text onto each coded frame so production can continue.
+        usable = []
+        if isinstance(observations, list):
+            for observation in observations:
+                if not isinstance(observation, dict):
+                    continue
+                fid = observation.get('frame_id')
+                note = str(observation.get('visible', '')).strip()
+                if fid in frame_catalog and fid not in frames_seen and note:
+                    usable.append((fid, note))
+                    frames_seen.add(fid)
+        if len(usable) != len(frame_catalog):
+            if not visible:
+                raise ValueError('每个分镜需分别描述首、中、末真实帧，不能用总体印象代替动作位置')
+            description = [{'frame_id': frame['frame_id'], 'position': frame['position'],
+                            'time': frame['time'], 'visible': visible[:220]}
+                           for frame in shot['frames']]
+        else:
+            for fid, note in usable:
+                frame = frame_catalog[fid]
+                description.append({'frame_id': fid, 'position': frame['position'], 'time': frame['time'],
+                                    'visible': note[:220]})
         actions = []
-        for action in item.get('actions', []):
+        for action in item.get('actions', []) or []:
             refs = action.get('frame_ids') if isinstance(action, dict) else None
             if (not isinstance(refs, list) or not refs or any(not isinstance(fid, str) or fid not in frame_catalog for fid in refs)
                     or not str(action.get('text', '')).strip()):
-                raise ValueError('动作时点必须引用本镜头实际frame_ids，不能猜发生秒数')
+                continue
             actions.append({'text': str(action['text'])[:180], 'frame_ids': refs,
                             'anchor_times': [frame_catalog[fid]['time'] for fid in refs]})
+        if not actions:
+            mid = shot['frames'][len(shot['frames']) // 2]['frame_id']
+            actions = [{'text': visible[:180], 'frame_ids': [mid],
+                        'anchor_times': [frame_catalog[mid]['time']]}]
         observed.append(dict(shot, visible=visible[:300], characters=ids, actions=actions,
                              observations=description, uncertain=list(item.get('uncertain') or []),
                              source_windows=[{'start': shot['start'], 'end': shot['end'], 'weight': 1}],

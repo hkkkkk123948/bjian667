@@ -1,0 +1,8 @@
+{
+  "available_memory_bytes": 972685312,
+  "requested_motion_oversample": 3,
+  "effective_motion_oversample": 2,
+  "encoder_threads": 1,
+  "encoder_lookahead_frames": 0,
+  "resolution_preserved": true
+}

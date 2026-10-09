@@ -1,0 +1,35 @@
+→ TTS_GENERATED 
+  [ 65%] TTS 配音
+[info] 已调整重复句措辞，将整篇重新配音: 这三个女孩，被一个白发怪人盯上了。她们赶紧往后巷跑，躲到了垃圾箱后面。女孩以为安全了，旁边的铁门却慢慢开了。一只满是尖指甲的手，从门缝里伸了进来。紧接着怪人探出了头，吓得她们再次逃跑。她们逃进仓库，可那个怪人又追到了门外。女孩正不知道怎么办，一个男人推门走了进来。他救出女孩们，警察接着来问黑发女孩情况。
+[21:32:20] INFO 已调整重复句措辞，将整篇重新配音: 这三个女孩，被一个白发怪人盯上了。她们赶紧往后巷跑，躲到了垃圾箱后面。女孩以为安全了，旁边的铁门却慢慢开了。一只满是尖指甲的手，从门缝里伸了进来。紧接着怪人探出了头，吓得她们再次逃跑。她们逃进仓库，可那个怪人又追到了门外。女孩正不知道怎么办，一个男人推门走了进来。他救出女孩们，警察接着来问黑发女孩情况。
+
+  0%|          | 0/2036 [00:00<?, ?frames/s]C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:42: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower median kernel implementation...
+  warnings.warn(
+C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:146: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower DTW implementation...
+  warnings.warn(
+
+100%|██████████| 2036/2036 [00:06<00:00, 317.92frames/s]
+100%|██████████| 2036/2036 [00:06<00:00, 317.92frames/s]
+  [100%] TTS clip_001
+✓ TTS_GENERATED 
+→ TIMELINE_ALIGNED 
+  [ 71%] 时间轴对齐
+✓ TIMELINE_ALIGNED 
+→ RENDERING 
+  [ 76%] 画面重构与渲染
+[21:32:48] INFO 画幅自适应: 源 1920x1080 → 输出 1920x1080
+[21:32:49] INFO 检测到黑边，裁剪框: (1920, 1080, 0, 0)
+[info] 去字幕: 关闭
+[21:32:49] INFO 去字幕: 关闭
+[21:33:28] INFO 渲染证据剪辑: 8段 20.37s, 旁白使用真实句时长
+  [100%] 渲染 clip_001
+✓ RENDERING 
+→ FINAL_MATCH_CHECK 
+  [ 82%] 成片匹配复检
+✓ FINAL_MATCH_CHECK 
+→ QUALITY_CHECK 
+  [ 88%] 最终质量检查
+[21:33:42] INFO QC clip_001.mp4: pass duration=20.4 issues=[]
+[21:33:56] ERROR 所有成片未通过最终质检
+✓ QUALITY_CHECK 
+✗ QUALITY_CHECK 全部成片未过质检

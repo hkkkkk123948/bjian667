@@ -1,0 +1,9 @@
+[info] 评论引导话术插在第1句后（user_review）：忘记带玫瑰花了
+[23:13:58] INFO 评论引导话术插在第1句后（user_review）：忘记带玫瑰花了
+→ QUALITY_CHECK 
+  [ 88%] 最终质量检查
+[23:13:59] INFO QC clip_001.mp4: warn duration=29.6 issues=['分辨率不符 1920x1080']
+[23:14:25] ERROR 所有成片未通过最终质检
+✓ QUALITY_CHECK 
+✗ QUALITY_CHECK 全部成片未过质检
+FORMAL_RESULT 20261008_230044_95e6cd REVIEW_REQUIRED

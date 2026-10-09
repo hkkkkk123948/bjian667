@@ -1,0 +1,56 @@
+[
+  {
+    "path": "D:\\惊悚短片剪辑\\交付成片\\2026-10-08_优化版\\01_门外的母子.mp4",
+    "sha256": "9d3513a7d71ae85b9307af1824c427cf8e42f6b29f054981b2f0a3dbd7c2a90e",
+    "status": "pass",
+    "issues": [],
+    "duration": 26.13,
+    "decode_exit": 0,
+    "decode_errors": "",
+    "integrated_lufs": "-16.16",
+    "true_peak_dbtp": "-1.89",
+    "black_periods": [],
+    "timeline": {
+      "issues": [],
+      "output_duration": 26.13,
+      "segment_count": 9
+    },
+    "note": "机器审计只验证文件、响度、黑场和剪辑区间；故事及听感需要审阅。"
+  },
+  {
+    "path": "D:\\惊悚短片剪辑\\交付成片\\2026-10-08_优化版\\02_旅馆里的老太太.mp4",
+    "sha256": "c10ea8d6873577253648d47cbc3ca84caf6900de35803ec4ce722ae467483228",
+    "status": "pass",
+    "issues": [],
+    "duration": 29.1,
+    "decode_exit": 0,
+    "decode_errors": "",
+    "integrated_lufs": "-16.10",
+    "true_peak_dbtp": "-1.77",
+    "black_periods": [],
+    "timeline": {
+      "issues": [],
+      "output_duration": 29.1,
+      "segment_count": 10
+    },
+    "note": "机器审计只验证文件、响度、黑场和剪辑区间；故事及听感需要审阅。"
+  },
+  {
+    "path": "D:\\惊悚短片剪辑\\交付成片\\2026-10-08_优化版\\03_门缝里的白眼.mp4",
+    "sha256": "3286d139bd9d364f694d5750b783990fde27398e3787e7611920f911bb3b2748",
+    "status": "pass",
+    "issues": [],
+    "duration": 27.75,
+    "decode_exit": 0,
+    "decode_errors": "",
+    "integrated_lufs": "-15.85",
+    "true_peak_dbtp": "-1.72",
+    "black_periods": [],
+    "timeline": {
+      "issues": [],
+      "output_duration": 27.75,
+      "segment_count": 11
+    },
+    "note": "机器审计只验证文件、响度、黑场和剪辑区间；故事及听感需要审阅。"
+  }
+]

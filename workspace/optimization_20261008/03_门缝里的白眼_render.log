@@ -1,0 +1,26 @@
+→ URL_ANALYZING 
+  [  6%] 视频信息解析
+[20:01:56] INFO 使用本地视频: D:\惊悚短片剪辑\workspace\jobs\20261008_200155_6b4095\source\The voice in the walls.. (3 Scary Stories Animated) [wqQZiP2lDOY].mp4 (字幕: 无)
+✓ DOWNLOADING 
+✓ URL_ANALYZING 
+✓ MEDIA_INDEXING 
+✓ CANDIDATE_FILTERED 
+→ TTS_GENERATED 
+  [ 65%] TTS 配音
+  [100%] TTS clip_001
+✓ TTS_GENERATED 
+→ TIMELINE_ALIGNED 
+  [ 71%] 时间轴对齐
+✓ TIMELINE_ALIGNED 
+→ RENDERING 
+  [ 76%] 画面重构与渲染
+[20:02:16] INFO 画幅自适应: 源 1920x1080 → 输出 1920x1080
+[20:02:17] INFO 检测到黑边，裁剪框: (1920, 1080, 0, 0)
+[20:02:17] INFO 去字幕: 关闭
+[info] 去字幕: 关闭
+[20:02:32] INFO 渲染证据剪辑: 11段 28.03s, 旁白使用真实句时长
+  [100%] 渲染 clip_001
+✓ RENDERING 
+[20:02:35] INFO QC clip_001.mp4: pass duration=28.0 issues=[]
+✓ QUALITY_CHECK 
+成片: D:\惊悚短片剪辑\workspace\jobs\20261008_200155_6b4095\clips\clip_001\clip_001.mp4 (28.04s, QC=pass)

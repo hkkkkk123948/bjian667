@@ -1,0 +1,3 @@
+RENDER_START
+[19:26:37] INFO 渲染证据剪辑: 17段 42.67s, 旁白使用真实句时长
+RENDER_DONE {'file': 'D:\\惊悚短片剪辑\\workspace\\optimization_20261009_single_review\\内存修复_原整段配音_画面待审.mp4', 'streams': [{'codec_type': 'video', 'width': 1920, 'height': 1080, 'duration': '42.666667', 'nb_frames': '1024'}, {'codec_type': 'audio', 'duration': '42.674000', 'nb_frames': '2001'}], 'duration': 42.674, 'voice_unchanged': True, 'render_budget': {'available_memory_bytes': 972685312, 'requested_motion_oversample': 3, 'effective_motion_oversample': 2, 'encoder_threads': 1, 'encoder_lookahead_frames': 0, 'resolution_preserved': True}, 'visual_review': 'pending'}

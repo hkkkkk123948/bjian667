@@ -1,0 +1,185 @@
+{
+  "source_start": 298.0,
+  "source_duration": 29.22,
+  "narration_duration": 29.1,
+  "tts_duration": 29.1,
+  "voice_path": "D:\\惊悚短片剪辑\\workspace\\jobs\\20261008_200155_4ef5e3\\clips\\clip_001\\voice.wav",
+  "timing_source": "measured_sentence_audio",
+  "speed_factor": 1.0,
+  "sentence_timings": [
+    {
+      "index": 1,
+      "text": "女孩的房门外，藏着一个东西。",
+      "role": "hook",
+      "start": 0.0,
+      "end": 2.45
+    },
+    {
+      "index": 2,
+      "text": "她带着两个妹妹住进旅馆，完全没发现异常。",
+      "role": "context",
+      "start": 2.45,
+      "end": 5.62
+    },
+    {
+      "index": 3,
+      "text": "趁妹妹们玩耍，她独自爬上楼梯找吃的。",
+      "role": "context",
+      "start": 5.62,
+      "end": 9.11
+    },
+    {
+      "index": 4,
+      "text": "可厨房的老太太，正抱着一块生肉啃。",
+      "role": "escalation",
+      "start": 9.11,
+      "end": 11.76
+    },
+    {
+      "index": 5,
+      "text": "女孩刚想后退，老太太却慢慢转过了头。",
+      "role": "escalation",
+      "start": 11.76,
+      "end": 14.89
+    },
+    {
+      "index": 6,
+      "text": "满是血的嘴，竟然冲着她笑了起来。",
+      "role": "twist",
+      "start": 14.89,
+      "end": 17.5
+    },
+    {
+      "index": 7,
+      "text": "两个妹妹也跟了上来，正好撞见这一幕。",
+      "role": "escalation",
+      "start": 17.5,
+      "end": 20.39
+    },
+    {
+      "index": 8,
+      "text": "男人赶紧抱起女孩，把她们全部带了出去。",
+      "role": "payoff",
+      "start": 20.39,
+      "end": 23.36
+    },
+    {
+      "index": 9,
+      "text": "等到警车赶来，女孩才想起一件事。",
+      "role": "context",
+      "start": 23.36,
+      "end": 26.05
+    },
+    {
+      "index": 10,
+      "text": "自己趴在床上时，那个老太太就已经站在门外。",
+      "role": "payoff",
+      "start": 26.05,
+      "end": 29.1
+    }
+  ],
+  "segments": [
+    {
+      "src_start": 326.525,
+      "src_duration": 2.45,
+      "dur": 2.45,
+      "out_start": 0.0,
+      "sentence_index": 1,
+      "playback_speed": 1.0,
+      "evidence_start": 324.0,
+      "evidence_end": 331.5
+    },
+    {
+      "src_start": 298.815,
+      "src_duration": 3.17,
+      "dur": 3.17,
+      "out_start": 2.45,
+      "sentence_index": 2,
+      "playback_speed": 1.0,
+      "evidence_start": 298.0,
+      "evidence_end": 302.8
+    },
+    {
+      "src_start": 341.655,
+      "src_duration": 3.49,
+      "dur": 3.49,
+      "out_start": 5.62,
+      "sentence_index": 3,
+      "playback_speed": 1.0,
+      "evidence_start": 340.0,
+      "evidence_end": 346.8
+    },
+    {
+      "src_start": 359.925,
+      "src_duration": 2.65,
+      "dur": 2.65,
+      "out_start": 9.11,
+      "sentence_index": 4,
+      "playback_speed": 1.0,
+      "evidence_start": 357.0,
+      "evidence_end": 365.5
+    },
+    {
+      "src_start": 372.235,
+      "src_duration": 3.13,
+      "dur": 3.13,
+      "out_start": 11.76,
+      "sentence_index": 5,
+      "playback_speed": 1.0,
+      "evidence_start": 371.5,
+      "evidence_end": 376.1
+    },
+    {
+      "src_start": 385.645,
+      "src_duration": 2.61,
+      "dur": 2.61,
+      "out_start": 14.89,
+      "sentence_index": 6,
+      "playback_speed": 1.0,
+      "evidence_start": 383.4,
+      "evidence_end": 390.5
+    },
+    {
+      "src_start": 394.9,
+      "src_duration": 2.7,
+      "dur": 2.89,
+      "out_start": 17.5,
+      "sentence_index": 7,
+      "playback_speed": 0.934256,
+      "evidence_start": 394.9,
+      "evidence_end": 397.6
+    },
+    {
+      "src_start": 406.065,
+      "src_duration": 2.97,
+      "dur": 2.97,
+      "out_start": 20.39,
+      "sentence_index": 8,
+      "playback_speed": 1.0,
+      "evidence_start": 405.0,
+      "evidence_end": 410.1
+    },
+    {
+      "src_start": 411.255,
+      "src_duration": 2.69,
+      "dur": 2.69,
+      "out_start": 23.36,
+      "sentence_index": 9,
+      "playback_speed": 1.0,
+      "evidence_start": 411.2,
+      "evidence_end": 414.0
+    },
+    {
+      "src_start": 424.825,
+      "src_duration": 3.05,
+      "dur": 3.05,
+      "out_start": 26.05,
+      "sentence_index": 10,
+      "playback_speed": 1.0,
+      "evidence_start": 423.1,
+      "evidence_end": 429.6
+    }
+  ],
+  "tail_padding": 0.12,
+  "crop_focus": 0.5
+}

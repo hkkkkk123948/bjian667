@@ -1,0 +1,40 @@
+→ MEDIA_INDEXING 读取全片分镜，寻找完整故事
+  [ 18%] 建立媒体索引
+✓ MEDIA_INDEXING 
+→ STORY_MINING 从画面选有开端、危险升级与结果的故事
+  [ 29%] 故事挖掘
+✓ STORY_MINING 
+→ REFERENCE_ANALYZED 
+  [ 41%] 参考文案分析
+✓ REFERENCE_ANALYZED 
+→ VISUAL_ANALYSIS 逐帧核实 独眼窥视惊魂
+  [ 24%] 原片视觉分析
+✓ VISUAL_ANALYSIS 
+→ SCRIPT_GENERATED 按事件编故事，保留画面证据
+  [ 47%] 解说脚本生成
+[info] 导演稿 独眼窥视: 红发女孩戴着耳机独自坐在桌前，低头认真写着作业。忽然门外传来一阵异响，她立刻抬头看向门的方向。她慢慢凑到猫眼前，想看清门外站着的到底是谁。猫眼里竟是一只巨大的蓝色独眼，正死死向内窥视。女孩吓得魂飞魄散转身就逃，惊慌地跑回房间躲藏。她刚躲好就发现窗外有黑影，正顺着梯子爬上屋顶。等她鼓起勇气再看门外走廊，那里已经空无一人。警车很快停在房屋外，警察赶到现场展开调查。
+[20:51:14] INFO 导演稿 独眼窥视: 红发女孩戴着耳机独自坐在桌前，低头认真写着作业。忽然门外传来一阵异响，她立刻抬头看向门的方向。她慢慢凑到猫眼前，想看清门外站着的到底是谁。猫眼里竟是一只巨大的蓝色独眼，正死死向内窥视。女孩吓得魂飞魄散转身就逃，惊慌地跑回房间躲藏。她刚躲好就发现窗外有黑影，正顺着梯子爬上屋顶。等她鼓起勇气再看门外走廊，那里已经空无一人。警车很快停在房屋外，警察赶到现场展开调查。
+✓ MEDIA_INDEXING 
+✓ SCRIPT_GENERATED 
+✓ MATCHING 结构和证据本地检查；语义只核验一次实际成片
+✓ CANDIDATE_FILTERED 
+→ TTS_GENERATED 
+  [ 65%] TTS 配音
+[20:51:14] WARNING TTS bailian 失败(cosyvoice 合成失败: {"header": {"task_id": "12e9ff6fc4c849ce9ec584aee04c945b", "event": "task-failed", "error_code": "Arrearage", "error_message": "Access denied, please make sure your account is in good standing.", "attributes": {}}, "payload": {}})，降级为本地 Mock 语音
+[20:51:14] ERROR 任务失败: 拒绝将Mock测试音当成完整配音
+Traceback (most recent call last):
+  File "D:\惊悚短片剪辑\factory\pipeline.py", line 194, in produce
+    self._do_tts(queue)
+  File "D:\惊悚短片剪辑\factory\pipeline.py", line 691, in _do_tts
+    return do_tts(self, queue)
+           ^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\production.py", line 50, in do_tts
+    result = synth_continuous(pipeline.tts, variant, clip_dir)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\providers\tts\continuous.py", line 29, in synth_continuous
+    raise RuntimeError("拒绝将Mock测试音当成完整配音")
+RuntimeError: 拒绝将Mock测试音当成完整配音
+✗ FAILED 拒绝将Mock测试音当成完整配音
+[20:51:14] ERROR 任务失败: 拒绝将Mock测试音当成完整配音
+[error] 任务失败: 拒绝将Mock测试音当成完整配音
+任务失败: 拒绝将Mock测试音当成完整配音

@@ -1,0 +1,17 @@
+[
+  {
+    "job_id": "20261009_003907_506bf7",
+    "existing_full_audio_recovered": true,
+    "tts_called": false
+  },
+  {
+    "job_id": "20261009_001504_2cfe45",
+    "existing_full_audio_recovered": true,
+    "tts_called": false
+  },
+  {
+    "job_id": "20261008_230044_95e6cd",
+    "existing_full_audio_recovered": true,
+    "tts_called": false
+  }
+]

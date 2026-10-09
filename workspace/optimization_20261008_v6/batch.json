@@ -1,0 +1,132 @@
+[
+  {
+    "number": 3,
+    "job_id": "20261008_223129_3e2124",
+    "source": "D:\\惊悚短片剪辑\\测试素材文件夹\\原片\\The voice in the walls.. (3 Scary Stories Animated) [wqQZiP2lDOY].mp4",
+    "status": "COMPLETED",
+    "error": "",
+    "clips": [
+      {
+        "path": "D:\\惊悚短片剪辑\\workspace\\jobs\\20261008_223129_3e2124\\clips\\clip_001\\clip_001.mp4",
+        "status": "completed",
+        "qc": {
+          "status": "pass",
+          "issues": [],
+          "duration": 29.75,
+          "width": 1920,
+          "height": 1080,
+          "has_video": true,
+          "has_audio": true,
+          "size_bytes": 14201944,
+          "source_size": "1920x1080",
+          "upscale_ratio": 1.0,
+          "mean_volume_db": -15.7,
+          "frame_brightness": [
+            98.771484375,
+            98.775390625,
+            51.3681640625
+          ],
+          "comment_hook_check": {
+            "status": "pass",
+            "phrases": [
+              "忘记带玫瑰花了"
+            ]
+          },
+          "media_audit": {
+            "path": "D:\\惊悚短片剪辑\\workspace\\jobs\\20261008_223129_3e2124\\clips\\clip_001\\clip_001.mp4",
+            "sha256": "097c78591683d98803cc449dbc889810e14b429cd0939f69b05db85fc84b2100",
+            "status": "pass",
+            "issues": [],
+            "duration": 29.75,
+            "decode_exit": 0,
+            "decode_errors": "",
+            "integrated_lufs": "-16.11",
+            "true_peak_dbtp": "-1.80",
+            "black_periods": [],
+            "timeline": {
+              "issues": [],
+              "output_duration": 29.74425,
+              "segment_count": 11
+            },
+            "note": "机器审计只验证文件、响度、黑场和剪辑区间；故事及听感需要审阅。"
+          },
+          "semantic_check": {
+            "score": 95.0,
+            "reason": "所有句子均能在对应图片中找到视觉证据：1图1-2白发白眼怪笑；2图3-4女孩跑进后巷并躲到墙角/垃圾箱后；3图5-6门缝伸出长指甲手；4图7-8怪人探头；5图9-10女孩隔玻璃露头查看、门外怪人；6图11-12男人开门、女孩迎上；7图13-14警察到场接待、女孩讲述；8图15-16女孩从仓库门走出。故事因果完整：遭遇怪人危险→逃跑躲藏→藏身处暴露→向开门男人求助→男人协助报警→警察询问→安全离开。",
+            "causal_complete": true,
+            "missing_story_links": [],
+            "status": "pass"
+          }
+        },
+        "text": "白发怪人站在巷子里露出白眼怪笑，危险已经悄然出现，忘记带玫瑰花了。三个女孩发现怪人后逃进后巷，躲到垃圾箱后不敢出声铁门缝里突然伸出一只长指甲的手，女孩们的藏身处被发现怪人紧接着从门缝探出头来，白眼和笑容让女孩更加害怕女孩隔着玻璃小心露头查看，发现白发怪人还在门外另一扇门被男人推开，三个女孩立刻迎上去向他求助男人听完求助后帮她们报警，女孩向警察讲清遭遇完成询问后，三个女孩依次从敞开的仓库门走出并安全脱险"
+      }
+    ]
+  },
+  {
+    "number": 1,
+    "job_id": "20261008_224144_75bbfe",
+    "source": "D:\\惊悚短片剪辑\\测试素材文件夹\\原片\\3 True Horror Stories Animated [F35JDpVZ27Y].mp4",
+    "status": "REVIEW_REQUIRED",
+    "error": "评论话术位置无效，未修改故事；请改用‘开场事件后’或重试",
+    "clips": [
+      {
+        "path": "D:\\惊悚短片剪辑\\workspace\\jobs\\20261008_224144_75bbfe\\clips\\clip_001\\clip_001.mp4",
+        "status": "qc_failed",
+        "qc": {
+          "status": "fail",
+          "issues": [
+            "语义终审不通过: 第7句：男人抱住她并帮忙报警——画面中男人仅出现在前景，未显示抱住女孩的动作，也未出现手机、拨号或报警界面等报警证据。；第8句：女孩和同伴终于安全获救——警车到达仅表示警方到场，画面未显示女孩和同伴已安全脱险或获救结果。"
+          ],
+          "duration": 27.677,
+          "width": 1920,
+          "height": 1080,
+          "has_video": true,
+          "has_audio": true,
+          "size_bytes": 11131959,
+          "source_size": "1920x1080",
+          "upscale_ratio": 1.0,
+          "mean_volume_db": -15.7,
+          "frame_brightness": [
+            129.8544921875,
+            132.0390625,
+            85.248046875
+          ],
+          "comment_hook_check": {
+            "status": "pass",
+            "phrases": [
+              "忘记带玫瑰花了"
+            ]
+          },
+          "media_audit": {
+            "path": "D:\\惊悚短片剪辑\\workspace\\jobs\\20261008_224144_75bbfe\\clips\\clip_001\\clip_001.mp4",
+            "sha256": "c3e2e0a852ee41e79c568247bd6fcec3823b7d3c5079db848217cecdcd669781",
+            "status": "pass",
+            "issues": [],
+            "duration": 27.677,
+            "decode_exit": 0,
+            "decode_errors": "",
+            "integrated_lufs": "-15.94",
+            "true_peak_dbtp": "-1.85",
+            "black_periods": [],
+            "timeline": {
+              "issues": [],
+              "output_duration": 27.676833,
+              "segment_count": 8
+            },
+            "note": "机器审计只验证文件、响度、黑场和剪辑区间；故事及听感需要审阅。"
+          },
+          "semantic_check": {
+            "status": "fail",
+            "score": 82,
+            "reason": "第7句：男人抱住她并帮忙报警——画面中男人仅出现在前景，未显示抱住女孩的动作，也未出现手机、拨号或报警界面等报警证据。；第8句：女孩和同伴终于安全获救——警车到达仅表示警方到场，画面未显示女孩和同伴已安全脱险或获救结果。",
+            "unsupported_claims": [
+              "第7句：男人抱住她并帮忙报警——画面中男人仅出现在前景，未显示抱住女孩的动作，也未出现手机、拨号或报警界面等报警证据。",
+              "第8句：女孩和同伴终于安全获救——警车到达仅表示警方到场，画面未显示女孩和同伴已安全脱险或获救结果。"
+            ]
+          }
+        },
+        "text": "女孩独自在客房看电脑时，门边的阴影让她感到不安。随后她和另外两个女孩待在同一张床上，彼此照应。为了确认楼上是否安全，女孩沿着楼梯来到上层门口，忘记带玫瑰花了。她在门内发现老太靠着冰箱，正背对自己吃红色生肉。下一刻老太直直盯住女孩，随后对着她咧嘴笑了起来。楼下两个孩子抬头望向上层，发现女孩正处在危险中。女孩见到赶来的男人便主动求助，男人抱住她并帮忙报警。警车随后赶到旅馆门外，女孩和同伴终于安全获救。"
+      }
+    ]
+  }
+]

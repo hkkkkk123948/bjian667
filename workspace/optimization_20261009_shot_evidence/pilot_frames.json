@@ -1,0 +1,22 @@
+[
+  {
+    "image": 1,
+    "time": 302.5,
+    "path": "workspace\\optimization_20261009_shot_evidence\\pilot_1.jpg"
+  },
+  {
+    "image": 2,
+    "time": 375.5,
+    "path": "workspace\\optimization_20261009_shot_evidence\\pilot_2.jpg"
+  },
+  {
+    "image": 3,
+    "time": 421.5,
+    "path": "workspace\\optimization_20261009_shot_evidence\\pilot_3.jpg"
+  },
+  {
+    "image": 4,
+    "time": 442.5,
+    "path": "workspace\\optimization_20261009_shot_evidence\\pilot_4.jpg"
+  }
+]

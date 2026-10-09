@@ -1,0 +1,64 @@
+START 1 20261008_224144_75bbfe
+→ MEDIA_INDEXING 读取全片分镜，寻找完整故事
+  [ 18%] 建立媒体索引
+✓ MEDIA_INDEXING 
+→ STORY_MINING 从画面选有开端、危险升级与结果的故事
+  [ 29%] 故事挖掘
+✓ STORY_MINING 
+→ REFERENCE_ANALYZED 
+  [ 41%] 参考文案分析
+✓ REFERENCE_ANALYZED 
+→ VISUAL_ANALYSIS 复用已核对的镜头事实：旅馆里的老太太
+  [ 24%] 原片视觉分析
+✓ VISUAL_ANALYSIS 
+→ SCRIPT_GENERATED 按事件编故事，保留画面证据
+  [ 47%] 解说脚本生成
+[info] 导演稿 楼上的危险: 女孩独自在客房看电脑时，门边的阴影让她感到不安。随后她和另外两个女孩待在同一张床上，彼此照应。为了确认楼上是否安全，女孩沿着楼梯来到上层门口。她在门内发现老太靠着冰箱，正背对自己吃红色生肉。下一刻老太直直盯住女孩，随后对着她咧嘴笑了起来。楼下两个孩子抬头望向上层，发现女孩正处在危险中。女孩见到赶来的男人便主动求助，男人抱住她并帮忙报警。警车随后赶到旅馆门外，女孩和同伴终于安全获救。
+[22:44:39] INFO 导演稿 楼上的危险: 女孩独自在客房看电脑时，门边的阴影让她感到不安。随后她和另外两个女孩待在同一张床上，彼此照应。为了确认楼上是否安全，女孩沿着楼梯来到上层门口。她在门内发现老太靠着冰箱，正背对自己吃红色生肉。下一刻老太直直盯住女孩，随后对着她咧嘴笑了起来。楼下两个孩子抬头望向上层，发现女孩正处在危险中。女孩见到赶来的男人便主动求助，男人抱住她并帮忙报警。警车随后赶到旅馆门外，女孩和同伴终于安全获救。
+[22:44:42] INFO 评论引导话术插在第3句后（ai_text_only）：忘记带玫瑰花了
+[info] 评论引导话术插在第3句后（ai_text_only）：忘记带玫瑰花了
+✓ MEDIA_INDEXING 
+✓ SCRIPT_GENERATED 
+✓ MATCHING 结构和证据本地检查；语义只核验一次实际成片
+✓ CANDIDATE_FILTERED 
+→ TTS_GENERATED 
+  [ 65%] TTS 配音
+[22:44:42] INFO 评论引导话术插在第3句后（cached_ai）：忘记带玫瑰花了
+[info] 评论引导话术插在第3句后（cached_ai）：忘记带玫瑰花了
+
+  0%|          | 0/2767 [00:00<?, ?frames/s]C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:42: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower median kernel implementation...
+  warnings.warn(
+C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:146: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower DTW implementation...
+  warnings.warn(
+
+ 89%|████████▉ | 2476/2767 [00:07<00:00, 310.85frames/s]C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:42: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower median kernel implementation...
+  warnings.warn(
+C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:146: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower DTW implementation...
+  warnings.warn(
+
+100%|██████████| 2767/2767 [00:08<00:00, 314.13frames/s]
+100%|██████████| 2767/2767 [00:08<00:00, 313.24frames/s]
+  [100%] TTS clip_001
+✓ TTS_GENERATED 
+→ TIMELINE_ALIGNED 
+  [ 71%] 时间轴对齐
+✓ TIMELINE_ALIGNED 
+→ RENDERING 
+  [ 76%] 画面重构与渲染
+[22:45:17] INFO 画幅自适应: 源 1920x1080 → 输出 1920x1080
+[22:45:18] INFO 检测到黑边，裁剪框: (1920, 1080, 0, 0)
+[info] 去字幕: 关闭
+[22:45:18] INFO 去字幕: 关闭
+[22:46:43] INFO 渲染证据剪辑: 8段 27.68s, 旁白使用真实句时长
+  [100%] 渲染 clip_001
+✓ RENDERING 
+→ FINAL_MATCH_CHECK 
+  [ 82%] 成片匹配复检
+✓ FINAL_MATCH_CHECK 
+→ QUALITY_CHECK 
+  [ 88%] 最终质量检查
+[22:47:06] INFO QC clip_001.mp4: pass duration=27.7 issues=[]
+[22:47:22] ERROR 所有成片未通过最终质检
+✓ QUALITY_CHECK 
+✗ QUALITY_CHECK 全部成片未过质检
+RESULT 1 20261008_224144_75bbfe REVIEW_REQUIRED 评论话术位置无效，未修改故事；请改用‘开场事件后’或重试

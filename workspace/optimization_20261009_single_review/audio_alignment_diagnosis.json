@@ -1,0 +1,407 @@
+[
+  {
+    "clip": "clip_001",
+    "expected_characters": 272,
+    "asr_characters": 273,
+    "asr_word_count": 266,
+    "full_text_equal_characters": 257,
+    "full_text_sequence_ratio": 0.9431192660550459,
+    "previous_alignment": {
+      "policy": "measured_speech_v1",
+      "source": "estimated",
+      "audio_clock": true,
+      "confidence": "low",
+      "matched_ratio": 0.20220588235294118,
+      "uncertain_spans": [
+        {
+          "kind": "replace",
+          "start_char": 27,
+          "end_char": 28,
+          "expected": "咧",
+          "recognized": "裂"
+        },
+        {
+          "kind": "replace",
+          "start_char": 56,
+          "end_char": 60,
+          "expected": "抱紧毯子",
+          "recognized": "报警谈则"
+        }
+      ],
+      "reason": "asr_text_discrepancy",
+      "provider_fallback_reason": "incomplete_provider_text",
+      "audio_duration": 42.673792,
+      "asr_model": "small",
+      "asr_audio_sha256": "9003e88906126f29ccbde5d0038c2d9f4c3709664102e80c69be32ffc707c7c5"
+    },
+    "corrected_alignment": {
+      "policy": "measured_speech_v2_local_anchors",
+      "source": "local_asr_interpolated",
+      "audio_clock": true,
+      "confidence": "medium",
+      "matched_ratio": 0.9448529411764706,
+      "uncertain_spans": [
+        {
+          "kind": "replace",
+          "start_char": 27,
+          "end_char": 28,
+          "expected": "咧",
+          "recognized": "裂",
+          "start": 4.12,
+          "end": 4.2
+        },
+        {
+          "kind": "bounded_substitution",
+          "start_char": 56,
+          "end_char": 60,
+          "expected": "抱紧毯子",
+          "recognized": "报警谈则",
+          "start": 8.78,
+          "end": 9.34,
+          "left_anchor_characters": 28,
+          "right_anchor_characters": 39,
+          "measured_interval": 0.5600000000000005
+        },
+        {
+          "kind": "insert",
+          "start_char": 99,
+          "end_char": 99,
+          "expected": "",
+          "recognized": "他",
+          "start": 15.14,
+          "end": 15.4
+        },
+        {
+          "kind": "replace",
+          "start_char": 104,
+          "end_char": 106,
+          "expected": "雨夜",
+          "recognized": "余液",
+          "start": 16.38,
+          "end": 16.54
+        },
+        {
+          "kind": "replace",
+          "start_char": 126,
+          "end_char": 127,
+          "expected": "戴",
+          "recognized": "带",
+          "start": 19.64,
+          "end": 19.76
+        },
+        {
+          "kind": "replace",
+          "start_char": 157,
+          "end_char": 158,
+          "expected": "外",
+          "recognized": "来",
+          "start": 24.3,
+          "end": 24.46
+        },
+        {
+          "kind": "replace",
+          "start_char": 169,
+          "end_char": 171,
+          "expected": "斗牛",
+          "recognized": "洞油",
+          "start": 26.36,
+          "end": 26.66
+        },
+        {
+          "kind": "replace",
+          "start_char": 208,
+          "end_char": 209,
+          "expected": "辆",
+          "recognized": "亮",
+          "start": 33.08,
+          "end": 33.16
+        },
+        {
+          "kind": "replace",
+          "start_char": 245,
+          "end_char": 247,
+          "expected": "斗牛",
+          "recognized": "洞油",
+          "start": 38.48,
+          "end": 38.74
+        },
+        {
+          "kind": "replace",
+          "start_char": 255,
+          "end_char": 256,
+          "expected": "雨",
+          "recognized": "余",
+          "start": 40.32,
+          "end": 40.56
+        }
+      ],
+      "exact_matched_ratio": 0.9448529411764706,
+      "expected_characters": 272,
+      "recognized_characters": 273,
+      "word_count": 266,
+      "character_count": 272,
+      "aligned_ratio": 1.0,
+      "uncertain_character_ratio": 0.05514705882352941,
+      "unmapped_audio_spans": [],
+      "silence_gaps": [],
+      "within_word_interpolation": true,
+      "provider_fallback_reason": "incomplete_provider_text",
+      "audio_duration": 42.673792,
+      "asr_model": "small",
+      "asr_audio_sha256": "9003e88906126f29ccbde5d0038c2d9f4c3709664102e80c69be32ffc707c7c5"
+    },
+    "maximum_direct_anchor_error_seconds": 0.0,
+    "voice_sha256": "9003e88906126f29ccbde5d0038c2d9f4c3709664102e80c69be32ffc707c7c5",
+    "unchanged_audio": true,
+    "asr_rerun": false,
+    "tts_rerun": false,
+    "cloud_calls": 0,
+    "sentence_start_deltas": [
+      {
+        "index": 1,
+        "old_start": 0.0,
+        "measured_start": 0.0,
+        "delta": 0.0
+      },
+      {
+        "index": 2,
+        "old_start": 4.547,
+        "measured_start": 4.4,
+        "delta": -0.14699999999999935
+      },
+      {
+        "index": 3,
+        "old_start": 9.722,
+        "measured_start": 9.82,
+        "delta": 0.09800000000000075
+      },
+      {
+        "index": 4,
+        "old_start": 14.431,
+        "measured_start": 14.1,
+        "delta": -0.3309999999999995
+      },
+      {
+        "index": 5,
+        "old_start": 19.767,
+        "measured_start": 19.64,
+        "delta": -0.1269999999999989
+      },
+      {
+        "index": 6,
+        "old_start": 25.104,
+        "measured_start": 24.8,
+        "delta": -0.3039999999999985
+      },
+      {
+        "index": 7,
+        "old_start": 30.127,
+        "measured_start": 30.28,
+        "delta": 0.15300000000000225
+      },
+      {
+        "index": 8,
+        "old_start": 34.674,
+        "measured_start": 34.88,
+        "delta": 0.20600000000000307
+      }
+    ]
+  },
+  {
+    "clip": "clip_002",
+    "expected_characters": 267,
+    "asr_characters": 275,
+    "asr_word_count": 270,
+    "full_text_equal_characters": 257,
+    "full_text_sequence_ratio": 0.948339483394834,
+    "previous_alignment": {
+      "policy": "measured_speech_v1",
+      "source": "estimated",
+      "audio_clock": true,
+      "confidence": "low",
+      "matched_ratio": 0.5280898876404494,
+      "uncertain_spans": [
+        {
+          "kind": "replace",
+          "start_char": 98,
+          "end_char": 99,
+          "expected": "石",
+          "recognized": "十"
+        },
+        {
+          "kind": "replace",
+          "start_char": 137,
+          "end_char": 139,
+          "expected": "盛着",
+          "recognized": "绳子"
+        },
+        {
+          "kind": "insert",
+          "start_char": 144,
+          "end_char": 144,
+          "expected": "",
+          "recognized": "女孩靠近锅口查看"
+        }
+      ],
+      "reason": "asr_text_discrepancy",
+      "provider_fallback_reason": "incomplete_provider_text",
+      "audio_duration": 41.093625,
+      "asr_model": "small",
+      "asr_audio_sha256": "c57520d72828c46a66b72438cb62b5fd8fd14fe237a233059c69f5fe5c631c68"
+    },
+    "corrected_alignment": {
+      "policy": "measured_speech_v2_local_anchors",
+      "source": "local_asr_interpolated",
+      "audio_clock": true,
+      "confidence": "medium",
+      "matched_ratio": 0.9625468164794008,
+      "uncertain_spans": [
+        {
+          "kind": "replace",
+          "start_char": 98,
+          "end_char": 99,
+          "expected": "石",
+          "recognized": "十",
+          "start": 14.12,
+          "end": 14.28
+        },
+        {
+          "kind": "replace",
+          "start_char": 137,
+          "end_char": 139,
+          "expected": "盛着",
+          "recognized": "绳子",
+          "start": 19.78,
+          "end": 19.98
+        },
+        {
+          "kind": "bounded_asr_repeat",
+          "start_char": 144,
+          "end_char": 144,
+          "expected": "",
+          "recognized": "女孩靠近锅口查看",
+          "start": 20.68,
+          "end": 21.98,
+          "mapping_uses": "first_observed_occurrence",
+          "measured_interval": 1.3000000000000007
+        },
+        {
+          "kind": "bounded_substitution",
+          "start_char": 166,
+          "end_char": 169,
+          "expected": "后惊得",
+          "recognized": "厚精的",
+          "start": 25.72,
+          "end": 26.1,
+          "left_anchor_characters": 22,
+          "right_anchor_characters": 9,
+          "measured_interval": 0.38000000000000256
+        },
+        {
+          "kind": "bounded_substitution",
+          "start_char": 178,
+          "end_char": 181,
+          "expected": "也皱眉",
+          "recognized": "以众媒",
+          "start": 27.38,
+          "end": 27.8,
+          "left_anchor_characters": 9,
+          "right_anchor_characters": 24,
+          "measured_interval": 0.4200000000000017
+        },
+        {
+          "kind": "replace",
+          "start_char": 205,
+          "end_char": 206,
+          "expected": "仍",
+          "recognized": "人",
+          "start": 31.36,
+          "end": 31.5
+        }
+      ],
+      "exact_matched_ratio": 0.9625468164794008,
+      "expected_characters": 267,
+      "recognized_characters": 275,
+      "word_count": 270,
+      "character_count": 267,
+      "aligned_ratio": 1.0,
+      "uncertain_character_ratio": 0.03745318352059925,
+      "unmapped_audio_spans": [
+        {
+          "start": 21.98,
+          "end": 23.52,
+          "recognized": "女孩靠近锅口查看",
+          "kind": "repeated_asr_interval"
+        }
+      ],
+      "silence_gaps": [],
+      "within_word_interpolation": true,
+      "provider_fallback_reason": "incomplete_provider_text",
+      "audio_duration": 41.093625,
+      "asr_model": "small",
+      "asr_audio_sha256": "c57520d72828c46a66b72438cb62b5fd8fd14fe237a233059c69f5fe5c631c68"
+    },
+    "maximum_direct_anchor_error_seconds": 0.0,
+    "voice_sha256": "c57520d72828c46a66b72438cb62b5fd8fd14fe237a233059c69f5fe5c631c68",
+    "unchanged_audio": true,
+    "asr_rerun": false,
+    "tts_rerun": false,
+    "cloud_calls": 0,
+    "sentence_start_deltas": [
+      {
+        "index": 1,
+        "old_start": 0.0,
+        "measured_start": 0.0,
+        "delta": 0.0
+      },
+      {
+        "index": 2,
+        "old_start": 3.491,
+        "measured_start": 3.34,
+        "delta": -0.15100000000000025
+      },
+      {
+        "index": 3,
+        "old_start": 7.207,
+        "measured_start": 6.86,
+        "delta": -0.34699999999999953
+      },
+      {
+        "index": 4,
+        "old_start": 10.145,
+        "measured_start": 9.42,
+        "delta": -0.7249999999999996
+      },
+      {
+        "index": 5,
+        "old_start": 15.559,
+        "measured_start": 14.74,
+        "delta": -0.8189999999999991
+      },
+      {
+        "index": 6,
+        "old_start": 20.204,
+        "measured_start": 19.18,
+        "delta": -1.024000000000001
+      },
+      {
+        "index": 7,
+        "old_start": 24.69,
+        "measured_start": 24.94,
+        "delta": 0.25
+      },
+      {
+        "index": 8,
+        "old_start": 28.716,
+        "measured_start": 28.6,
+        "delta": -0.11599999999999966
+      },
+      {
+        "index": 9,
+        "old_start": 34.131,
+        "measured_start": 33.94,
+        "delta": -0.1910000000000025
+      }
+    ]
+  }
+]

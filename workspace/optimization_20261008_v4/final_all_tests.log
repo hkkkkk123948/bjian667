@@ -1,0 +1,209 @@
+.....................F....s.......................................       [100%]
+================================== FAILURES ===================================
+_____________________________ test_full_pipeline ______________________________
+
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-92/test_full_pipeline0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000021DAFF68BC0>
+
+    @pytest.mark.skipif(not ASSET.exists(), reason="缺少测试素材，先运行 python tests/make_test_video.py")
+    def test_full_pipeline(tmp_path, monkeypatch):
+        # Explicit fixtures exercise rendering without claiming Mock audio is usable narration.
+        from factory.models import ScriptVariant, ScriptSentence, Evidence
+        from factory.providers.tts.base import write_wav
+        import numpy as np
+    
+        def scripts(candidate, *args, **kwargs):
+            texts = ["女孩发现门外一直有人。", "她透过猫眼，看见一只眼睛。", "她赶紧后退，把门锁得死死的。",
+                     "身后的窗帘突然动了一下。", "女孩回过头，看到藏在窗后的陌生人。", "原来门外的人只是负责引开她。"]
+            span = candidate.duration / len(texts)
+            sentences = [ScriptSentence(index=i + 1, text=text, estimated_seconds=3,
+                         source_evidence=Evidence(start=candidate.source_start + i * span,
+                                                  end=candidate.source_start + (i + 1) * span))
+                         for i, text in enumerate(texts)]
+            return [ScriptVariant(variant_id="fixture", candidate_id=candidate.candidate_id,
+                                  sentences=sentences, full_text="".join(texts), estimated_seconds=18)]
+    
+        def synth(self, text, out_path, **kwargs):
+            path = Path(out_path).with_suffix(".wav")
+            duration = 3.0 * max(1, text.count("。"))
+            t = np.arange(int(duration * 24000)) / 24000
+            write_wav(path, .1 * np.sin(2 * np.pi * 180 * t), 24000)
+            return {"audio_path": str(path), "duration": duration, "provider": "test_fixture"}
+    
+        monkeypatch.setattr("factory.pipeline.write_scripts", scripts)
+        monkeypatch.setattr("factory.providers.tts.manager.TTSRouter.synth", synth)
+        config = Config({"workspace": str(tmp_path / "ws"), "params": {
+            "hard_gates": "off", "min_match": 40, "max_clips": 1, "prefer_nvenc": "off"}})
+        refs = [str(REF)] if REF.exists() else []
+        pipe = ProductionPipeline(config, str(ASSET), references=refs)
+        state = pipe.run()
+>       assert state.status == "COMPLETED", state.error
+E       AssertionError: command failed (3752568763): C:\ffmpeg\ffmpeg.EXE -v error -y -filter_complex_threads 1 -threads 1 -i C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-92\test_full_pipeline0\ws\jobs\20261008_214425_99a8df\clips\clip_001\evidence_ioj08e8g\shot_000.mp4 -threads 1 -i C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-92\test_full_pipeline0\ws\jobs\20261008_214425_99a8df\clips\clip_00
+E         x264 [error]: malloc of size 7088704 failed
+
+E         [vost#0:0/libx264 @ 000002a33d3ee5c0] [enc:libx264 @ 000002a33d345d00] Error submitting video frame to the encoder
+
+E         [vost#0:0/libx264 @ 000002a33d3ee5c0] [enc:libx264 @ 000002a33d345d00] Error encoding a frame: Generic error in an external library
+
+E         [vost#0:0/libx264 @ 000002a33d3ee5c0] Task finished with error code: -542398533 (Generic error in an external library)
+
+E         [vost#0:0/libx264 @ 000002a33d3ee5c0] Terminating thread with return code -542398533 (Generic error in an external library)
+
+E         
+E       assert 'FAILED' == 'COMPLETED'
+E         
+E         - COMPLETED
+E         + FAILED
+
+tests\test_e2e.py:45: AssertionError
+---------------------------- Captured stderr call -----------------------------
+[21:44:25] INFO 使用本地视频: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-92\test_full_pipeline0\ws\jobs\20261008_214425_99a8df\source\source_video.mp4 (字幕: source_video.srt)
+[21:44:37] INFO 场景检测: 4 个场景
+[21:44:37] INFO 字幕来源: source_video.srt (12 段)
+[21:44:39] INFO L1 全局抽帧: 30 张
+[21:44:39] INFO 媒体索引完成: 4 场景 / 8 转写段
+[21:44:39] INFO video_analysis 为 mock，跳过视觉分析
+[21:44:39] INFO 未安装 pytesseract，跳过画面文字识别
+[21:44:39] WARNING 剧情分析模型未配置（当前为 mock），已降级规则挖掘——出片质量会很差，请在「配置」页填写分析 API Key/模型
+[21:44:39] INFO 规则挖掘窗口: 8 转写段, 4 场景, 总时长 60.0s
+[21:44:39] INFO 故事挖掘完成: 3 个候选
+[21:44:39] INFO 故事挖掘: 3 候选 → 保留 3，淘汰 0
+[21:44:39] INFO 参考文案风格分析完成: 7 篇样本, 节奏=fast, 人称=neutral, 结构=twist
+[21:44:39] WARNING 文案生成模型未配置（当前为 mock），已降级兜底文案——出片质量会很差，请在「配置」页填写分析 API Key/模型
+[21:44:39] INFO 候选 C001 变体 fixture 匹配度 76.1 (画面 43 / 时间 100 / 事实 72 / 叙事 100 / 信息 100 / 风格 59 / 配音 60 / 故事 97)
+[21:44:39] INFO 第一闸门 pass: C001 得分 76.1
+[21:44:39] INFO 候选 C002 变体 fixture 匹配度 77.7 (画面 50 / 时间 100 / 事实 72 / 叙事 100 / 信息 100 / 风格 59 / 配音 60 / 故事 97)
+[21:44:39] INFO 第一闸门 pass: C002 得分 77.7
+[21:44:39] INFO 候选 C003 变体 fixture 匹配度 77.9 (画面 50 / 时间 100 / 事实 72 / 叙事 100 / 信息 100 / 风格 59 / 配音 80 / 故事 97)
+[21:44:39] INFO 第一闸门 pass: C003 得分 77.9
+[21:44:39] INFO 质量闸门: 3 通过 / 0 待审 / 0 淘汰（共分析 3 个候选）
+[21:44:39] INFO 画幅自适应: 源 1920x1080 → 输出 1920x1080
+[21:44:40] INFO 检测到黑边，裁剪框: (1920, 1080, 0, 0)
+[21:44:40] INFO 去字幕: 关闭
+[21:45:11] ERROR 任务失败: command failed (3752568763): C:\ffmpeg\ffmpeg.EXE -v error -y -filter_complex_threads 1 -threads 1 -i C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-92\test_full_pipeline0\ws\jobs\20261008_214425_99a8df\clips\clip_001\evidence_ioj08e8g\shot_000.mp4 -threads 1 -i C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-92\test_full_pipeline0\ws\jobs\20261008_214425_99a8df\clips\clip_00
+x264 [error]: malloc of size 7088704 failed
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] [enc:libx264 @ 000002a33d345d00] Error submitting video frame to the encoder
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] [enc:libx264 @ 000002a33d345d00] Error encoding a frame: Generic error in an external library
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] Task finished with error code: -542398533 (Generic error in an external library)
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] Terminating thread with return code -542398533 (Generic error in an external library)
+
+Traceback (most recent call last):
+  File "D:\惊悚短片剪辑\factory\pipeline.py", line 202, in produce
+    self._do_render(queue)
+  File "D:\惊悚短片剪辑\factory\pipeline.py", line 723, in _do_render
+    return do_render(self, queue)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\production.py", line 221, in do_render
+    export_clip(video_path, voice, None, timeline, pipeline.config.params, out_path,
+  File "D:\惊悚短片剪辑\factory\render\exporter.py", line 31, in export_clip
+    return _export_evidence(video_path, voice_path, out_path, params, segments,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\render\exporter.py", line 125, in _export_evidence
+    run_cmd(blend, timeout=1800)
+  File "D:\惊悚短片剪辑\factory\utils.py", line 111, in run_cmd
+    raise RuntimeError(
+RuntimeError: command failed (3752568763): C:\ffmpeg\ffmpeg.EXE -v error -y -filter_complex_threads 1 -threads 1 -i C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-92\test_full_pipeline0\ws\jobs\20261008_214425_99a8df\clips\clip_001\evidence_ioj08e8g\shot_000.mp4 -threads 1 -i C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-92\test_full_pipeline0\ws\jobs\20261008_214425_99a8df\clips\clip_00
+x264 [error]: malloc of size 7088704 failed
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] [enc:libx264 @ 000002a33d345d00] Error submitting video frame to the encoder
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] [enc:libx264 @ 000002a33d345d00] Error encoding a frame: Generic error in an external library
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] Task finished with error code: -542398533 (Generic error in an external library)
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] Terminating thread with return code -542398533 (Generic error in an external library)
+
+
+[21:45:11] ERROR 任务失败: command failed (3752568763): C:\ffmpeg\ffmpeg.EXE -v error -y -filter_complex_threads 1 -threads 1 -i C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-92\test_full_pipeline0\ws\jobs\20261008_214425_99a8df\clips\clip_001\evidence_ioj08e8g\shot_000.mp4 -threads 1 -i C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-92\test_full_pipeline0\ws\jobs\20261008_214425_99a8df\clips\clip_00
+x264 [error]: malloc of size 7088704 failed
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] [enc:libx264 @ 000002a33d345d00] Error submitting video frame to the encoder
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] [enc:libx264 @ 000002a33d345d00] Error encoding a frame: Generic error in an external library
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] Task finished with error code: -542398533 (Generic error in an external library)
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] Terminating thread with return code -542398533 (Generic error in an external library)
+
+
+------------------------------ Captured log call ------------------------------
+INFO     ytsf:downloader.py:176 使用本地视频: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-92\test_full_pipeline0\ws\jobs\20261008_214425_99a8df\source\source_video.mp4 (字幕: source_video.srt)
+INFO     pyscenedetect:scene_manager.py:1335 Detecting scenes...
+INFO     ytsf:scenes.py:27 场景检测: 4 个场景
+INFO     ytsf:transcript.py:339 字幕来源: source_video.srt (12 段)
+INFO     ytsf:keyframes.py:68 L1 全局抽帧: 30 张
+INFO     ytsf:builder.py:95 媒体索引完成: 4 场景 / 8 转写段
+INFO     ytsf:visual.py:119 video_analysis 为 mock，跳过视觉分析
+INFO     ytsf:log.py:55 未安装 pytesseract，跳过画面文字识别
+WARNING  ytsf:log.py:55 剧情分析模型未配置（当前为 mock），已降级规则挖掘——出片质量会很差，请在「配置」页填写分析 API Key/模型
+INFO     ytsf:scout.py:121 规则挖掘窗口: 8 转写段, 4 场景, 总时长 60.0s
+INFO     ytsf:scout.py:41 故事挖掘完成: 3 个候选
+INFO     ytsf:log.py:55 故事挖掘: 3 候选 → 保留 3，淘汰 0
+INFO     ytsf:analyzer.py:46 参考文案风格分析完成: 7 篇样本, 节奏=fast, 人称=neutral, 结构=twist
+WARNING  ytsf:log.py:55 文案生成模型未配置（当前为 mock），已降级兜底文案——出片质量会很差，请在「配置」页填写分析 API Key/模型
+INFO     ytsf:engine.py:36 候选 C001 变体 fixture 匹配度 76.1 (画面 43 / 时间 100 / 事实 72 / 叙事 100 / 信息 100 / 风格 59 / 配音 60 / 故事 97)
+INFO     ytsf:gates.py:94 第一闸门 pass: C001 得分 76.1
+INFO     ytsf:engine.py:36 候选 C002 变体 fixture 匹配度 77.7 (画面 50 / 时间 100 / 事实 72 / 叙事 100 / 信息 100 / 风格 59 / 配音 60 / 故事 97)
+INFO     ytsf:gates.py:94 第一闸门 pass: C002 得分 77.7
+INFO     ytsf:engine.py:36 候选 C003 变体 fixture 匹配度 77.9 (画面 50 / 时间 100 / 事实 72 / 叙事 100 / 信息 100 / 风格 59 / 配音 80 / 故事 97)
+INFO     ytsf:gates.py:94 第一闸门 pass: C003 得分 77.9
+INFO     ytsf:log.py:55 质量闸门: 3 通过 / 0 待审 / 0 淘汰（共分析 3 个候选）
+INFO     ytsf:production.py:202 画幅自适应: 源 1920x1080 → 输出 1920x1080
+INFO     ytsf:production.py:206 检测到黑边，裁剪框: (1920, 1080, 0, 0)
+INFO     ytsf:log.py:55 去字幕: 关闭
+ERROR    ytsf:pipeline.py:764 任务失败: command failed (3752568763): C:\ffmpeg\ffmpeg.EXE -v error -y -filter_complex_threads 1 -threads 1 -i C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-92\test_full_pipeline0\ws\jobs\20261008_214425_99a8df\clips\clip_001\evidence_ioj08e8g\shot_000.mp4 -threads 1 -i C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-92\test_full_pipeline0\ws\jobs\20261008_214425_99a8df\clips\clip_00
+x264 [error]: malloc of size 7088704 failed
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] [enc:libx264 @ 000002a33d345d00] Error submitting video frame to the encoder
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] [enc:libx264 @ 000002a33d345d00] Error encoding a frame: Generic error in an external library
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] Task finished with error code: -542398533 (Generic error in an external library)
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] Terminating thread with return code -542398533 (Generic error in an external library)
+
+Traceback (most recent call last):
+  File "D:\惊悚短片剪辑\factory\pipeline.py", line 202, in produce
+    self._do_render(queue)
+  File "D:\惊悚短片剪辑\factory\pipeline.py", line 723, in _do_render
+    return do_render(self, queue)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\production.py", line 221, in do_render
+    export_clip(video_path, voice, None, timeline, pipeline.config.params, out_path,
+  File "D:\惊悚短片剪辑\factory\render\exporter.py", line 31, in export_clip
+    return _export_evidence(video_path, voice_path, out_path, params, segments,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\render\exporter.py", line 125, in _export_evidence
+    run_cmd(blend, timeout=1800)
+  File "D:\惊悚短片剪辑\factory\utils.py", line 111, in run_cmd
+    raise RuntimeError(
+RuntimeError: command failed (3752568763): C:\ffmpeg\ffmpeg.EXE -v error -y -filter_complex_threads 1 -threads 1 -i C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-92\test_full_pipeline0\ws\jobs\20261008_214425_99a8df\clips\clip_001\evidence_ioj08e8g\shot_000.mp4 -threads 1 -i C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-92\test_full_pipeline0\ws\jobs\20261008_214425_99a8df\clips\clip_00
+x264 [error]: malloc of size 7088704 failed
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] [enc:libx264 @ 000002a33d345d00] Error submitting video frame to the encoder
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] [enc:libx264 @ 000002a33d345d00] Error encoding a frame: Generic error in an external library
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] Task finished with error code: -542398533 (Generic error in an external library)
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] Terminating thread with return code -542398533 (Generic error in an external library)
+
+
+ERROR    ytsf:log.py:55 任务失败: command failed (3752568763): C:\ffmpeg\ffmpeg.EXE -v error -y -filter_complex_threads 1 -threads 1 -i C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-92\test_full_pipeline0\ws\jobs\20261008_214425_99a8df\clips\clip_001\evidence_ioj08e8g\shot_000.mp4 -threads 1 -i C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-92\test_full_pipeline0\ws\jobs\20261008_214425_99a8df\clips\clip_00
+x264 [error]: malloc of size 7088704 failed
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] [enc:libx264 @ 000002a33d345d00] Error submitting video frame to the encoder
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] [enc:libx264 @ 000002a33d345d00] Error encoding a frame: Generic error in an external library
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] Task finished with error code: -542398533 (Generic error in an external library)
+
+[vost#0:0/libx264 @ 000002a33d3ee5c0] Terminating thread with return code -542398533 (Generic error in an external library)
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_live.py:12: 设置 RUN_LIVE_TESTS=1 才运行真实 API 集成测试
+FAILED tests/test_e2e.py::test_full_pipeline - AssertionError: command failed...
+1 failed, 64 passed, 1 skipped in 59.61s

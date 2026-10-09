@@ -1,0 +1,96 @@
+{
+  "job_id": "20261008_230044_95e6cd",
+  "status": "completed",
+  "path": "D:\\惊悚短片剪辑\\交付成片\\2026-10-08_第三条正式版\\03_后巷里的怪人_正式版_无字幕.mp4",
+  "sha256": "cdc3cbbfae192cb69fcdf91a1b958b9016089f1358fe1436d9172859a80c7fb4",
+  "duration": 29.583008,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "fps": "24/1",
+  "subtitles": false,
+  "voice": {
+    "provider": "bailian",
+    "speed": 1.2,
+    "mode": "single_continuous_synthesis",
+    "audio_edits": []
+  },
+  "qc": {
+    "status": "pass",
+    "issues": [],
+    "duration": 29.583008,
+    "width": 1920,
+    "height": 1080,
+    "has_video": true,
+    "has_audio": true,
+    "size_bytes": 13772861,
+    "source_size": "1920x1080",
+    "upscale_ratio": 1.0,
+    "mean_volume_db": -15.5,
+    "frame_brightness": [
+      94.7568359375,
+      83.990234375,
+      79.6943359375
+    ],
+    "comment_hook_check": {
+      "status": "pass",
+      "phrases": [
+        "忘记带玫瑰花了"
+      ]
+    },
+    "media_audit": {
+      "path": "D:\\惊悚短片剪辑\\workspace\\jobs\\20261008_230044_95e6cd\\clips\\clip_001\\clip_001.mp4",
+      "sha256": "cdc3cbbfae192cb69fcdf91a1b958b9016089f1358fe1436d9172859a80c7fb4",
+      "status": "pass",
+      "issues": [],
+      "duration": 29.583008,
+      "decode_exit": 0,
+      "decode_errors": "",
+      "integrated_lufs": "-16.07",
+      "true_peak_dbtp": "-1.85",
+      "black_periods": [],
+      "timeline": {
+        "issues": [],
+        "output_duration": 29.575958,
+        "segment_count": 11
+      },
+      "note": "机器审计只验证文件、响度、黑场和剪辑区间；故事及听感需要审阅。"
+    },
+    "semantic_check": {
+      "score": 98.0,
+      "reason": "画面完整呈现白发怪人出现、女孩逃跑躲藏、藏身处被发现、怪人探头逼近、女孩隔窗观察、三人向开门男子求助、随后接受警方询问并最终离开的连续过程。男子协助报警可由求助后警方介入合理衔接，无需手机或拨号画面；结尾也明确交代女孩在警方介入后安全离开，故事危险、行动、转折与脱险结果完整。",
+      "causal_complete": true,
+      "missing_story_links": [],
+      "status": "pass",
+      "model": "zhenzhen/g5.6-sol",
+      "cache_hit": true
+    }
+  },
+  "final_audio_check": {
+    "status": "pass",
+    "issues": [],
+    "warnings": [
+      {
+        "expected": "",
+        "actual": "接着"
+      },
+      {
+        "expected": "她",
+        "actual": "他"
+      },
+      {
+        "expected": "仓库",
+        "actual": "舱控"
+      }
+    ],
+    "expected_text": "白发怪人站在巷子里露出白眼怪笑危险已经悄然出现忘记带玫瑰花了三个女孩发现怪人后逃进后巷躲到垃圾箱后不敢出声铁门缝里突然伸出一只长指甲的手女孩们的藏身处被发现怪人紧接着从门缝探出头来白眼和笑容让女孩更加害怕女孩隔着玻璃小心露头查看发现白发怪人还在门外另一扇门被男人推开三个女孩立刻迎上去向他求助男人听完求助后帮她们报警女孩向警察讲清遭遇完成询问后三个女孩依次从敞开的仓库门走出并安全脱险",
+    "recognized_text": "白发怪人站在巷子里露出白眼怪笑危险已经悄然出现忘记带玫瑰花了三个女孩发现怪人后逃进后巷躲到垃圾箱后不敢出声铁门缝里突然伸出一只长指甲的手女孩们的藏身处被发现怪人紧接着从门缝探出头来白眼和笑容让女孩更加害怕女孩隔着玻璃小心露头查看发现白发怪人还在门外另一扇门被男人推开三个女孩立刻迎上去向他求助接着男人听完求助后帮他们报警女孩向警察讲清遭遇完成询问后三个女孩依次从敞开的舱控门走出并安全脱险",
+    "method": "local_asr_script_comparison",
+    "audio_edits": [],
+    "audio_sha256": "cdc3cbbfae192cb69fcdf91a1b958b9016089f1358fe1436d9172859a80c7fb4",
+    "asr_model": "large-v3-turbo",
+    "model_tokens": 0
+  },
+  "draft_path": "C:\\Users\\Administrator\\AppData\\Local\\JianyingPro\\User Data\\Projects\\com.lveditor.draft\\clip_001_仓库门后的白眼怪人"
+}

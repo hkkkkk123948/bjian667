@@ -1,0 +1,230 @@
+{
+  "source_start": 451.519,
+  "source_duration": 38.628,
+  "narration_duration": 38.508,
+  "tts_duration": 38.508,
+  "voice_path": "D:\\惊悚短片剪辑\\workspace\\jobs\\20261009_001504_2cfe45\\clips\\clip_001\\voice.wav",
+  "timing_source": "provider_sentence_starts_calibrated",
+  "speed_factor": 1.0,
+  "voice_playback_speed": 1.2,
+  "sentence_timings": [
+    {
+      "index": 1,
+      "text": "女孩出门忘记带玫瑰花了，所有人都在欢迎女孩,可他们的笑容明显不对劲。",
+      "role": "hook",
+      "start": 0.0,
+      "end": 5.446853811659192,
+      "narrative_text": "，所有人都在欢迎女孩,可他们的笑容明显不对劲。",
+      "comment_hook": "女孩出门忘记带玫瑰花了"
+    },
+    {
+      "index": 2,
+      "text": "女孩很快被带到林地里捡石头,黑色袋子就放在身前,她还不知道这些石头要用在哪里。",
+      "role": "context",
+      "start": 5.446853811659192,
+      "end": 9.512259192825113,
+      "narrative_text": "女孩很快被带到林地里捡石头,黑色袋子就放在身前,她还不知道这些石头要用在哪里。",
+      "comment_hook": ""
+    },
+    {
+      "index": 3,
+      "text": "直到她看见男人站在火焰旁,将手里的块状物放入大锅,一场古怪的准备已经开始了。",
+      "role": "setup",
+      "start": 9.512259192825113,
+      "end": 14.528890493273543,
+      "narrative_text": "直到她看见男人站在火焰旁,将手里的块状物放入大锅,一场古怪的准备已经开始了。",
+      "comment_hook": ""
+    },
+    {
+      "index": 4,
+      "text": "女孩偷偷俯身查看敞开的锅口,里面清楚露出多块生肉,周围的人却像什么都没发生。",
+      "role": "escalation",
+      "start": 14.528890493273543,
+      "end": 20.133624125560537,
+      "narrative_text": "女孩偷偷俯身查看敞开的锅口,里面清楚露出多块生肉,周围的人却像什么都没发生。",
+      "comment_hook": ""
+    },
+    {
+      "index": 5,
+      "text": "这时一个愤怒的女人赶到木屋外,女孩以为她是来救自己的,立刻跟着众人走到门口。",
+      "role": "turn",
+      "start": 20.133624125560537,
+      "end": 24.891727219730942,
+      "narrative_text": "这时一个愤怒的女人赶到木屋外,女孩以为她是来救自己的,立刻跟着众人走到门口。",
+      "comment_hook": ""
+    },
+    {
+      "index": 6,
+      "text": "女人果然牵住女孩向外走去,身后的几个人没有阻拦,反而安静地目送她们离开。",
+      "role": "false_resolution",
+      "start": 24.891727219730942,
+      "end": 28.81997450672646,
+      "narrative_text": "女人果然牵住女孩向外走去,身后的几个人没有阻拦,反而安静地目送她们离开。",
+      "comment_hook": ""
+    },
+    {
+      "index": 7,
+      "text": "女孩以为女人救了自己,可下一秒她却独自坐在餐桌前,低头吃着一盘来历不明的肉,直到这时她才发现,对方带她离开木屋,也许只是为了换一个地方开饭。",
+      "role": "twist",
+      "start": 28.81997450672646,
+      "end": 38.507875,
+      "narrative_text": "女孩以为女人救了自己,可下一秒她却独自坐在餐桌前,低头吃着一盘来历不明的肉,直到这时她才发现,对方带她离开木屋,也许只是为了换一个地方开饭。",
+      "comment_hook": ""
+    }
+  ],
+  "segments": [
+    {
+      "src_start": 497.814647,
+      "src_duration": 0.11840987096774194,
+      "dur": 0.11840986547085201,
+      "out_start": 0.0,
+      "sentence_index": 1,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "none",
+      "evidence_start": 497.6,
+      "evidence_end": 501.7
+    },
+    {
+      "src_start": 497.93305687096773,
+      "src_duration": 0.041666666666666664,
+      "dur": 1.7761479820627801,
+      "out_start": 0.11840986547085201,
+      "sentence_index": 1,
+      "shot_part": 0,
+      "playback_speed": 1,
+      "freeze_duration": 0,
+      "motion": "push_in",
+      "evidence_start": 497.6,
+      "evidence_end": 501.7,
+      "visual_kind": "comment_still",
+      "comment_spans": [
+        {
+          "sentence_index": 1,
+          "text": "女孩出门忘记带玫瑰花了",
+          "narrative_offset": 0,
+          "start": 0.11840986547085201,
+          "end": 1.8945578475336322,
+          "timing_source": "provider_words"
+        }
+      ],
+      "comment_visual_mode": "auto",
+      "comment_context": "话术所在位置的前后正文镜头"
+    },
+    {
+      "src_start": 497.93305687096773,
+      "src_duration": 3.5522961290322574,
+      "dur": 3.55229596412556,
+      "out_start": 1.8945578475336322,
+      "sentence_index": 1,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "none",
+      "evidence_start": 497.6,
+      "evidence_end": 501.7
+    },
+    {
+      "src_start": 514.357297,
+      "src_duration": 4.065405,
+      "dur": 4.06540538116592,
+      "out_start": 5.446853811659192,
+      "sentence_index": 2,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "pan_left",
+      "evidence_start": 514.3,
+      "evidence_end": 518.48
+    },
+    {
+      "src_start": 522.7,
+      "src_duration": 4.15,
+      "dur": 5.01663130044843,
+      "out_start": 9.512259192825113,
+      "sentence_index": 3,
+      "shot_part": 1,
+      "playback_speed": 0.827248,
+      "freeze_duration": 0,
+      "motion": "pan_right",
+      "evidence_start": 522.7,
+      "evidence_end": 526.85
+    },
+    {
+      "src_start": 556.145,
+      "src_duration": 4.155,
+      "dur": 5.604733632286994,
+      "out_start": 14.528890493273542,
+      "sentence_index": 4,
+      "shot_part": 1,
+      "playback_speed": 0.741338,
+      "freeze_duration": 0,
+      "motion": "pan_left",
+      "evidence_start": 556.145,
+      "evidence_end": 560.3
+    },
+    {
+      "src_start": 581.3,
+      "src_duration": 4.0,
+      "dur": 4.758103094170405,
+      "out_start": 20.133624125560537,
+      "sentence_index": 5,
+      "shot_part": 1,
+      "playback_speed": 0.840671,
+      "freeze_duration": 0,
+      "motion": "pan_right",
+      "evidence_start": 581.3,
+      "evidence_end": 585.3
+    },
+    {
+      "src_start": 585.555876,
+      "src_duration": 3.928247,
+      "dur": 3.928247286995518,
+      "out_start": 24.891727219730942,
+      "sentence_index": 6,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "pan_left",
+      "evidence_start": 585.44,
+      "evidence_end": 589.6
+    },
+    {
+      "src_start": 610.6,
+      "src_duration": 3.1666663333333336,
+      "dur": 9.687900493273538,
+      "out_start": 28.81997450672646,
+      "sentence_index": 7,
+      "shot_part": 1,
+      "playback_speed": 0.423208,
+      "freeze_duration": 0,
+      "motion": "push_in",
+      "evidence_start": 610.6,
+      "evidence_end": 614.7,
+      "source_black_trim": {
+        "original_start": 610.6,
+        "original_duration": 4.1
+      }
+    }
+  ],
+  "comment_picture_plan": {
+    "mode": "auto",
+    "comments": [
+      {
+        "sentence_index": 1,
+        "text": "女孩出门忘记带玫瑰花了",
+        "narrative_offset": 0,
+        "start": 0.11840986547085201,
+        "end": 1.8945578475336322,
+        "timing_source": "provider_words"
+      }
+    ],
+    "literal_matching": false,
+    "context_matching": true,
+    "position_policy": "exact_comment_intervals",
+    "local_visual_treatment": true
+  },
+  "tail_padding": 0.12,
+  "crop_focus": 0.5258
+}

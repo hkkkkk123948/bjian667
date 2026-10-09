@@ -1,0 +1,322 @@
+{
+  "source_start": 451.519,
+  "source_duration": 38.628,
+  "narration_duration": 38.508,
+  "tts_duration": 38.508,
+  "voice_path": "D:\\惊悚短片剪辑\\workspace\\jobs\\20261009_001504_2cfe45\\clips\\clip_001\\voice.wav",
+  "timing_source": "local_asr_interpolated",
+  "alignment_report": {
+    "policy": "measured_speech_v1",
+    "source": "local_asr_interpolated",
+    "audio_clock": true,
+    "confidence": "medium",
+    "matched_ratio": 0.9591078066914498,
+    "uncertain_spans": [
+      {
+        "kind": "replace",
+        "start_char": 21,
+        "end_char": 22,
+        "expected": "他",
+        "recognized": "她"
+      },
+      {
+        "kind": "replace",
+        "start_char": 38,
+        "end_char": 39,
+        "expected": "林",
+        "recognized": "灵"
+      },
+      {
+        "kind": "replace",
+        "start_char": 83,
+        "end_char": 85,
+        "expected": "块状",
+        "recognized": "快装"
+      },
+      {
+        "kind": "replace",
+        "start_char": 90,
+        "end_char": 92,
+        "expected": "一场",
+        "recognized": "异常"
+      },
+      {
+        "kind": "replace",
+        "start_char": 130,
+        "end_char": 131,
+        "expected": "像",
+        "recognized": "想"
+      },
+      {
+        "kind": "replace",
+        "start_char": 138,
+        "end_char": 139,
+        "expected": "时",
+        "recognized": "是"
+      },
+      {
+        "kind": "insert",
+        "start_char": 151,
+        "end_char": 151,
+        "expected": "",
+        "recognized": "输"
+      },
+      {
+        "kind": "insert",
+        "start_char": 162,
+        "end_char": 162,
+        "expected": "",
+        "recognized": "女孩"
+      },
+      {
+        "kind": "replace",
+        "start_char": 199,
+        "end_char": 200,
+        "expected": "目",
+        "recognized": "募"
+      },
+      {
+        "kind": "replace",
+        "start_char": 235,
+        "end_char": 236,
+        "expected": "历",
+        "recognized": "力"
+      },
+      {
+        "kind": "replace",
+        "start_char": 254,
+        "end_char": 255,
+        "expected": "木",
+        "recognized": "牧"
+      }
+    ],
+    "word_count": 254,
+    "character_count": 269,
+    "silence_gaps": [],
+    "within_word_interpolation": true,
+    "provider_fallback_reason": "incomplete_provider_text",
+    "audio_duration": 38.507875,
+    "asr_model": "small",
+    "asr_audio_sha256": "ce3eab9da2c36000a6645a883454ff60d0079de851b91a0d99f228729f3754f0"
+  },
+  "speed_factor": 1.0,
+  "voice_playback_speed": 1.2,
+  "sentence_timings": [
+    {
+      "index": 1,
+      "text": "女孩出门忘记带玫瑰花了，所有人都在欢迎女孩,可他们的笑容明显不对劲。",
+      "role": "hook",
+      "start": 0.0,
+      "end": 4.4,
+      "narrative_text": "，所有人都在欢迎女孩,可他们的笑容明显不对劲。",
+      "comment_hook": "女孩出门忘记带玫瑰花了"
+    },
+    {
+      "index": 2,
+      "text": "女孩很快被带到林地里捡石头,黑色袋子就放在身前,她还不知道这些石头要用在哪里。",
+      "role": "context",
+      "start": 4.4,
+      "end": 9.3,
+      "narrative_text": "女孩很快被带到林地里捡石头,黑色袋子就放在身前,她还不知道这些石头要用在哪里。",
+      "comment_hook": ""
+    },
+    {
+      "index": 3,
+      "text": "直到她看见男人站在火焰旁,将手里的块状物放入大锅,一场古怪的准备已经开始了。",
+      "role": "setup",
+      "start": 9.3,
+      "end": 14.8,
+      "narrative_text": "直到她看见男人站在火焰旁,将手里的块状物放入大锅,一场古怪的准备已经开始了。",
+      "comment_hook": ""
+    },
+    {
+      "index": 4,
+      "text": "女孩偷偷俯身查看敞开的锅口,里面清楚露出多块生肉,周围的人却像什么都没发生。",
+      "role": "escalation",
+      "start": 14.8,
+      "end": 19.48,
+      "narrative_text": "女孩偷偷俯身查看敞开的锅口,里面清楚露出多块生肉,周围的人却像什么都没发生。",
+      "comment_hook": ""
+    },
+    {
+      "index": 5,
+      "text": "这时一个愤怒的女人赶到木屋外,女孩以为她是来救自己的,立刻跟着众人走到门口。",
+      "role": "turn",
+      "start": 19.48,
+      "end": 24.64,
+      "narrative_text": "这时一个愤怒的女人赶到木屋外,女孩以为她是来救自己的,立刻跟着众人走到门口。",
+      "comment_hook": ""
+    },
+    {
+      "index": 6,
+      "text": "女人果然牵住女孩向外走去,身后的几个人没有阻拦,反而安静地目送她们离开。",
+      "role": "false_resolution",
+      "start": 24.64,
+      "end": 29.08,
+      "narrative_text": "女人果然牵住女孩向外走去,身后的几个人没有阻拦,反而安静地目送她们离开。",
+      "comment_hook": ""
+    },
+    {
+      "index": 7,
+      "text": "女孩以为女人救了自己,可下一秒她却独自坐在餐桌前,低头吃着一盘来历不明的肉,直到这时她才发现,对方带她离开木屋,也许只是为了换一个地方开饭。",
+      "role": "twist",
+      "start": 29.08,
+      "end": 38.507875,
+      "narrative_text": "女孩以为女人救了自己,可下一秒她却独自坐在餐桌前,低头吃着一盘来历不明的肉,直到这时她才发现,对方带她离开木屋,也许只是为了换一个地方开饭。",
+      "comment_hook": ""
+    }
+  ],
+  "segments": [
+    {
+      "src_start": 498.34,
+      "src_duration": 0.041666666666666664,
+      "dur": 1.78,
+      "out_start": 0.0,
+      "sentence_index": 1,
+      "shot_part": 0,
+      "playback_speed": 1,
+      "freeze_duration": 0,
+      "motion": "push_in",
+      "context_id": "1:1",
+      "evidence_start": 497.6,
+      "evidence_end": 501.7,
+      "visual_kind": "comment_still",
+      "comment_spans": [
+        {
+          "sentence_index": 1,
+          "text": "女孩出门忘记带玫瑰花了",
+          "narrative_offset": 0,
+          "start": 0.0,
+          "end": 1.78,
+          "timing_source": "local_asr_interpolated",
+          "confidence": "medium"
+        }
+      ],
+      "comment_visual_mode": "auto",
+      "comment_context": "话术所在位置的前后正文镜头"
+    },
+    {
+      "src_start": 498.34,
+      "src_duration": 2.62,
+      "dur": 2.62,
+      "out_start": 1.78,
+      "sentence_index": 1,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "none",
+      "context_id": "1:1",
+      "evidence_start": 497.6,
+      "evidence_end": 501.7
+    },
+    {
+      "src_start": 514.3,
+      "src_duration": 4.18,
+      "dur": 4.9,
+      "out_start": 4.4,
+      "sentence_index": 2,
+      "shot_part": 1,
+      "playback_speed": 0.853061,
+      "freeze_duration": 0,
+      "motion": "none",
+      "context_id": "2:1",
+      "evidence_start": 514.3,
+      "evidence_end": 518.48
+    },
+    {
+      "src_start": 522.7,
+      "src_duration": 4.15,
+      "dur": 5.499999999999999,
+      "out_start": 9.3,
+      "sentence_index": 3,
+      "shot_part": 1,
+      "playback_speed": 0.754545,
+      "freeze_duration": 0,
+      "motion": "none",
+      "context_id": "3:1",
+      "evidence_start": 522.7,
+      "evidence_end": 526.85
+    },
+    {
+      "src_start": 556.145,
+      "src_duration": 4.155,
+      "dur": 4.68,
+      "out_start": 14.799999999999999,
+      "sentence_index": 4,
+      "shot_part": 1,
+      "playback_speed": 0.887821,
+      "freeze_duration": 0,
+      "motion": "pan_right",
+      "context_id": "4:1",
+      "evidence_start": 556.145,
+      "evidence_end": 560.3
+    },
+    {
+      "src_start": 581.3,
+      "src_duration": 3.9999999999999996,
+      "dur": 5.16,
+      "out_start": 19.48,
+      "sentence_index": 5,
+      "shot_part": 1,
+      "playback_speed": 0.775194,
+      "freeze_duration": 0,
+      "motion": "none",
+      "context_id": "5:1",
+      "evidence_start": 581.3,
+      "evidence_end": 585.3
+    },
+    {
+      "src_start": 585.44,
+      "src_duration": 4.16,
+      "dur": 4.439999999999998,
+      "out_start": 24.64,
+      "sentence_index": 6,
+      "shot_part": 1,
+      "playback_speed": 0.936937,
+      "freeze_duration": 0,
+      "motion": "none",
+      "context_id": "6:1",
+      "evidence_start": 585.44,
+      "evidence_end": 589.6
+    },
+    {
+      "src_start": 610.6,
+      "src_duration": 3.166666333333316,
+      "dur": 9.427875,
+      "out_start": 29.08,
+      "sentence_index": 7,
+      "shot_part": 1,
+      "playback_speed": 0.434881,
+      "freeze_duration": 0,
+      "motion": "push_in",
+      "context_id": "7:1",
+      "evidence_start": 610.6,
+      "evidence_end": 614.7,
+      "source_black_trim": {
+        "original_start": 610.6,
+        "original_duration": 4.1,
+        "context_start": 610.6,
+        "context_duration": 3.1666663333333336
+      }
+    }
+  ],
+  "comment_picture_plan": {
+    "mode": "auto",
+    "comments": [
+      {
+        "sentence_index": 1,
+        "text": "女孩出门忘记带玫瑰花了",
+        "narrative_offset": 0,
+        "start": 0.0,
+        "end": 1.78,
+        "timing_source": "local_asr_interpolated",
+        "confidence": "medium"
+      }
+    ],
+    "literal_matching": false,
+    "context_matching": true,
+    "position_policy": "exact_comment_intervals",
+    "local_visual_treatment": true
+  },
+  "tail_padding": 0.12
+}

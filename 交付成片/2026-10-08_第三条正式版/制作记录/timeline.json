@@ -1,0 +1,231 @@
+{
+  "source_start": 529.2,
+  "source_duration": 29.696,
+  "narration_duration": 29.576,
+  "tts_duration": 29.576,
+  "voice_path": "D:\\惊悚短片剪辑\\workspace\\jobs\\20261008_230044_95e6cd\\clips\\clip_001\\voice.wav",
+  "timing_source": "provider_sentence_starts_calibrated",
+  "speed_factor": 1.0,
+  "voice_playback_speed": 1.2,
+  "sentence_timings": [
+    {
+      "index": 1,
+      "text": "白发怪人站在巷子里露出白眼怪笑，危险已经悄然出现，忘记带玫瑰花了。",
+      "role": "hook",
+      "start": 0.0,
+      "end": 5.315908918342276,
+      "narrative_text": "白发怪人站在巷子里露出白眼怪笑，危险已经悄然出现。",
+      "comment_hook": "忘记带玫瑰花了"
+    },
+    {
+      "index": 2,
+      "text": "三个女孩发现怪人后逃进后巷，躲到垃圾箱后不敢出声。",
+      "role": "escalation",
+      "start": 5.315908918342276,
+      "end": 7.431755399689661,
+      "narrative_text": "三个女孩发现怪人后逃进后巷，躲到垃圾箱后不敢出声。",
+      "comment_hook": ""
+    },
+    {
+      "index": 3,
+      "text": "铁门缝里突然伸出一只长指甲的手，女孩们的藏身处被发现。",
+      "role": "escalation",
+      "start": 7.431755399689661,
+      "end": 11.332638203077519,
+      "narrative_text": "铁门缝里突然伸出一只长指甲的手，女孩们的藏身处被发现。",
+      "comment_hook": ""
+    },
+    {
+      "index": 4,
+      "text": "怪人紧接着从门缝探出头来，白眼和笑容让女孩更加害怕。",
+      "role": "escalation",
+      "start": 11.332638203077519,
+      "end": 14.413188299282341,
+      "narrative_text": "怪人紧接着从门缝探出头来，白眼和笑容让女孩更加害怕。",
+      "comment_hook": ""
+    },
+    {
+      "index": 5,
+      "text": "女孩隔着玻璃小心露头查看，发现白发怪人还在门外。",
+      "role": "escalation",
+      "start": 14.413188299282341,
+      "end": 18.81124244035689,
+      "narrative_text": "女孩隔着玻璃小心露头查看，发现白发怪人还在门外。",
+      "comment_hook": ""
+    },
+    {
+      "index": 6,
+      "text": "另一扇门被男人推开，三个女孩立刻迎上去向他求助。",
+      "role": "escalation",
+      "start": 18.81124244035689,
+      "end": 21.429996851748886,
+      "narrative_text": "另一扇门被男人推开，三个女孩立刻迎上去向他求助。",
+      "comment_hook": ""
+    },
+    {
+      "index": 7,
+      "text": "男人听完求助后帮她们报警，女孩向警察讲清遭遇。",
+      "role": "payoff",
+      "start": 21.429996851748886,
+      "end": 24.94844016460852,
+      "narrative_text": "男人听完求助后帮她们报警，女孩向警察讲清遭遇。",
+      "comment_hook": ""
+    },
+    {
+      "index": 8,
+      "text": "完成询问后，三个女孩依次从敞开的仓库门走出并安全脱险。",
+      "role": "payoff",
+      "start": 24.94844016460852,
+      "end": 29.575958,
+      "narrative_text": "完成询问后，三个女孩依次从敞开的仓库门走出并安全脱险。",
+      "comment_hook": ""
+    }
+  ],
+  "segments": [
+    {
+      "src_start": 530.792046,
+      "src_duration": 5.315909,
+      "dur": 5.315908918342276,
+      "out_start": 0.0,
+      "sentence_index": 1,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.0,
+      "motion": "push_in",
+      "evidence_start": 529.2,
+      "evidence_end": 537.7
+    },
+    {
+      "src_start": 548.492197,
+      "src_duration": 1.015606,
+      "dur": 1.0156063110467448,
+      "out_start": 5.315908918342276,
+      "sentence_index": 2,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.0,
+      "motion": "pan_left",
+      "evidence_start": 548.2,
+      "evidence_end": 549.8
+    },
+    {
+      "src_start": 554.04988,
+      "src_duration": 1.10024,
+      "dur": 1.1002401703006397,
+      "out_start": 6.331515229389021,
+      "sentence_index": 2,
+      "shot_part": 2,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.0,
+      "motion": "pan_right",
+      "evidence_start": 553.2,
+      "evidence_end": 556.0
+    },
+    {
+      "src_start": 568.049559,
+      "src_duration": 3.900883,
+      "dur": 3.9008828033878578,
+      "out_start": 7.431755399689661,
+      "sentence_index": 3,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.0,
+      "motion": "pan_right",
+      "evidence_start": 566.0,
+      "evidence_end": 574.0
+    },
+    {
+      "src_start": 576.859725,
+      "src_duration": 3.08055,
+      "dur": 3.0805500962048225,
+      "out_start": 11.332638203077519,
+      "sentence_index": 4,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.0,
+      "motion": "pan_left",
+      "evidence_start": 575.0,
+      "evidence_end": 581.8
+    },
+    {
+      "src_start": 624.1,
+      "src_duration": 3.6,
+      "dur": 4.398054141074548,
+      "out_start": 14.413188299282341,
+      "sentence_index": 5,
+      "shot_part": 1,
+      "playback_speed": 0.818544,
+      "freeze_duration": 0.0,
+      "motion": "pan_right",
+      "evidence_start": 624.1,
+      "evidence_end": 627.7
+    },
+    {
+      "src_start": 652.891718,
+      "src_duration": 0.916564,
+      "dur": 0.9165640439871972,
+      "out_start": 18.81124244035689,
+      "sentence_index": 6,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.0,
+      "motion": "pan_left",
+      "evidence_start": 652.2,
+      "evidence_end": 654.5
+    },
+    {
+      "src_start": 657.798905,
+      "src_duration": 1.70219,
+      "dur": 1.7021903674047998,
+      "out_start": 19.727806484344086,
+      "sentence_index": 6,
+      "shot_part": 2,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.0,
+      "motion": "pan_right",
+      "evidence_start": 657.1,
+      "evidence_end": 660.2
+    },
+    {
+      "src_start": 666.6,
+      "src_duration": 1.5,
+      "dur": 1.759221656429819,
+      "out_start": 21.429996851748886,
+      "sentence_index": 7,
+      "shot_part": 1,
+      "playback_speed": 0.85265,
+      "freeze_duration": 0.0,
+      "motion": "push_in",
+      "evidence_start": 666.6,
+      "evidence_end": 668.1
+    },
+    {
+      "src_start": 670.8,
+      "src_duration": 1.5,
+      "dur": 1.7592216564298155,
+      "out_start": 23.189218508178705,
+      "sentence_index": 7,
+      "shot_part": 2,
+      "playback_speed": 0.85265,
+      "freeze_duration": 0.0,
+      "motion": "push_in",
+      "evidence_start": 670.8,
+      "evidence_end": 672.3
+    },
+    {
+      "src_start": 674.461241,
+      "src_duration": 4.277518,
+      "dur": 4.62751783539148,
+      "out_start": 24.94844016460852,
+      "sentence_index": 8,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.35,
+      "motion": "push_in",
+      "evidence_start": 673.2,
+      "evidence_end": 680.0
+    }
+  ],
+  "tail_padding": 0.12,
+  "crop_focus": 0.5
+}

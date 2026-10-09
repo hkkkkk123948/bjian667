@@ -1,0 +1,35 @@
+[23:29:41] INFO 使用本地视频: D:\惊悚短片剪辑\workspace\jobs\20261008_232941_ac9074\source\3 TRUE Horror Stories Animated [9Db4fYLyAVg].mp4 (字幕: 无)
+[23:31:37] INFO 导演稿 雨夜窗外怪人: 深夜同伴突然叫醒熟睡的男孩并示意他查看窗外。男孩起身查看后发现怪人正把双手紧贴在玻璃上。怪人已经潜入屋内并躲在床下露出诡异笑脸。男孩和同伴发现后立刻跑下楼梯远离藏身的房间。男人看见男孩跑来便牵着两条恶犬挡在他们前面。可怪人很快亮出尖刀沿着地上脚印继续追赶。两条恶犬随即扑向怪人把他死死压倒在泥地上。最后男孩与同伴守着熟睡恶犬安全熬过雨夜。
+[23:33:45] WARNING llm attempt 1 failed: HTTPSConnectionPool(host='api.seedance.nz', port=443): Read timed out. (read timeout=120.0)
+[23:33:46] ERROR 任务失败: HTTPSConnectionPool(host='api.seedance.nz', port=443): Read timed out. (read timeout=120.0)
+Traceback (most recent call last):
+  File "D:\惊悚短片剪辑\factory\pipeline.py", line 147, in analyze
+    return analyze(self)
+           ^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\mining\visual_story.py", line 180, in analyze
+    data = _cached_call(p, "script", prompt, detail, provider)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\mining\visual_story.py", line 314, in _cached_call
+    data = provider.complete_json(prompt, images=images, json_mode=True, default=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\providers\base.py", line 230, in complete_json
+    raise ProviderError(str(last_err))
+factory.providers.base.ProviderError: HTTPSConnectionPool(host='api.seedance.nz', port=443): Read timed out. (read timeout=120.0)
+[23:33:46] ERROR 任务失败: HTTPSConnectionPool(host='api.seedance.nz', port=443): Read timed out. (read timeout=120.0)
+[23:37:25] INFO 导演稿 雨夜窗外怪人: 深夜同伴突然叫醒熟睡的男孩并示意他查看窗外。男孩起身查看后发现怪人正把双手紧贴在玻璃上。怪人已经潜入屋内并躲在床下露出诡异笑脸。男孩和同伴发现后立刻跑下楼梯远离藏身的房间。男人看见男孩跑来便牵着两条恶犬挡在他们前面。可怪人很快亮出尖刀沿着地上脚印继续追赶。两条恶犬随即扑向怪人把他死死压倒在泥地上。最后男孩与同伴守着熟睡恶犬安全熬过雨夜。
+[23:39:28] WARNING llm attempt 1 failed: HTTPSConnectionPool(host='api.seedance.nz', port=443): Read timed out. (read timeout=120.0)
+[23:39:30] ERROR 任务失败: HTTPSConnectionPool(host='api.seedance.nz', port=443): Read timed out. (read timeout=120.0)
+Traceback (most recent call last):
+  File "D:\惊悚短片剪辑\factory\pipeline.py", line 147, in analyze
+    and self.config.param("creative_strategy", "visual_story") == "visual_story"
+       ^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\mining\visual_story.py", line 180, in analyze
+    "\"texts\":[\"第1行镜头的完整旁白\",\"第2行镜头的完整旁白\"]}。") % (
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\mining\visual_story.py", line 314, in _cached_call
+    write_json(p.job_dir / "analysis" / "reused_story.json", item)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\providers\base.py", line 230, in complete_json
+    except Exception as exc:
+factory.providers.base.ProviderError: HTTPSConnectionPool(host='api.seedance.nz', port=443): Read timed out. (read timeout=120.0)
+[23:39:30] ERROR 任务失败: HTTPSConnectionPool(host='api.seedance.nz', port=443): Read timed out. (read timeout=120.0)

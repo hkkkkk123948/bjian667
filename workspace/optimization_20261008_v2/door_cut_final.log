@@ -1,0 +1,38 @@
+[info] 原片SHA256一致，复用已审查的简单故事，编剧/评审消耗0 LLM token
+[20:54:45] INFO 原片SHA256一致，复用已审查的简单故事，编剧/评审消耗0 LLM token
+✓ MEDIA_INDEXING 
+✓ SCRIPT_GENERATED 
+✓ MATCHING 结构和证据本地检查；语义只核验一次实际成片
+✓ CANDIDATE_FILTERED 
+→ TTS_GENERATED 
+  [ 65%] TTS 配音
+  [100%] TTS clip_001
+✓ TTS_GENERATED 
+→ TIMELINE_ALIGNED 
+  [ 71%] 时间轴对齐
+✓ TIMELINE_ALIGNED 
+→ RENDERING 
+  [ 76%] 画面重构与渲染
+[20:54:46] INFO 画幅自适应: 源 1920x1080 → 输出 1920x1080
+[20:54:47] INFO 检测到黑边，裁剪框: (1920, 1080, 0, 0)
+[info] 去字幕: 关闭
+[20:54:47] INFO 去字幕: 关闭
+[20:55:04] INFO 渲染证据剪辑: 8段 20.70s, 旁白使用真实句时长
+  [100%] 渲染 clip_001
+✓ RENDERING 
+→ FINAL_MATCH_CHECK 
+  [ 82%] 成片匹配复检
+✓ FINAL_MATCH_CHECK 
+→ QUALITY_CHECK 
+  [ 88%] 最终质量检查
+[20:55:06] INFO QC clip_001.mp4: pass duration=20.7 issues=[]
+✓ QUALITY_CHECK 
+→ DRAFT_EXPORT 
+  [ 94%] 剪映草稿导出
+[20:55:09] INFO 剪映草稿已导出: C:\Users\Administrator\AppData\Local\JianyingPro\User Data\Projects\com.lveditor.draft\clip_001_后巷里的怪人
+[20:55:09] INFO 剪映草稿导出: 1/1 部成片
+[info] 剪映草稿导出: 1/1 部成片
+✓ DRAFT_EXPORT 
+→ COMPLETED 
+  [100%] 完成
+✓ COMPLETED 

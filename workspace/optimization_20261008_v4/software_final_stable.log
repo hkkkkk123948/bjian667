@@ -1,0 +1,25 @@
+→ RENDERING 
+  [ 76%] 画面重构与渲染
+[21:48:24] INFO 画幅自适应: 源 1920x1080 → 输出 1920x1080
+[21:48:25] INFO 检测到黑边，裁剪框: (1920, 1080, 0, 0)
+[info] 去字幕: 关闭
+[21:48:25] INFO 去字幕: 关闭
+[21:49:37] INFO 渲染证据剪辑: 9段 20.37s, 旁白使用真实句时长
+  [100%] 渲染 clip_001
+✓ RENDERING 
+→ FINAL_MATCH_CHECK 
+  [ 82%] 成片匹配复检
+✓ FINAL_MATCH_CHECK 
+→ QUALITY_CHECK 
+  [ 88%] 最终质量检查
+[21:49:59] INFO QC clip_001.mp4: pass duration=20.4 issues=[]
+✓ QUALITY_CHECK 
+→ DRAFT_EXPORT 
+  [ 94%] 剪映草稿导出
+[21:50:09] INFO 剪映草稿已导出: C:\Users\Administrator\AppData\Local\JianyingPro\User Data\Projects\com.lveditor.draft\clip_001_后巷里的怪人
+[info] 剪映草稿导出: 1/1 部成片
+[21:50:09] INFO 剪映草稿导出: 1/1 部成片
+✓ DRAFT_EXPORT 
+→ COMPLETED 
+  [100%] 完成
+✓ COMPLETED 

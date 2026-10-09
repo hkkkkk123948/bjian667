@@ -1,0 +1,204 @@
+{
+  "fps": 24,
+  "output_frames": 710,
+  "handles": [
+    {
+      "nominal_frames": 112,
+      "before": 0,
+      "after": 2
+    },
+    {
+      "nominal_frames": 41,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 44,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 92,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 88,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 81,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 29,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 53,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 78,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 92,
+      "before": 1,
+      "after": 0
+    }
+  ],
+  "transitions": [
+    {
+      "index": 1,
+      "boundary_frame": 112,
+      "start_frame": 111,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 2,
+      "boundary_frame": 153,
+      "start_frame": 152,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 3,
+      "boundary_frame": 197,
+      "start_frame": 196,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 4,
+      "boundary_frame": 289,
+      "start_frame": 288,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 5,
+      "boundary_frame": 377,
+      "start_frame": 376,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 6,
+      "boundary_frame": 458,
+      "start_frame": 457,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 7,
+      "boundary_frame": 487,
+      "start_frame": 486,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 8,
+      "boundary_frame": 540,
+      "start_frame": 539,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 9,
+      "boundary_frame": 618,
+      "start_frame": 617,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    }
+  ],
+  "boundaries": [
+    {
+      "index": 1,
+      "boundary_frame": 112,
+      "start_frame": 111,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 2,
+      "boundary_frame": 153,
+      "start_frame": 152,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 3,
+      "boundary_frame": 197,
+      "start_frame": 196,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 4,
+      "boundary_frame": 289,
+      "start_frame": 288,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 5,
+      "boundary_frame": 377,
+      "start_frame": 376,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 6,
+      "boundary_frame": 458,
+      "start_frame": 457,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 7,
+      "boundary_frame": 487,
+      "start_frame": 486,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 8,
+      "boundary_frame": 540,
+      "start_frame": 539,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 9,
+      "boundary_frame": 618,
+      "start_frame": 617,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    }
+  ]
+}

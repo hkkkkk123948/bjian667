@@ -1,0 +1,44 @@
+{
+  "model": "qwen/qwen3.6-plus",
+  "result": {
+    "images": [
+      {
+        "image_number": 1,
+        "visible": "室内，一名穿深色上衣男子手抓被子，看着床上躺着张嘴的人。",
+        "hat": "无",
+        "vehicle": "无"
+      },
+      {
+        "image_number": 2,
+        "visible": "室外雨中，三名男子站立，表情惊恐，身上有雨滴落下。",
+        "hat": "无",
+        "vehicle": "无"
+      },
+      {
+        "image_number": 3,
+        "visible": "室内，左侧戴帽男子侧身站立，对面两名男子颈搭毛巾，窗外下雨。",
+        "hat": "有",
+        "vehicle": "无"
+      },
+      {
+        "image_number": 4,
+        "visible": "暗处，一只戴项圈的狗露齿凶狠注视，左下角可见部分肢体。",
+        "hat": "无",
+        "vehicle": "不确定"
+      }
+    ]
+  },
+  "usage": {
+    "prompt_tokens": 596,
+    "completion_tokens": 973,
+    "total_tokens": 1569,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 596,
+    "completion_tokens_details": {
+      "reasoning_tokens": 734
+    }
+  }
+}

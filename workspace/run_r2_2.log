@@ -1,0 +1,13 @@
+→ MEDIA_INDEXING 读取全片分镜，寻找完整故事
+  [ 18%] 建立媒体索引
+✓ MEDIA_INDEXING 
+→ STORY_MINING 从画面选有开端、危险升级与结果的故事
+  [ 29%] 故事挖掘
+✓ STORY_MINING 
+→ REFERENCE_ANALYZED 
+  [ 41%] 参考文案分析
+✓ REFERENCE_ANALYZED 
+→ VISUAL_ANALYSIS 逐帧核实 湿脚印与离奇倒地
+  [ 24%] 原片视觉分析
+[info] 读取真实分镜1–2/60：6张独立首中末帧，源时间由软件绑定
+[info] 读取真实分镜3–4/60：6张独立首中末帧，源时间由软件绑定

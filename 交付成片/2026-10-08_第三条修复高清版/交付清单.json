@@ -1,0 +1,35 @@
+{
+  "file": "03_后巷里的怪人_修复高清版.mp4",
+  "duration": 20.375,
+  "resolution": "1920x1080",
+  "fps": 24,
+  "subtitles": false,
+  "voice": "百炼N1",
+  "native_rate": 1.2,
+  "voice_was_edited": false,
+  "voice_integrity_equal": true,
+  "transition_duration": 0.125,
+  "transition_count": 8,
+  "picture_processing": {
+    "filters": "hqdn3d=0.8:0.6:1.2:0.8,unsharp=5:5:0.35:3:3:0.0",
+    "method": "mild_denoise_and_luma_sharpen",
+    "output_crf": 17,
+    "resolution_change": false,
+    "audio_stream": "copy",
+    "audio_time_edits": [],
+    "source_audio_sha256": "a20de39aa66c7ddfed5c8601cb7e24be4ceb4bb2d63bf64213cd4dddc2b7a082",
+    "output_audio_sha256": "a20de39aa66c7ddfed5c8601cb7e24be4ceb4bb2d63bf64213cd4dddc2b7a082",
+    "note": "轻去噪与亮度锐化，保留原始分辨率，不宣称恢复源片不存在的细节。"
+  },
+  "semantic_check": {
+    "score": 92.0,
+    "reason": "所有句子均有相邻画面支撑：白发怪人、后巷奔跑与躲藏、铁门开启、尖指甲手、怪人探头、仓库外追击、男人开门、警察问询黑发女孩均可见，无凭空增加的具体冲突。",
+    "status": "pass"
+  },
+  "job_id": "20261008_212719_959750",
+  "pipeline": "cli.py run → automatic voice content repair → continuous synthesis → local ASR → multi-shot timeline → subpixel motion → short dissolves → mix → picture finish → QC",
+  "sha256": "ceb77522f167db3bd584ddd66908bf9fe37200223d8144d3d7dff0120c0a49ec",
+  "final_audio_transcript_check": "pass; audio packet hash identical to independently transcribed export",
+  "audio_packet_sha256": "a20de39aa66c7ddfed5c8601cb7e24be4ceb4bb2d63bf64213cd4dddc2b7a082",
+  "tests": "65 passed, 1 live API test skipped"
+}

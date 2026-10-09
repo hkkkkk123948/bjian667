@@ -1,0 +1,50 @@
+[
+  {
+    "title": "门外的母子",
+    "file": "01_门外的母子.mp4",
+    "duration": 26.13,
+    "resolution": "1920x1080",
+    "fps": 24,
+    "subtitles": false,
+    "voice": "现有百炼N1音色",
+    "integrated_lufs": "-16.16",
+    "true_peak_dbtp": "-1.89",
+    "sha256": "9d3513a7d71ae85b9307af1824c427cf8e42f6b29f054981b2f0a3dbd7c2a90e",
+    "job_id": "20261008_200155_66e7a1",
+    "qc": "pass",
+    "review_method": "Codex审阅分镜和实际成片抽帧；软件完整解码与音轨测量",
+    "automatic_writer": "本次因模型账户额度不足，使用已审阅的导入方案；未伪造模型得分"
+  },
+  {
+    "title": "旅馆里的老太太",
+    "file": "02_旅馆里的老太太.mp4",
+    "duration": 29.1,
+    "resolution": "1920x1080",
+    "fps": 24,
+    "subtitles": false,
+    "voice": "现有百炼N1音色",
+    "integrated_lufs": "-16.10",
+    "true_peak_dbtp": "-1.77",
+    "sha256": "c10ea8d6873577253648d47cbc3ca84caf6900de35803ec4ce722ae467483228",
+    "job_id": "20261008_200155_4ef5e3",
+    "qc": "pass",
+    "review_method": "Codex审阅分镜和实际成片抽帧；软件完整解码与音轨测量",
+    "automatic_writer": "本次因模型账户额度不足，使用已审阅的导入方案；未伪造模型得分"
+  },
+  {
+    "title": "门缝里的白眼",
+    "file": "03_门缝里的白眼.mp4",
+    "duration": 27.75,
+    "resolution": "1920x1080",
+    "fps": 24,
+    "subtitles": false,
+    "voice": "现有百炼N1音色",
+    "integrated_lufs": "-15.85",
+    "true_peak_dbtp": "-1.72",
+    "sha256": "3286d139bd9d364f694d5750b783990fde27398e3787e7611920f911bb3b2748",
+    "job_id": "20261008_200155_6b4095",
+    "qc": "pass",
+    "review_method": "Codex审阅分镜和实际成片抽帧；软件完整解码与音轨测量",
+    "automatic_writer": "本次因模型账户额度不足，使用已审阅的导入方案；未伪造模型得分"
+  }
+]

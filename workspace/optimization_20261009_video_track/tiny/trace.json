@@ -1,0 +1,182 @@
+[
+  {
+    "file": "shot_000.mp4",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "duration": "0.166667",
+          "nb_frames": "4"
+        }
+      ],
+      "format": {
+        "duration": "0.166667"
+      }
+    }
+  },
+  {
+    "file": "shot_001.mp4",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "duration": "1.250000",
+          "nb_frames": "30"
+        }
+      ],
+      "format": {
+        "duration": "1.250000"
+      }
+    }
+  },
+  {
+    "file": "shot_002.mp4",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "duration": "2.708333",
+          "nb_frames": "65"
+        }
+      ],
+      "format": {
+        "duration": "2.708333"
+      }
+    }
+  },
+  {
+    "file": "shot_003.mp4",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "duration": "4.041667",
+          "nb_frames": "97"
+        }
+      ],
+      "format": {
+        "duration": "4.041667"
+      }
+    }
+  },
+  {
+    "file": "shot_004.mp4",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "duration": "4.041667",
+          "nb_frames": "97"
+        }
+      ],
+      "format": {
+        "duration": "4.041667"
+      }
+    }
+  },
+  {
+    "file": "shot_005.mp4",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "duration": "4.000000",
+          "nb_frames": "96"
+        }
+      ],
+      "format": {
+        "duration": "4.000000"
+      }
+    }
+  },
+  {
+    "file": "dissolve_001.mkv",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {}
+      ],
+      "format": {
+        "duration": "1.375000"
+      }
+    }
+  },
+  {
+    "file": "dissolve_002.mkv",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {}
+      ],
+      "format": {
+        "duration": "2.709000"
+      }
+    }
+  },
+  {
+    "file": "dissolve_003.mkv",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {}
+      ],
+      "format": {
+        "duration": "4.084000"
+      }
+    }
+  },
+  {
+    "file": "dissolve_004.mkv",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {}
+      ],
+      "format": {
+        "duration": "4.084000"
+      }
+    }
+  },
+  {
+    "file": "dissolve_005.mp4",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "duration": "4.083333",
+          "nb_frames": "98"
+        }
+      ],
+      "format": {
+        "duration": "4.083333"
+      }
+    }
+  },
+  {
+    "file": "export.mp4",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "duration": "4.083333",
+          "nb_frames": "98"
+        }
+      ],
+      "format": {
+        "duration": "16.000000"
+      }
+    }
+  }
+]

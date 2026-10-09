@@ -1,0 +1,32 @@
+→ TTS_GENERATED 
+  [ 65%] TTS 配音
+  [100%] TTS clip_001
+✓ TTS_GENERATED 
+→ TIMELINE_ALIGNED 
+  [ 71%] 时间轴对齐
+✓ TIMELINE_ALIGNED 
+→ RENDERING 
+  [ 76%] 画面重构与渲染
+[20:37:49] INFO 画幅自适应: 源 1920x1080 → 输出 1920x1080
+[20:37:51] INFO 检测到黑边，裁剪框: (1920, 1080, 0, 0)
+[20:37:51] INFO 去字幕: 关闭
+[info] 去字幕: 关闭
+[20:38:11] INFO 渲染证据剪辑: 8段 20.76s, 旁白使用真实句时长
+  [100%] 渲染 clip_001
+✓ RENDERING 
+→ FINAL_MATCH_CHECK 
+  [ 82%] 成片匹配复检
+✓ FINAL_MATCH_CHECK 
+→ QUALITY_CHECK 
+  [ 88%] 最终质量检查
+[20:38:13] INFO QC clip_001.mp4: pass duration=20.8 issues=[]
+✓ QUALITY_CHECK 
+→ DRAFT_EXPORT 
+  [ 94%] 剪映草稿导出
+[20:38:15] INFO 剪映草稿已导出: C:\Users\Administrator\AppData\Local\JianyingPro\User Data\Projects\com.lveditor.draft\clip_001_门外的陌生人
+[20:38:15] INFO 剪映草稿导出: 1/1 部成片
+[info] 剪映草稿导出: 1/1 部成片
+✓ DRAFT_EXPORT 
+→ COMPLETED 
+  [100%] 完成
+✓ COMPLETED 

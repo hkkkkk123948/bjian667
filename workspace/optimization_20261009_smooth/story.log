@@ -1,0 +1,3 @@
+REAL_DRAFT_START
+[13:45:41] INFO 已依据独立分镜事实重写一份草稿，等待确认后才会配音
+REAL_DRAFT_DONE review_required 47.58 {'policy': 'story_grounding_v1', 'basis': 'cached_storyboard_facts', 'status': 'pass', 'causal_complete': True, 'issues': [], 'model_score': None, 'checked_complete': True, 'evidence_limit': '依据已采样分镜的可见观察预检，保留成片实际画面质检；不确定动作需人工确认', 'verified_text_hash': '2bfa6439ff5c802d0744a7f69a44dd561b735c8a8bd457f3cc1d95b79ed57fb7', 'facts_signature': '8ef7dab7f9b50d57c9533bbd681297e0238edc6e4b1d4f577bc6bf828ded76ae', 'signature': 'deba9c78fb9b3484cf01f2682a24f7f3a27621fe5f176ca0cea900b017fd64ac'}

@@ -1,0 +1,286 @@
+{
+  "source_start": 529.2,
+  "source_duration": 29.696,
+  "narration_duration": 29.576,
+  "tts_duration": 29.576,
+  "voice_path": "D:\\惊悚短片剪辑\\workspace\\jobs\\20261008_230044_95e6cd\\clips\\clip_001\\voice.wav",
+  "timing_source": "estimated",
+  "alignment_report": {
+    "policy": "measured_speech_v1",
+    "source": "estimated",
+    "audio_clock": true,
+    "confidence": "low",
+    "matched_ratio": 0,
+    "uncertain_spans": [],
+    "reason": "missing_word_timestamps",
+    "provider_fallback_reason": "incomplete_provider_text",
+    "audio_duration": 29.575958,
+    "asr_model": "small",
+    "asr_audio_sha256": "c4303701972f2744e4b2210d880d4e92ad493fd60e04f2ccce3e8f7a77efbe98"
+  },
+  "speed_factor": 1.0,
+  "voice_playback_speed": 1.2,
+  "sentence_timings": [
+    {
+      "index": 1,
+      "text": "白发怪人站在巷子里露出白眼怪笑，危险已经悄然出现，忘记带玫瑰花了。",
+      "role": "hook",
+      "start": 0.0,
+      "end": 4.67,
+      "narrative_text": "白发怪人站在巷子里露出白眼怪笑，危险已经悄然出现。",
+      "comment_hook": "忘记带玫瑰花了"
+    },
+    {
+      "index": 2,
+      "text": "三个女孩发现怪人后逃进后巷，躲到垃圾箱后不敢出声。",
+      "role": "escalation",
+      "start": 4.67,
+      "end": 8.208,
+      "narrative_text": "三个女孩发现怪人后逃进后巷，躲到垃圾箱后不敢出声。",
+      "comment_hook": ""
+    },
+    {
+      "index": 3,
+      "text": "铁门缝里突然伸出一只长指甲的手，女孩们的藏身处被发现。",
+      "role": "escalation",
+      "start": 8.208,
+      "end": 12.028,
+      "narrative_text": "铁门缝里突然伸出一只长指甲的手，女孩们的藏身处被发现。",
+      "comment_hook": ""
+    },
+    {
+      "index": 4,
+      "text": "怪人紧接着从门缝探出头来，白眼和笑容让女孩更加害怕。",
+      "role": "escalation",
+      "start": 12.028,
+      "end": 15.708,
+      "narrative_text": "怪人紧接着从门缝探出头来，白眼和笑容让女孩更加害怕。",
+      "comment_hook": ""
+    },
+    {
+      "index": 5,
+      "text": "女孩隔着玻璃小心露头查看，发现白发怪人还在门外。",
+      "role": "escalation",
+      "start": 15.708,
+      "end": 19.104,
+      "narrative_text": "女孩隔着玻璃小心露头查看，发现白发怪人还在门外。",
+      "comment_hook": ""
+    },
+    {
+      "index": 6,
+      "text": "另一扇门被男人推开，三个女孩立刻迎上去向他求助。",
+      "role": "escalation",
+      "start": 19.104,
+      "end": 22.5,
+      "narrative_text": "另一扇门被男人推开，三个女孩立刻迎上去向他求助。",
+      "comment_hook": ""
+    },
+    {
+      "index": 7,
+      "text": "男人听完求助后帮她们报警，女孩向警察讲清遭遇。",
+      "role": "payoff",
+      "start": 22.5,
+      "end": 25.755,
+      "narrative_text": "男人听完求助后帮她们报警，女孩向警察讲清遭遇。",
+      "comment_hook": ""
+    },
+    {
+      "index": 8,
+      "text": "完成询问后，三个女孩依次从敞开的仓库门走出并安全脱险。",
+      "role": "payoff",
+      "start": 25.755,
+      "end": 29.576,
+      "narrative_text": "完成询问后，三个女孩依次从敞开的仓库门走出并安全脱险。",
+      "comment_hook": ""
+    }
+  ],
+  "segments": [
+    {
+      "src_start": 531.659833,
+      "src_duration": 3.580333,
+      "dur": 3.5803333333333334,
+      "out_start": 0.0,
+      "sentence_index": 1,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "none",
+      "context_id": "1:1",
+      "evidence_start": 529.2,
+      "evidence_end": 537.7
+    },
+    {
+      "src_start": 535.240166,
+      "src_duration": 0.041666666666666664,
+      "dur": 1.0896666666666666,
+      "out_start": 3.5803333333333334,
+      "sentence_index": 1,
+      "shot_part": 0,
+      "playback_speed": 1,
+      "freeze_duration": 0,
+      "motion": "push_in",
+      "context_id": "1:1",
+      "evidence_start": 529.2,
+      "evidence_end": 537.7,
+      "visual_kind": "comment_still",
+      "comment_spans": [
+        {
+          "sentence_index": 1,
+          "text": "忘记带玫瑰花了",
+          "narrative_offset": 24,
+          "start": 3.5803333333333334,
+          "end": 4.67,
+          "timing_source": "estimated_within_sentence",
+          "confidence": "low"
+        }
+      ],
+      "comment_visual_mode": "auto",
+      "comment_context": "话术所在位置的前后正文镜头"
+    },
+    {
+      "src_start": 548.2,
+      "src_duration": 1.6,
+      "dur": 1.6982400000000006,
+      "out_start": 4.67,
+      "sentence_index": 2,
+      "shot_part": 1,
+      "playback_speed": 0.942152,
+      "freeze_duration": 0,
+      "motion": "none",
+      "context_id": "2:1",
+      "evidence_start": 548.2,
+      "evidence_end": 549.8
+    },
+    {
+      "src_start": 553.68012,
+      "src_duration": 1.83976,
+      "dur": 1.83976,
+      "out_start": 6.36824,
+      "sentence_index": 2,
+      "shot_part": 2,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "none",
+      "context_id": "2:2",
+      "evidence_start": 553.2,
+      "evidence_end": 556.0
+    },
+    {
+      "src_start": 568.09,
+      "src_duration": 3.82,
+      "dur": 3.8200000000000003,
+      "out_start": 8.208,
+      "sentence_index": 3,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "none",
+      "context_id": "3:1",
+      "evidence_start": 566.0,
+      "evidence_end": 574.0
+    },
+    {
+      "src_start": 576.56,
+      "src_duration": 3.6800000000000006,
+      "dur": 3.6799999999999997,
+      "out_start": 12.028,
+      "sentence_index": 4,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "pan_right",
+      "context_id": "4:1",
+      "evidence_start": 575.0,
+      "evidence_end": 581.8
+    },
+    {
+      "src_start": 624.202,
+      "src_duration": 3.396,
+      "dur": 3.395999999999999,
+      "out_start": 15.708,
+      "sentence_index": 5,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "none",
+      "context_id": "5:1",
+      "evidence_start": 624.1,
+      "evidence_end": 627.7
+    },
+    {
+      "src_start": 652.7557,
+      "src_duration": 1.1886,
+      "dur": 1.188600000000001,
+      "out_start": 19.104,
+      "sentence_index": 6,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "none",
+      "context_id": "6:1",
+      "evidence_start": 652.2,
+      "evidence_end": 654.5
+    },
+    {
+      "src_start": 657.5463,
+      "src_duration": 2.2074,
+      "dur": 2.2074,
+      "out_start": 20.2926,
+      "sentence_index": 6,
+      "shot_part": 2,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "none",
+      "context_id": "6:2",
+      "evidence_start": 657.1,
+      "evidence_end": 660.2
+    },
+    {
+      "src_start": 667.7725,
+      "src_duration": 3.255,
+      "dur": 3.254999999999999,
+      "out_start": 22.5,
+      "sentence_index": 7,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "push_in",
+      "context_id": "7:1",
+      "evidence_start": 666.5,
+      "evidence_end": 672.3
+    },
+    {
+      "src_start": 674.6895,
+      "src_duration": 3.821,
+      "dur": 3.8210000000000015,
+      "out_start": 25.755,
+      "sentence_index": 8,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "push_in",
+      "context_id": "8:1",
+      "evidence_start": 673.2,
+      "evidence_end": 680.0
+    }
+  ],
+  "comment_picture_plan": {
+    "mode": "auto",
+    "comments": [
+      {
+        "sentence_index": 1,
+        "text": "忘记带玫瑰花了",
+        "narrative_offset": 24,
+        "start": 3.5803333333333334,
+        "end": 4.67,
+        "timing_source": "estimated_within_sentence",
+        "confidence": "low"
+      }
+    ],
+    "literal_matching": false,
+    "context_matching": true,
+    "position_policy": "exact_comment_intervals",
+    "local_visual_treatment": true
+  },
+  "tail_padding": 0.12
+}

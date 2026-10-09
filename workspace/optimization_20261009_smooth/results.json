@@ -1,0 +1,562 @@
+[
+  {
+    "job_id": "20261009_003907_506bf7",
+    "preview": "D:\\惊悚短片剪辑\\交付成片\\2026-10-09_流畅剪辑优化预览\\01_雨夜恶犬_流畅剪辑_无字幕预览.mp4",
+    "audit": {
+      "path": "D:\\惊悚短片剪辑\\workspace\\optimization_20261009_smooth\\20261009_003907_506bf7\\01_雨夜恶犬_流畅剪辑_无字幕预览.mp4",
+      "sha256": "72e51d68b56c7372ef3e4f4235b0cc0d422a2ed9f09db5abd2d44100ac3e443f",
+      "status": "pass",
+      "issues": [],
+      "duration": 26.375,
+      "decode_exit": 0,
+      "decode_errors": "",
+      "video_duration": 26.375,
+      "audio_duration": 26.362,
+      "integrated_lufs": "-16.21",
+      "true_peak_dbtp": "-1.87",
+      "black_periods": [],
+      "timeline": {
+        "issues": [],
+        "output_duration": 26.362542,
+        "segment_count": 9
+      },
+      "pacing": {
+        "rendered_shots": 8,
+        "short_shots": [],
+        "context_joins": 1
+      },
+      "alignment": {
+        "policy": "measured_speech_v1",
+        "source": "local_asr_interpolated",
+        "audio_clock": true,
+        "confidence": "medium",
+        "matched_ratio": 0.9764705882352941,
+        "uncertain_spans": [
+          {
+            "kind": "replace",
+            "start_char": 15,
+            "end_char": 16,
+            "expected": "叫",
+            "recognized": "觉"
+          },
+          {
+            "kind": "replace",
+            "start_char": 23,
+            "end_char": 25,
+            "expected": "示意",
+            "recognized": "试一"
+          },
+          {
+            "kind": "replace",
+            "start_char": 137,
+            "end_char": 138,
+            "expected": "扑",
+            "recognized": "铺"
+          }
+        ],
+        "word_count": 167,
+        "character_count": 170,
+        "silence_gaps": [],
+        "within_word_interpolation": true,
+        "provider_fallback_reason": "incomplete_provider_text",
+        "audio_duration": 26.362542,
+        "asr_model": "small",
+        "asr_audio_sha256": "17063c4a7b8957365951b2d9519ad90737c9f4cefef0bbb39eaf80d782a3d589"
+      },
+      "note": "机器审计只验证文件、响度、黑场和剪辑区间；故事及听感需要审阅。"
+    },
+    "edit_decisions": {
+      "policy": "continuous_context_v3",
+      "logical_segments": 9,
+      "rendered_shots": 8,
+      "context_joins": 1,
+      "shots": [
+        {
+          "start": 0.0,
+          "duration": 4.5,
+          "parts": 2,
+          "kind": "context_run"
+        },
+        {
+          "start": 4.5,
+          "duration": 2.8200000000000003,
+          "parts": 1,
+          "kind": "source"
+        },
+        {
+          "start": 7.32,
+          "duration": 2.9800000000000004,
+          "parts": 1,
+          "kind": "source"
+        },
+        {
+          "start": 10.3,
+          "duration": 3.5199999999999996,
+          "parts": 1,
+          "kind": "source"
+        },
+        {
+          "start": 13.82,
+          "duration": 3.4400000000000013,
+          "parts": 1,
+          "kind": "source"
+        },
+        {
+          "start": 17.26,
+          "duration": 2.9399999999999995,
+          "parts": 1,
+          "kind": "source"
+        },
+        {
+          "start": 20.200000000000003,
+          "duration": 2.960000000000001,
+          "parts": 1,
+          "kind": "source"
+        },
+        {
+          "start": 23.160000000000004,
+          "duration": 3.202542000000001,
+          "parts": 1,
+          "kind": "source"
+        }
+      ]
+    },
+    "voice_sha256_unchanged": true,
+    "script_sha256_unchanged": true,
+    "alignment": {
+      "policy": "measured_speech_v1",
+      "source": "local_asr_interpolated",
+      "audio_clock": true,
+      "confidence": "medium",
+      "matched_ratio": 0.9764705882352941,
+      "uncertain_spans": [
+        {
+          "kind": "replace",
+          "start_char": 15,
+          "end_char": 16,
+          "expected": "叫",
+          "recognized": "觉"
+        },
+        {
+          "kind": "replace",
+          "start_char": 23,
+          "end_char": 25,
+          "expected": "示意",
+          "recognized": "试一"
+        },
+        {
+          "kind": "replace",
+          "start_char": 137,
+          "end_char": 138,
+          "expected": "扑",
+          "recognized": "铺"
+        }
+      ],
+      "word_count": 167,
+      "character_count": 170,
+      "silence_gaps": [],
+      "within_word_interpolation": true,
+      "provider_fallback_reason": "incomplete_provider_text",
+      "audio_duration": 26.362542,
+      "asr_model": "small",
+      "asr_audio_sha256": "17063c4a7b8957365951b2d9519ad90737c9f4cefef0bbb39eaf80d782a3d589"
+    },
+    "content_note": "保留原审核稿与配音；第一条旧稿低于35秒，第二条原语义问题未擅改。"
+  },
+  {
+    "job_id": "20261009_001504_2cfe45",
+    "preview": "D:\\惊悚短片剪辑\\交付成片\\2026-10-09_流畅剪辑优化预览\\02_林地女孩_流畅剪辑_无字幕预览.mp4",
+    "audit": {
+      "path": "D:\\惊悚短片剪辑\\workspace\\optimization_20261009_smooth\\20261009_001504_2cfe45\\02_林地女孩_流畅剪辑_无字幕预览.mp4",
+      "sha256": "93b00b06f7673691f7efe7407e9a4fb2f58778c9d62c5e2c258a497c7bc94d65",
+      "status": "pass",
+      "issues": [],
+      "duration": 38.508,
+      "decode_exit": 0,
+      "decode_errors": "",
+      "video_duration": 38.5,
+      "audio_duration": 38.508,
+      "integrated_lufs": "-15.99",
+      "true_peak_dbtp": "-1.81",
+      "black_periods": [],
+      "timeline": {
+        "issues": [],
+        "output_duration": 38.507875,
+        "segment_count": 8
+      },
+      "pacing": {
+        "rendered_shots": 7,
+        "short_shots": [],
+        "context_joins": 1
+      },
+      "alignment": {
+        "policy": "measured_speech_v1",
+        "source": "local_asr_interpolated",
+        "audio_clock": true,
+        "confidence": "medium",
+        "matched_ratio": 0.9591078066914498,
+        "uncertain_spans": [
+          {
+            "kind": "replace",
+            "start_char": 21,
+            "end_char": 22,
+            "expected": "他",
+            "recognized": "她"
+          },
+          {
+            "kind": "replace",
+            "start_char": 38,
+            "end_char": 39,
+            "expected": "林",
+            "recognized": "灵"
+          },
+          {
+            "kind": "replace",
+            "start_char": 83,
+            "end_char": 85,
+            "expected": "块状",
+            "recognized": "快装"
+          },
+          {
+            "kind": "replace",
+            "start_char": 90,
+            "end_char": 92,
+            "expected": "一场",
+            "recognized": "异常"
+          },
+          {
+            "kind": "replace",
+            "start_char": 130,
+            "end_char": 131,
+            "expected": "像",
+            "recognized": "想"
+          },
+          {
+            "kind": "replace",
+            "start_char": 138,
+            "end_char": 139,
+            "expected": "时",
+            "recognized": "是"
+          },
+          {
+            "kind": "insert",
+            "start_char": 151,
+            "end_char": 151,
+            "expected": "",
+            "recognized": "输"
+          },
+          {
+            "kind": "insert",
+            "start_char": 162,
+            "end_char": 162,
+            "expected": "",
+            "recognized": "女孩"
+          },
+          {
+            "kind": "replace",
+            "start_char": 199,
+            "end_char": 200,
+            "expected": "目",
+            "recognized": "募"
+          },
+          {
+            "kind": "replace",
+            "start_char": 235,
+            "end_char": 236,
+            "expected": "历",
+            "recognized": "力"
+          },
+          {
+            "kind": "replace",
+            "start_char": 254,
+            "end_char": 255,
+            "expected": "木",
+            "recognized": "牧"
+          }
+        ],
+        "word_count": 254,
+        "character_count": 269,
+        "silence_gaps": [],
+        "within_word_interpolation": true,
+        "provider_fallback_reason": "incomplete_provider_text",
+        "audio_duration": 38.507875,
+        "asr_model": "small",
+        "asr_audio_sha256": "ce3eab9da2c36000a6645a883454ff60d0079de851b91a0d99f228729f3754f0"
+      },
+      "note": "机器审计只验证文件、响度、黑场和剪辑区间；故事及听感需要审阅。"
+    },
+    "edit_decisions": {
+      "policy": "continuous_context_v3",
+      "logical_segments": 8,
+      "rendered_shots": 7,
+      "context_joins": 1,
+      "shots": [
+        {
+          "start": 0.0,
+          "duration": 4.4,
+          "parts": 2,
+          "kind": "context_run"
+        },
+        {
+          "start": 4.4,
+          "duration": 4.9,
+          "parts": 1,
+          "kind": "source"
+        },
+        {
+          "start": 9.3,
+          "duration": 5.499999999999999,
+          "parts": 1,
+          "kind": "source"
+        },
+        {
+          "start": 14.799999999999999,
+          "duration": 4.68,
+          "parts": 1,
+          "kind": "source"
+        },
+        {
+          "start": 19.48,
+          "duration": 5.16,
+          "parts": 1,
+          "kind": "source"
+        },
+        {
+          "start": 24.64,
+          "duration": 4.439999999999998,
+          "parts": 1,
+          "kind": "source"
+        },
+        {
+          "start": 29.08,
+          "duration": 9.427875,
+          "parts": 1,
+          "kind": "source"
+        }
+      ]
+    },
+    "voice_sha256_unchanged": true,
+    "script_sha256_unchanged": true,
+    "alignment": {
+      "policy": "measured_speech_v1",
+      "source": "local_asr_interpolated",
+      "audio_clock": true,
+      "confidence": "medium",
+      "matched_ratio": 0.9591078066914498,
+      "uncertain_spans": [
+        {
+          "kind": "replace",
+          "start_char": 21,
+          "end_char": 22,
+          "expected": "他",
+          "recognized": "她"
+        },
+        {
+          "kind": "replace",
+          "start_char": 38,
+          "end_char": 39,
+          "expected": "林",
+          "recognized": "灵"
+        },
+        {
+          "kind": "replace",
+          "start_char": 83,
+          "end_char": 85,
+          "expected": "块状",
+          "recognized": "快装"
+        },
+        {
+          "kind": "replace",
+          "start_char": 90,
+          "end_char": 92,
+          "expected": "一场",
+          "recognized": "异常"
+        },
+        {
+          "kind": "replace",
+          "start_char": 130,
+          "end_char": 131,
+          "expected": "像",
+          "recognized": "想"
+        },
+        {
+          "kind": "replace",
+          "start_char": 138,
+          "end_char": 139,
+          "expected": "时",
+          "recognized": "是"
+        },
+        {
+          "kind": "insert",
+          "start_char": 151,
+          "end_char": 151,
+          "expected": "",
+          "recognized": "输"
+        },
+        {
+          "kind": "insert",
+          "start_char": 162,
+          "end_char": 162,
+          "expected": "",
+          "recognized": "女孩"
+        },
+        {
+          "kind": "replace",
+          "start_char": 199,
+          "end_char": 200,
+          "expected": "目",
+          "recognized": "募"
+        },
+        {
+          "kind": "replace",
+          "start_char": 235,
+          "end_char": 236,
+          "expected": "历",
+          "recognized": "力"
+        },
+        {
+          "kind": "replace",
+          "start_char": 254,
+          "end_char": 255,
+          "expected": "木",
+          "recognized": "牧"
+        }
+      ],
+      "word_count": 254,
+      "character_count": 269,
+      "silence_gaps": [],
+      "within_word_interpolation": true,
+      "provider_fallback_reason": "incomplete_provider_text",
+      "audio_duration": 38.507875,
+      "asr_model": "small",
+      "asr_audio_sha256": "ce3eab9da2c36000a6645a883454ff60d0079de851b91a0d99f228729f3754f0"
+    },
+    "content_note": "保留原审核稿与配音；第一条旧稿低于35秒，第二条原语义问题未擅改。"
+  },
+  {
+    "job_id": "20261008_230044_95e6cd",
+    "preview": "D:\\惊悚短片剪辑\\交付成片\\2026-10-09_流畅剪辑优化预览\\03_后巷怪人_流畅剪辑_无字幕预览.mp4",
+    "audit": {
+      "path": "D:\\惊悚短片剪辑\\workspace\\optimization_20261009_smooth\\20261008_230044_95e6cd\\03_后巷怪人_流畅剪辑_无字幕预览.mp4",
+      "sha256": "10608457ce0462ae5420c684aeec342921221df7a651cfaf3a8628a8bc98dd08",
+      "status": "pass",
+      "issues": [],
+      "duration": 29.583333,
+      "decode_exit": 0,
+      "decode_errors": "",
+      "video_duration": 29.583333,
+      "audio_duration": 29.576,
+      "integrated_lufs": "-16.07",
+      "true_peak_dbtp": "-1.86",
+      "black_periods": [],
+      "timeline": {
+        "issues": [],
+        "output_duration": 29.576,
+        "segment_count": 11
+      },
+      "pacing": {
+        "rendered_shots": 10,
+        "short_shots": [],
+        "context_joins": 1
+      },
+      "alignment": {
+        "policy": "measured_speech_v1",
+        "source": "estimated",
+        "audio_clock": true,
+        "confidence": "low",
+        "matched_ratio": 0,
+        "uncertain_spans": [],
+        "reason": "missing_word_timestamps",
+        "provider_fallback_reason": "incomplete_provider_text",
+        "audio_duration": 29.575958,
+        "asr_model": "small",
+        "asr_audio_sha256": "c4303701972f2744e4b2210d880d4e92ad493fd60e04f2ccce3e8f7a77efbe98"
+      },
+      "note": "机器审计只验证文件、响度、黑场和剪辑区间；故事及听感需要审阅。"
+    },
+    "edit_decisions": {
+      "policy": "continuous_context_v3",
+      "logical_segments": 11,
+      "rendered_shots": 10,
+      "context_joins": 1,
+      "shots": [
+        {
+          "start": 0.0,
+          "duration": 4.67,
+          "parts": 2,
+          "kind": "context_run"
+        },
+        {
+          "start": 4.67,
+          "duration": 1.6982400000000006,
+          "parts": 1,
+          "kind": "source"
+        },
+        {
+          "start": 6.36824,
+          "duration": 1.83976,
+          "parts": 1,
+          "kind": "source"
+        },
+        {
+          "start": 8.208,
+          "duration": 3.8200000000000003,
+          "parts": 1,
+          "kind": "source"
+        },
+        {
+          "start": 12.028,
+          "duration": 3.6799999999999997,
+          "parts": 1,
+          "kind": "source"
+        },
+        {
+          "start": 15.708,
+          "duration": 3.395999999999999,
+          "parts": 1,
+          "kind": "source"
+        },
+        {
+          "start": 19.104,
+          "duration": 1.188600000000001,
+          "parts": 1,
+          "kind": "source"
+        },
+        {
+          "start": 20.2926,
+          "duration": 2.2074,
+          "parts": 1,
+          "kind": "source"
+        },
+        {
+          "start": 22.5,
+          "duration": 3.254999999999999,
+          "parts": 1,
+          "kind": "source"
+        },
+        {
+          "start": 25.755,
+          "duration": 3.8210000000000015,
+          "parts": 1,
+          "kind": "source"
+        }
+      ]
+    },
+    "voice_sha256_unchanged": true,
+    "script_sha256_unchanged": true,
+    "alignment": {
+      "policy": "measured_speech_v1",
+      "source": "estimated",
+      "audio_clock": true,
+      "confidence": "low",
+      "matched_ratio": 0,
+      "uncertain_spans": [],
+      "reason": "missing_word_timestamps",
+      "provider_fallback_reason": "incomplete_provider_text",
+      "audio_duration": 29.575958,
+      "asr_model": "small",
+      "asr_audio_sha256": "c4303701972f2744e4b2210d880d4e92ad493fd60e04f2ccce3e8f7a77efbe98"
+    },
+    "content_note": "保留原审核稿与配音；第一条旧稿低于35秒，第二条原语义问题未擅改。"
+  }
+]

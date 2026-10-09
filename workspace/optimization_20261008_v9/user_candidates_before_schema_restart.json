@@ -1,0 +1,407 @@
+[
+  {
+    "candidate_id": "C001",
+    "source_start": 296.764,
+    "source_end": 451.519,
+    "story_summary": "同伴叫醒男孩→怪人潜入追赶→恶犬将其制服→两人安全避险",
+    "title": "雨夜窗外怪人",
+    "hook": "深夜同伴突然叫醒熟睡的男孩并示意他查看窗外。",
+    "characters": [],
+    "conflict": "",
+    "turning_point": "",
+    "payoff": "最后男孩与同伴守着熟睡恶犬安全熬过雨夜。",
+    "hook_visual": {},
+    "best_visual_moments": [],
+    "tags": [],
+    "evidence": [],
+    "story_completeness": 60,
+    "visual_quality": 60,
+    "short_video_potential": 60,
+    "story_score": 0,
+    "diversity_similarity": 0.0,
+    "status": "approved",
+    "match_report": {
+      "gate1": {
+        "status": "local_structure_pass",
+        "model_score": null
+      }
+    },
+    "scripts": [
+      {
+        "variant_id": "D1",
+        "candidate_id": "C001",
+        "flavor": "suspense",
+        "sentences": [
+          {
+            "index": 1,
+            "text": "深夜同伴突然叫醒熟睡的男孩并示意他查看窗外。",
+            "source_evidence": {
+              "start": 296.764,
+              "end": 302.1,
+              "scene_ids": [
+                1
+              ],
+              "quote": ""
+            },
+            "estimated_seconds": 2.956989247311828,
+            "actual_seconds": 0.0,
+            "start_offset": 0.0,
+            "role": "hook",
+            "narrative_text": "",
+            "comment_hook": "",
+            "comment_hook_mode": ""
+          },
+          {
+            "index": 2,
+            "text": "男孩起身查看后发现怪人正把双手紧贴在玻璃上。",
+            "source_evidence": {
+              "start": 323.846,
+              "end": 329.3,
+              "scene_ids": [
+                2
+              ],
+              "quote": ""
+            },
+            "estimated_seconds": 2.956989247311828,
+            "actual_seconds": 0.0,
+            "start_offset": 0.0,
+            "role": "context",
+            "narrative_text": "",
+            "comment_hook": "",
+            "comment_hook_mode": ""
+          },
+          {
+            "index": 3,
+            "text": "怪人已经潜入屋内并躲在床下露出诡异笑脸。",
+            "source_evidence": {
+              "start": 347.059,
+              "end": 352.2,
+              "scene_ids": [
+                3
+              ],
+              "quote": ""
+            },
+            "estimated_seconds": 2.688172043010753,
+            "actual_seconds": 0.0,
+            "start_offset": 0.0,
+            "role": "escalation",
+            "narrative_text": "",
+            "comment_hook": "",
+            "comment_hook_mode": ""
+          },
+          {
+            "index": 4,
+            "text": "男孩和同伴发现后立刻跑下楼梯远离藏身的房间。",
+            "source_evidence": {
+              "start": 365.2,
+              "end": 370.2,
+              "scene_ids": [
+                4
+              ],
+              "quote": ""
+            },
+            "estimated_seconds": 2.956989247311828,
+            "actual_seconds": 0.0,
+            "start_offset": 0.0,
+            "role": "escalation",
+            "narrative_text": "",
+            "comment_hook": "",
+            "comment_hook_mode": ""
+          },
+          {
+            "index": 5,
+            "text": "男人看见男孩跑来便牵着两条恶犬挡在他们前面。",
+            "source_evidence": {
+              "start": 370.273,
+              "end": 375.8,
+              "scene_ids": [
+                5
+              ],
+              "quote": ""
+            },
+            "estimated_seconds": 2.956989247311828,
+            "actual_seconds": 0.0,
+            "start_offset": 0.0,
+            "role": "context",
+            "narrative_text": "",
+            "comment_hook": "",
+            "comment_hook_mode": ""
+          },
+          {
+            "index": 6,
+            "text": "可怪人很快亮出尖刀沿着地上脚印继续追赶。",
+            "source_evidence": {
+              "start": 385.748,
+              "end": 391.4,
+              "scene_ids": [
+                6
+              ],
+              "quote": ""
+            },
+            "estimated_seconds": 2.688172043010753,
+            "actual_seconds": 0.0,
+            "start_offset": 0.0,
+            "role": "twist",
+            "narrative_text": "",
+            "comment_hook": "",
+            "comment_hook_mode": ""
+          },
+          {
+            "index": 7,
+            "text": "两条恶犬随即扑向怪人把他死死压倒在泥地上。",
+            "source_evidence": {
+              "start": 403.8,
+              "end": 409.5,
+              "scene_ids": [
+                7
+              ],
+              "quote": ""
+            },
+            "estimated_seconds": 2.8225806451612905,
+            "actual_seconds": 0.0,
+            "start_offset": 0.0,
+            "role": "payoff",
+            "narrative_text": "",
+            "comment_hook": "",
+            "comment_hook_mode": ""
+          },
+          {
+            "index": 8,
+            "text": "最后男孩与同伴守着熟睡恶犬安全熬过雨夜。",
+            "source_evidence": {
+              "start": 436.043,
+              "end": 441.5,
+              "scene_ids": [
+                8
+              ],
+              "quote": ""
+            },
+            "estimated_seconds": 2.688172043010753,
+            "actual_seconds": 0.0,
+            "start_offset": 0.0,
+            "role": "payoff",
+            "narrative_text": "",
+            "comment_hook": "",
+            "comment_hook_mode": ""
+          }
+        ],
+        "full_text": "深夜同伴突然叫醒熟睡的男孩并示意他查看窗外。男孩起身查看后发现怪人正把双手紧贴在玻璃上。怪人已经潜入屋内并躲在床下露出诡异笑脸。男孩和同伴发现后立刻跑下楼梯远离藏身的房间。男人看见男孩跑来便牵着两条恶犬挡在他们前面。可怪人很快亮出尖刀沿着地上脚印继续追赶。两条恶犬随即扑向怪人把他死死压倒在泥地上。最后男孩与同伴守着熟睡恶犬安全熬过雨夜。",
+        "estimated_seconds": 22.71505376344086,
+        "actual_seconds": 0.0,
+        "match_report": null,
+        "gate1_pass": false,
+        "attempts": 0,
+        "status": "generated",
+        "scene_matches": [],
+        "review_comment_hook": {
+          "text": "",
+          "after_sentence": 0
+        }
+      }
+    ],
+    "selected_script": "D1",
+    "reject_reason": "",
+    "final_match": 0.0
+  },
+  {
+    "candidate_id": "C002",
+    "source_start": 451.519,
+    "source_end": 618.920771,
+    "story_summary": "女孩误入木屋→发现陌生人煮肉并将她包围→女人及时带她安全离开",
+    "title": "木屋里的大锅",
+    "hook": "女孩被陌生人围住时，还以为他们只是在热情招呼。",
+    "characters": [],
+    "conflict": "",
+    "turning_point": "",
+    "payoff": "女孩最终安全坐到餐桌前，却因那口大锅始终不敢抬头。",
+    "hook_visual": {},
+    "best_visual_moments": [],
+    "tags": [],
+    "evidence": [],
+    "story_completeness": 60,
+    "visual_quality": 60,
+    "short_video_potential": 60,
+    "story_score": 0,
+    "diversity_similarity": 0.0,
+    "status": "gate1_pass",
+    "match_report": {
+      "gate1": {
+        "status": "local_structure_pass",
+        "model_score": null
+      }
+    },
+    "scripts": [
+      {
+        "variant_id": "D1",
+        "candidate_id": "C002",
+        "flavor": "suspense",
+        "sentences": [
+          {
+            "index": 1,
+            "text": "女孩被陌生人围住时，还以为他们只是在热情招呼，忘记带玫瑰花了。",
+            "source_evidence": {
+              "start": 497.554,
+              "end": 501.74,
+              "scene_ids": [
+                9
+              ],
+              "quote": ""
+            },
+            "estimated_seconds": 4.166666666666667,
+            "actual_seconds": 0.0,
+            "start_offset": 0.0,
+            "role": "hook",
+            "narrative_text": "女孩被陌生人围住时，还以为他们只是在热情招呼。",
+            "comment_hook": "忘记带玫瑰花了",
+            "comment_hook_mode": "early"
+          },
+          {
+            "index": 2,
+            "text": "女孩随后蹲在林边，把散落的石头装进黑袋。",
+            "source_evidence": {
+              "start": 514.295,
+              "end": 518.48,
+              "scene_ids": [
+                10
+              ],
+              "quote": ""
+            },
+            "estimated_seconds": 2.688172043010753,
+            "actual_seconds": 0.0,
+            "start_offset": 0.0,
+            "role": "context",
+            "narrative_text": "",
+            "comment_hook": "",
+            "comment_hook_mode": ""
+          },
+          {
+            "index": 3,
+            "text": "回到木屋后，她看见男人把石头丢进火上大锅。",
+            "source_evidence": {
+              "start": 522.665,
+              "end": 526.85,
+              "scene_ids": [
+                11
+              ],
+              "quote": ""
+            },
+            "estimated_seconds": 2.8225806451612905,
+            "actual_seconds": 0.0,
+            "start_offset": 0.0,
+            "role": "escalation",
+            "narrative_text": "",
+            "comment_hook": "",
+            "comment_hook_mode": ""
+          },
+          {
+            "index": 4,
+            "text": "女孩凑近大锅查看，发现里面竟然全是大块生肉。",
+            "source_evidence": {
+              "start": 556.145,
+              "end": 560.33,
+              "scene_ids": [
+                12
+              ],
+              "quote": ""
+            },
+            "estimated_seconds": 2.956989247311828,
+            "actual_seconds": 0.0,
+            "start_offset": 0.0,
+            "role": "twist",
+            "narrative_text": "",
+            "comment_hook": "",
+            "comment_hook_mode": ""
+          },
+          {
+            "index": 5,
+            "text": "她抬头发现男人们都在怪笑，这才意识到自己被包围。",
+            "source_evidence": {
+              "start": 560.5,
+              "end": 564.515,
+              "scene_ids": [
+                13
+              ],
+              "quote": ""
+            },
+            "estimated_seconds": 3.2258064516129035,
+            "actual_seconds": 0.0,
+            "start_offset": 0.0,
+            "role": "escalation",
+            "narrative_text": "",
+            "comment_hook": "",
+            "comment_hook_mode": ""
+          },
+          {
+            "index": 6,
+            "text": "女人赶到木屋门外，正好看见女孩被几个人围住。",
+            "source_evidence": {
+              "start": 581.255,
+              "end": 585.3,
+              "scene_ids": [
+                14
+              ],
+              "quote": ""
+            },
+            "estimated_seconds": 2.956989247311828,
+            "actual_seconds": 0.0,
+            "start_offset": 0.0,
+            "role": "twist",
+            "narrative_text": "",
+            "comment_hook": "",
+            "comment_hook_mode": ""
+          },
+          {
+            "index": 7,
+            "text": "女人抓住女孩快步离开，那几个人只能守在门口。",
+            "source_evidence": {
+              "start": 585.44,
+              "end": 589.625,
+              "scene_ids": [
+                15
+              ],
+              "quote": ""
+            },
+            "estimated_seconds": 2.956989247311828,
+            "actual_seconds": 0.0,
+            "start_offset": 0.0,
+            "role": "payoff",
+            "narrative_text": "",
+            "comment_hook": "",
+            "comment_hook_mode": ""
+          },
+          {
+            "index": 8,
+            "text": "女孩最终安全坐到餐桌前，却因那口大锅始终不敢抬头。",
+            "source_evidence": {
+              "start": 610.551,
+              "end": 614.736,
+              "scene_ids": [
+                16
+              ],
+              "quote": ""
+            },
+            "estimated_seconds": 3.360215053763441,
+            "actual_seconds": 0.0,
+            "start_offset": 0.0,
+            "role": "payoff",
+            "narrative_text": "",
+            "comment_hook": "",
+            "comment_hook_mode": ""
+          }
+        ],
+        "full_text": "女孩被陌生人围住时，还以为他们只是在热情招呼，忘记带玫瑰花了。女孩随后蹲在林边，把散落的石头装进黑袋。回到木屋后，她看见男人把石头丢进火上大锅。女孩凑近大锅查看，发现里面竟然全是大块生肉。她抬头发现男人们都在怪笑，这才意识到自己被包围。女人赶到木屋门外，正好看见女孩被几个人围住。女人抓住女孩快步离开，那几个人只能守在门口。女孩最终安全坐到餐桌前，却因那口大锅始终不敢抬头。",
+        "estimated_seconds": 25.13440860215054,
+        "actual_seconds": 0.0,
+        "match_report": null,
+        "gate1_pass": false,
+        "attempts": 0,
+        "status": "generated",
+        "scene_matches": [],
+        "review_comment_hook": null
+      }
+    ],
+    "selected_script": "D1",
+    "reject_reason": "",
+    "final_match": 0.0
+  }
+]

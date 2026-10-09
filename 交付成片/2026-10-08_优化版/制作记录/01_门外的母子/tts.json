@@ -1,0 +1,82 @@
+{
+  "audio_path": "D:\\惊悚短片剪辑\\workspace\\jobs\\20261008_200155_66e7a1\\clips\\clip_001\\voice.wav",
+  "duration": 26.13,
+  "sentence_timings": [
+    {
+      "index": 1,
+      "text": "两个怪人，盯上了独自在家的女孩。",
+      "role": "hook",
+      "start": 0.0,
+      "end": 2.45
+    },
+    {
+      "index": 2,
+      "text": "女孩透过猫眼，发现门外的人根本不对劲。",
+      "role": "context",
+      "start": 2.45,
+      "end": 5.46
+    },
+    {
+      "index": 3,
+      "text": "女人身上的衣服烂透了，却笑着朝门里招手。",
+      "role": "escalation",
+      "start": 5.46,
+      "end": 8.63
+    },
+    {
+      "index": 4,
+      "text": "她不敢开门，只能隔着门小声应付。",
+      "role": "context",
+      "start": 8.63,
+      "end": 11.16
+    },
+    {
+      "index": 5,
+      "text": "对方始终不肯离开，她赶紧退到窗边。",
+      "role": "escalation",
+      "start": 11.16,
+      "end": 13.65
+    },
+    {
+      "index": 6,
+      "text": "掀开百叶窗，女孩终于看清了外面。",
+      "role": "context",
+      "start": 13.65,
+      "end": 16.02
+    },
+    {
+      "index": 7,
+      "text": "另一个男人架着梯子，已经爬上她家的房顶。",
+      "role": "twist",
+      "start": 16.02,
+      "end": 19.11
+    },
+    {
+      "index": 8,
+      "text": "那对母子一直缠着她，就是在替这个男人望风。",
+      "role": "payoff",
+      "start": 19.11,
+      "end": 23.04
+    },
+    {
+      "index": 9,
+      "text": "幸好警车及时赶到，她才没有打开那扇门。",
+      "role": "payoff",
+      "start": 23.04,
+      "end": 26.13
+    }
+  ],
+  "timing_source": "measured_sentence_audio",
+  "providers": [
+    "bailian",
+    "bailian",
+    "bailian",
+    "bailian",
+    "bailian",
+    "bailian",
+    "bailian",
+    "bailian",
+    "bailian"
+  ],
+  "provider": "bailian"
+}

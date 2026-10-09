@@ -1,0 +1,4 @@
+LOCAL_SOURCE_ASR_START
+C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\transcribe.py:130: UserWarning: Performing inference on CPU when CUDA is available
+  warnings.warn("Performing inference on CPU when CUDA is available")
+LOCAL_SOURCE_ASR_DONE 173

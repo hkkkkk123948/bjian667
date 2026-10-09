@@ -1,0 +1,18 @@
+{
+  "path": "D:\\惊悚短片剪辑\\workspace\\jobs\\20261008_203342_9ef7ee\\clips\\clip_001\\clip_001.mp4",
+  "sha256": "4f933880294262cc68c5d69c55b2d9ef8af5d6f4d6a54b3fd8018bf0d23a1681",
+  "status": "pass",
+  "issues": [],
+  "duration": 20.761,
+  "decode_exit": 0,
+  "decode_errors": "",
+  "integrated_lufs": "-16.70",
+  "true_peak_dbtp": "-2.06",
+  "black_periods": [],
+  "timeline": {
+    "issues": [],
+    "output_duration": 20.760873,
+    "segment_count": 8
+  },
+  "note": "机器审计只验证文件、响度、黑场和剪辑区间；故事及听感需要审阅。"
+}

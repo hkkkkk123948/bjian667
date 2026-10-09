@@ -1,0 +1,33 @@
+{
+  "path": "D:\\惊悚短片剪辑\\workspace\\optimization_20261009_video_track\\repaired_20261009_003907_506bf7\\soundbed.wav",
+  "rms_db": -32.0,
+  "cues": [
+    {
+      "time": 7.114188418198998,
+      "role": "escalation",
+      "sound": "low_pulse"
+    },
+    {
+      "time": 10.563027403590377,
+      "role": "escalation",
+      "sound": "low_pulse"
+    },
+    {
+      "time": 17.13210765993168,
+      "role": "twist",
+      "sound": "low_pulse"
+    },
+    {
+      "time": 19.54150489555927,
+      "role": "payoff",
+      "sound": "low_pulse"
+    },
+    {
+      "time": 22.798741715095574,
+      "role": "payoff",
+      "sound": "low_pulse"
+    }
+  ],
+  "origin": "locally_synthesized_original",
+  "duration": 26.362541999999998
+}

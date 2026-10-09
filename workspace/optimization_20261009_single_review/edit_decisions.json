@@ -1,0 +1,104 @@
+{
+  "policy": "continuous_context_v3",
+  "logical_segments": 17,
+  "rendered_shots": 16,
+  "context_joins": 1,
+  "shots": [
+    {
+      "start": 0.0,
+      "duration": 3.1358620689655172,
+      "parts": 2,
+      "kind": "context_run"
+    },
+    {
+      "start": 3.1358620689655172,
+      "duration": 1.4111379310344827,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 4.547,
+      "duration": 2.5875,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 7.134499999999999,
+      "duration": 2.5875000000000004,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 9.722,
+      "duration": 2.3545,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 12.0765,
+      "duration": 2.3545,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 14.431,
+      "duration": 2.668000000000001,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 17.099,
+      "duration": 2.6679999999999993,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 19.767,
+      "duration": 2.668499999999998,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 22.435499999999998,
+      "duration": 2.6685000000000016,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 25.104,
+      "duration": 2.511499999999998,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 27.615499999999997,
+      "duration": 2.5115000000000016,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 30.127,
+      "duration": 2.273500000000002,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 32.4005,
+      "duration": 2.2734999999999985,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 34.674,
+      "duration": 4.0,
+      "parts": 1,
+      "kind": "source"
+    },
+    {
+      "start": 38.674,
+      "duration": 4.0,
+      "parts": 1,
+      "kind": "source"
+    }
+  ]
+}

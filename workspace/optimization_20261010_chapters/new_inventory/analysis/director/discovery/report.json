@@ -1,0 +1,76 @@
+{
+  "mode": "auto",
+  "scan_complete": true,
+  "coverage_seconds": 618.958,
+  "source_duration": 618.958,
+  "uncertain_ranges": [],
+  "excluded_ranges": [],
+  "exhaustive_guarantee": false,
+  "evidence_limit": "依据原片真实章节卡及全章范围；原声是剧情背景，镜头事实仍逐帧代码绑定",
+  "local_refinement_passes": 0,
+  "discovered": 3,
+  "selected": 3,
+  "complete": true,
+  "manual_review_required": false,
+  "conflicting_story_options": [],
+  "reason": "按真实章节与主角事件链识别3个故事；地图、看电视及室内外转场保留在同章，不单独拆片",
+  "chapter_cards": [
+    {
+      "chapter_id": "CH01",
+      "title": "TRUE SCARY STORY FROM SCANDINAVIA",
+      "frame_ids": [
+        "HUMAN_CH01"
+      ],
+      "frame_times": [
+        1.5
+      ],
+      "frame_paths": [
+        "D:\\惊悚短片剪辑\\workspace\\optimization_20261010_chapters\\source_0001.50.jpg"
+      ],
+      "card_start": 0,
+      "card_end": 3.5,
+      "source_start": 4,
+      "source_end": 159,
+      "basis": "human_observed_actual_frames",
+      "boundary_precision": "human source frame inspection approximately one second"
+    },
+    {
+      "chapter_id": "CH02",
+      "title": "TRUE PIZZA DELIVERY MAN HORROR STORY",
+      "frame_ids": [
+        "HUMAN_CH02"
+      ],
+      "frame_times": [
+        164
+      ],
+      "frame_paths": [
+        "D:\\惊悚短片剪辑\\workspace\\optimization_20261010_chapters\\source_0164.00.jpg"
+      ],
+      "card_start": 161,
+      "card_end": 167,
+      "source_start": 168,
+      "source_end": 442,
+      "basis": "human_observed_actual_frames",
+      "boundary_precision": "human source frame inspection approximately one second"
+    },
+    {
+      "chapter_id": "CH03",
+      "title": "TRUE BLACK MAGIC HORROR STORY",
+      "frame_ids": [
+        "HUMAN_CH03"
+      ],
+      "frame_times": [
+        445
+      ],
+      "frame_paths": [
+        "D:\\惊悚短片剪辑\\workspace\\optimization_20261010_chapters\\source_0445.00.jpg"
+      ],
+      "card_start": 443,
+      "card_end": 447,
+      "source_start": 448,
+      "source_end": 612,
+      "basis": "human_observed_actual_frames",
+      "boundary_precision": "human source frame inspection approximately one second"
+    }
+  ]
+}

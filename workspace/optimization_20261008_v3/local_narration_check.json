@@ -1,0 +1,41 @@
+{
+  "status": "fail",
+  "issues": [
+    {
+      "kind": "repeated_phrase",
+      "text": "警察随后赶到调查",
+      "transcript_start": 135,
+      "transcript_end": 143
+    }
+  ],
+  "warnings": [
+    {
+      "expected": "发",
+      "actual": "乏"
+    },
+    {
+      "expected": "她",
+      "actual": "他"
+    },
+    {
+      "expected": "巷",
+      "actual": "想"
+    },
+    {
+      "expected": "了",
+      "actual": "的"
+    },
+    {
+      "expected": "她",
+      "actual": "他"
+    },
+    {
+      "expected": "她",
+      "actual": "他"
+    }
+  ],
+  "expected_text": "这三个女孩被一个白发怪人盯上了她们赶紧往后巷跑躲到了垃圾箱后面女孩以为安全了旁边的铁门却慢慢开了一只满是尖指甲的手从门缝里伸了进来紧接着怪人探出了头吓得她们再次逃跑她们逃进仓库可那个怪人又追到了门外女孩正不知道怎么办一个男人推门走了进来他把女孩们救了出来警察随后赶到调查",
+  "recognized_text": "这三个女孩被一个白乏怪人盯上了他们赶紧往后想跑躲到了垃圾箱后面女孩以为安全了旁边的铁门却慢慢开了一只满是尖指甲的手从门缝里伸的进来紧接着怪人探出了头吓得他们再次逃跑他们逃进仓库可那个怪人又追到了门外女孩正不知道怎么办一个男人推门走了进来他把女孩们救了出来警察随后赶到调查警察随后赶到调查",
+  "method": "local_asr_script_comparison",
+  "audio_edits": []
+}

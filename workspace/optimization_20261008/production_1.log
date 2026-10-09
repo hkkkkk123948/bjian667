@@ -1,0 +1,10 @@
+→ URL_ANALYZING 
+  [  6%] 视频信息解析
+[19:51:47] INFO 使用本地视频: D:\惊悚短片剪辑\workspace\jobs\20261008_195146_4acbb6\source\3 True Horror Stories Animated [F35JDpVZ27Y].mp4 (字幕: 无)
+✓ DOWNLOADING 
+✓ URL_ANALYZING 
+→ MEDIA_INDEXING 读取全片分镜，寻找完整故事
+  [ 18%] 建立媒体索引
+✓ MEDIA_INDEXING 
+→ STORY_MINING 从画面选有开端、危险升级与结果的故事
+  [ 29%] 故事挖掘

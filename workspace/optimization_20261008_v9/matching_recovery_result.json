@@ -1,0 +1,24 @@
+{
+  "job_id": "20261008_232941_ac9074",
+  "state": "RENDERING",
+  "runtime_attribute_error_fixed": true,
+  "same_narration_bytes": true,
+  "requested_duration": [
+    35.0,
+    50.0
+  ],
+  "outputs": [
+    {
+      "path": "D:\\惊悚短片剪辑\\workspace\\jobs\\20261008_232941_ac9074\\clips\\clip_001\\clip_001.mp4",
+      "duration": 26.041667,
+      "qc_status": null,
+      "issues": null
+    },
+    {
+      "path": "",
+      "duration": 0.0,
+      "qc_status": null,
+      "issues": null
+    }
+  ]
+}

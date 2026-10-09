@@ -1,0 +1,141 @@
+{
+  "fps": 24,
+  "output_frames": 924,
+  "handles": [
+    {
+      "nominal_frames": 106,
+      "before": 0,
+      "after": 2
+    },
+    {
+      "nominal_frames": 117,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 132,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 113,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 123,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 107,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 226,
+      "before": 1,
+      "after": 0
+    }
+  ],
+  "transitions": [
+    {
+      "index": 1,
+      "boundary_frame": 106,
+      "start_frame": 105,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 2,
+      "boundary_frame": 223,
+      "start_frame": 222,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 3,
+      "boundary_frame": 355,
+      "start_frame": 354,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 4,
+      "boundary_frame": 468,
+      "start_frame": 467,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 5,
+      "boundary_frame": 591,
+      "start_frame": 590,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 6,
+      "boundary_frame": 698,
+      "start_frame": 697,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    }
+  ],
+  "boundaries": [
+    {
+      "index": 1,
+      "boundary_frame": 106,
+      "start_frame": 105,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 2,
+      "boundary_frame": 223,
+      "start_frame": 222,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 3,
+      "boundary_frame": 355,
+      "start_frame": 354,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 4,
+      "boundary_frame": 468,
+      "start_frame": 467,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 5,
+      "boundary_frame": 591,
+      "start_frame": 590,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 6,
+      "boundary_frame": 698,
+      "start_frame": 697,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    }
+  ]
+}

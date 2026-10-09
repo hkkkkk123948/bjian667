@@ -1,0 +1,14 @@
+
+  0%|          | 0/2956 [00:00<?, ?frames/s]C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:42: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower median kernel implementation...
+  warnings.warn(
+C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:146: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower DTW implementation...
+  warnings.warn(
+
+ 81%|████████  | 2392/2956 [00:22<00:05, 106.78frames/s]C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:42: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower median kernel implementation...
+  warnings.warn(
+C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:146: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower DTW implementation...
+  warnings.warn(
+
+100%|██████████| 2956/2956 [00:29<00:00, 97.27frames/s] 
+100%|██████████| 2956/2956 [00:29<00:00, 99.42frames/s]
+FINAL_AUDIO pass [] [{'expected': '', 'actual': '接着'}, {'expected': '她', 'actual': '他'}, {'expected': '仓库', 'actual': '舱控'}]

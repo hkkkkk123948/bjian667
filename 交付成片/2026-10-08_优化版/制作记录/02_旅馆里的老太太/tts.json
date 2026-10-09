@@ -1,0 +1,90 @@
+{
+  "audio_path": "D:\\惊悚短片剪辑\\workspace\\jobs\\20261008_200155_4ef5e3\\clips\\clip_001\\voice.wav",
+  "duration": 29.1,
+  "sentence_timings": [
+    {
+      "index": 1,
+      "text": "女孩的房门外，藏着一个东西。",
+      "role": "hook",
+      "start": 0.0,
+      "end": 2.45
+    },
+    {
+      "index": 2,
+      "text": "她带着两个妹妹住进旅馆，完全没发现异常。",
+      "role": "context",
+      "start": 2.45,
+      "end": 5.62
+    },
+    {
+      "index": 3,
+      "text": "趁妹妹们玩耍，她独自爬上楼梯找吃的。",
+      "role": "context",
+      "start": 5.62,
+      "end": 9.11
+    },
+    {
+      "index": 4,
+      "text": "可厨房的老太太，正抱着一块生肉啃。",
+      "role": "escalation",
+      "start": 9.11,
+      "end": 11.76
+    },
+    {
+      "index": 5,
+      "text": "女孩刚想后退，老太太却慢慢转过了头。",
+      "role": "escalation",
+      "start": 11.76,
+      "end": 14.89
+    },
+    {
+      "index": 6,
+      "text": "满是血的嘴，竟然冲着她笑了起来。",
+      "role": "twist",
+      "start": 14.89,
+      "end": 17.5
+    },
+    {
+      "index": 7,
+      "text": "两个妹妹也跟了上来，正好撞见这一幕。",
+      "role": "escalation",
+      "start": 17.5,
+      "end": 20.39
+    },
+    {
+      "index": 8,
+      "text": "男人赶紧抱起女孩，把她们全部带了出去。",
+      "role": "payoff",
+      "start": 20.39,
+      "end": 23.36
+    },
+    {
+      "index": 9,
+      "text": "等到警车赶来，女孩才想起一件事。",
+      "role": "context",
+      "start": 23.36,
+      "end": 26.05
+    },
+    {
+      "index": 10,
+      "text": "自己趴在床上时，那个老太太就已经站在门外。",
+      "role": "payoff",
+      "start": 26.05,
+      "end": 29.1
+    }
+  ],
+  "timing_source": "measured_sentence_audio",
+  "providers": [
+    "bailian",
+    "bailian",
+    "bailian",
+    "bailian",
+    "bailian",
+    "bailian",
+    "bailian",
+    "bailian",
+    "bailian",
+    "bailian"
+  ],
+  "provider": "bailian"
+}

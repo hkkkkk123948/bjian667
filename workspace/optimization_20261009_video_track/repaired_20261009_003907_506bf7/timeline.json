@@ -1,0 +1,248 @@
+{
+  "source_start": 296.764,
+  "source_duration": 26.483,
+  "narration_duration": 26.363,
+  "tts_duration": 26.363,
+  "voice_path": "D:\\惊悚短片剪辑\\workspace\\jobs\\20261009_003907_506bf7\\clips\\clip_001\\voice.wav",
+  "timing_source": "provider_sentence_starts_calibrated",
+  "speed_factor": 1.0,
+  "voice_playback_speed": 1.2,
+  "sentence_timings": [
+    {
+      "index": 1,
+      "text": "男孩睡觉前忘记点了，深夜同伴突然叫醒熟睡的男孩，并示意他查看窗外。",
+      "role": "hook",
+      "start": 0.0,
+      "end": 5.249899344429101,
+      "narrative_text": "，深夜同伴突然叫醒熟睡的男孩，并示意他查看窗外。",
+      "comment_hook": "男孩睡觉前忘记点了"
+    },
+    {
+      "index": 2,
+      "text": "男孩起身查看后发现怪人正把双手紧贴在玻璃上。",
+      "role": "context",
+      "start": 5.249899344429101,
+      "end": 7.114188418198998,
+      "narrative_text": "男孩起身查看后发现怪人正把双手紧贴在玻璃上。",
+      "comment_hook": ""
+    },
+    {
+      "index": 3,
+      "text": "怪人已经潜入屋内并躲在床下露出诡异笑脸。",
+      "role": "escalation",
+      "start": 7.114188418198998,
+      "end": 10.563027403590377,
+      "narrative_text": "怪人已经潜入屋内并躲在床下露出诡异笑脸。",
+      "comment_hook": ""
+    },
+    {
+      "index": 4,
+      "text": "男孩和同伴发现后立刻跑下楼梯远离藏身的房间。",
+      "role": "escalation",
+      "start": 10.563027403590377,
+      "end": 13.261743909659133,
+      "narrative_text": "男孩和同伴发现后立刻跑下楼梯远离藏身的房间。",
+      "comment_hook": ""
+    },
+    {
+      "index": 5,
+      "text": "男人看见男孩跑来便牵着两条恶犬挡在他们前面。",
+      "role": "context",
+      "start": 13.261743909659133,
+      "end": 17.13210765993168,
+      "narrative_text": "男人看见男孩跑来便牵着两条恶犬挡在他们前面。",
+      "comment_hook": ""
+    },
+    {
+      "index": 6,
+      "text": "可怪人很快亮出尖刀沿着地上脚印继续追赶。",
+      "role": "twist",
+      "start": 17.13210765993168,
+      "end": 19.54150489555927,
+      "narrative_text": "可怪人很快亮出尖刀沿着地上脚印继续追赶。",
+      "comment_hook": ""
+    },
+    {
+      "index": 7,
+      "text": "两条恶犬随即扑向怪人把他死死压倒在泥地上。",
+      "role": "payoff",
+      "start": 19.54150489555927,
+      "end": 22.798741715095574,
+      "narrative_text": "两条恶犬随即扑向怪人把他死死压倒在泥地上。",
+      "comment_hook": ""
+    },
+    {
+      "index": 8,
+      "text": "最后男孩与同伴守着熟睡恶犬安全熬过雨夜。",
+      "role": "payoff",
+      "start": 22.798741715095574,
+      "end": 26.362542,
+      "narrative_text": "最后男孩与同伴守着熟睡恶犬安全熬过雨夜。",
+      "comment_hook": ""
+    }
+  ],
+  "segments": [
+    {
+      "src_start": 297.420177,
+      "src_duration": 0.1149612857142857,
+      "dur": 0.114961299513046,
+      "out_start": 0.0,
+      "sentence_index": 1,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "none",
+      "evidence_start": 296.764,
+      "evidence_end": 302.1
+    },
+    {
+      "src_start": 297.5351382857143,
+      "src_duration": 0.041666666666666664,
+      "dur": 1.2262538614724907,
+      "out_start": 0.114961299513046,
+      "sentence_index": 1,
+      "shot_part": 0,
+      "playback_speed": 1,
+      "freeze_duration": 0,
+      "motion": "push_in",
+      "evidence_start": 296.764,
+      "evidence_end": 302.1,
+      "visual_kind": "comment_still",
+      "comment_spans": [
+        {
+          "sentence_index": 1,
+          "text": "男孩睡觉前忘记点了",
+          "narrative_offset": 0,
+          "start": 0.114961299513046,
+          "end": 1.3412151609855367,
+          "timing_source": "provider_words"
+        }
+      ],
+      "comment_visual_mode": "auto",
+      "comment_context": "话术所在位置的前后正文镜头"
+    },
+    {
+      "src_start": 297.5351382857143,
+      "src_duration": 3.9086837142857145,
+      "dur": 3.908684183443565,
+      "out_start": 1.3412151609855367,
+      "sentence_index": 1,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "none",
+      "evidence_start": 296.764,
+      "evidence_end": 302.1
+    },
+    {
+      "src_start": 325.640855,
+      "src_duration": 1.864289,
+      "dur": 1.8642890737698963,
+      "out_start": 5.249899344429101,
+      "sentence_index": 2,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "pan_left",
+      "evidence_start": 323.846,
+      "evidence_end": 329.3
+    },
+    {
+      "src_start": 347.905081,
+      "src_duration": 3.4488389999999995,
+      "dur": 3.4488389853913786,
+      "out_start": 7.114188418198998,
+      "sentence_index": 3,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "pan_right",
+      "evidence_start": 347.059,
+      "evidence_end": 352.2
+    },
+    {
+      "src_start": 366.350642,
+      "src_duration": 2.698717,
+      "dur": 2.698716506068756,
+      "out_start": 10.563027403590377,
+      "sentence_index": 4,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "pan_left",
+      "evidence_start": 365.2,
+      "evidence_end": 370.2
+    },
+    {
+      "src_start": 371.101318,
+      "src_duration": 3.8703639999999995,
+      "dur": 3.8703637502725474,
+      "out_start": 13.261743909659133,
+      "sentence_index": 5,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "pan_right",
+      "evidence_start": 370.273,
+      "evidence_end": 375.8
+    },
+    {
+      "src_start": 387.369301,
+      "src_duration": 2.409397,
+      "dur": 2.409397235627589,
+      "out_start": 17.13210765993168,
+      "sentence_index": 6,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "push_in",
+      "evidence_start": 385.748,
+      "evidence_end": 391.4
+    },
+    {
+      "src_start": 405.021382,
+      "src_duration": 3.257237,
+      "dur": 3.2572368195363026,
+      "out_start": 19.541504895559267,
+      "sentence_index": 7,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "push_in",
+      "evidence_start": 403.8,
+      "evidence_end": 409.5
+    },
+    {
+      "src_start": 436.9896,
+      "src_duration": 3.5638,
+      "dur": 3.5638002849044277,
+      "out_start": 22.79874171509557,
+      "sentence_index": 8,
+      "shot_part": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0,
+      "motion": "push_in",
+      "evidence_start": 436.043,
+      "evidence_end": 441.5
+    }
+  ],
+  "comment_picture_plan": {
+    "mode": "auto",
+    "comments": [
+      {
+        "sentence_index": 1,
+        "text": "男孩睡觉前忘记点了",
+        "narrative_offset": 0,
+        "start": 0.114961299513046,
+        "end": 1.3412151609855367,
+        "timing_source": "provider_words"
+      }
+    ],
+    "literal_matching": false,
+    "context_matching": true,
+    "position_policy": "exact_comment_intervals",
+    "local_visual_treatment": true
+  },
+  "tail_padding": 0.12,
+  "crop_focus": 0.5
+}

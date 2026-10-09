@@ -1,0 +1,68 @@
+{
+  "source_sha256": "8509c91e62cb2cdf21b67e112ca32d98f88337835092f5d4615069b30f554319",
+  "source_size": 97082542,
+  "version": "simple_story_v2",
+  "review_basis": "根据已审查原片与参考示例简化；本轮送审版",
+  "script": {
+    "title": "后巷里的怪人",
+    "story_logic": "怪人追赶女孩→扒门逼近→仓库遇险→男人开门救人并报警",
+    "sentences": [
+      {
+        "text": "这三个女孩，被一个白发怪人盯上了。",
+        "role": "hook",
+        "evidence_start": 529.2,
+        "evidence_end": 537.7,
+        "visual": "白发苍白男子站在巷子里并露出白眼怪笑"
+      },
+      {
+        "text": "她们赶紧往后巷跑，躲到了垃圾箱后面。",
+        "role": "context",
+        "evidence_start": 553.0,
+        "evidence_end": 557.8,
+        "visual": "三名女孩躲在后巷绿色垃圾箱旁"
+      },
+      {
+        "text": "女孩以为安全了，旁边的铁门却慢慢开了。",
+        "role": "escalation",
+        "evidence_start": 559.0,
+        "evidence_end": 561.9,
+        "visual": "垃圾箱旁的铁门逐渐打开"
+      },
+      {
+        "text": "一只满是尖指甲的手，从门缝里伸了进来。",
+        "role": "escalation",
+        "evidence_start": 566.0,
+        "evidence_end": 574.0,
+        "visual": "铁门缝伸出有长指甲的手"
+      },
+      {
+        "text": "紧接着怪人探出了头，吓得她们再次逃跑。",
+        "role": "escalation",
+        "evidence_start": 575.0,
+        "evidence_end": 581.8,
+        "visual": "怪人从门缝探头露出白眼和笑容"
+      },
+      {
+        "text": "她们逃进仓库，可那个怪人又追到了门外。",
+        "role": "context",
+        "evidence_start": 624.1,
+        "evidence_end": 627.7,
+        "visual": "门外白发背影，玻璃后女孩小心露出头"
+      },
+      {
+        "text": "女孩正不知道怎么办，一个男人推门走了进来。",
+        "role": "payoff",
+        "evidence_start": 652.2,
+        "evidence_end": 657.7,
+        "visual": "穿深色衬衫的正常男人打开仓库门，女孩迎过去"
+      },
+      {
+        "text": "他把女孩们救了出来，警察随后赶到调查。",
+        "role": "payoff",
+        "evidence_start": 666.5,
+        "evidence_end": 672.3,
+        "visual": "警察询问黑发女孩，另外两人站在旁边"
+      }
+    ]
+  }
+}

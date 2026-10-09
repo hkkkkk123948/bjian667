@@ -1,0 +1,33 @@
+→ MEDIA_INDEXING 读取全片分镜，寻找完整故事
+  [ 18%] 建立媒体索引
+✓ MEDIA_INDEXING 
+→ STORY_MINING 从画面选有开端、危险升级与结果的故事
+  [ 29%] 故事挖掘
+✓ STORY_MINING 
+→ REFERENCE_ANALYZED 
+  [ 41%] 参考文案分析
+✓ REFERENCE_ANALYZED 
+→ VISUAL_ANALYSIS 逐帧核实 独眼窥视惊魂
+  [ 24%] 原片视觉分析
+✓ VISUAL_ANALYSIS 
+→ SCRIPT_GENERATED 按事件编故事，保留画面证据
+  [ 47%] 解说脚本生成
+[20:49:01] WARNING llm attempt 1 failed: openai empty content
+[20:49:03] ERROR 任务失败: openai empty content
+Traceback (most recent call last):
+  File "D:\惊悚短片剪辑\factory\pipeline.py", line 146, in analyze
+    return analyze(self)
+           ^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\mining\visual_story.py", line 151, in analyze
+    data = _cached_call(p, "script", prompt, detail, provider)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\mining\visual_story.py", line 239, in _cached_call
+    data = provider.complete_json(prompt, images=images, json_mode=True, default=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\providers\base.py", line 226, in complete_json
+    raise ProviderError(str(last_err))
+factory.providers.base.ProviderError: openai empty content
+✗ FAILED openai empty content
+[20:49:03] ERROR 任务失败: openai empty content
+[error] 任务失败: openai empty content
+任务失败: openai empty content

@@ -1,0 +1,71 @@
+{
+  "title": "门外的母子",
+  "source": "D:\\惊悚短片剪辑\\测试素材文件夹\\原片\\3 True Horror Stories Animated [sChF5ilNHaM].mp4",
+  "story_logic": "怪人敲门拖住独居女孩→女孩窥窗发现屋顶入侵者→意识到门外两人是同伙→警车赶到",
+  "reviewer": "Codex直接检查源片分镜并编排",
+  "sentences": [
+    {
+      "text": "两个怪人，盯上了独自在家的女孩。",
+      "role": "hook",
+      "evidence_start": 63.0,
+      "evidence_end": 66.3,
+      "visual": "门外破衣女人和孩子并肩站着"
+    },
+    {
+      "text": "女孩透过猫眼，发现门外的人根本不对劲。",
+      "role": "context",
+      "evidence_start": 59.1,
+      "evidence_end": 62.3,
+      "visual": "猫眼中女孩的蓝色眼睛"
+    },
+    {
+      "text": "女人身上的衣服烂透了，却笑着朝门里招手。",
+      "role": "escalation",
+      "evidence_start": 67.0,
+      "evidence_end": 73.3,
+      "visual": "破衣黑发女人微笑伸手"
+    },
+    {
+      "text": "她不敢开门，只能隔着门小声应付。",
+      "role": "context",
+      "evidence_start": 76.0,
+      "evidence_end": 84.8,
+      "visual": "女孩靠近关着的房门说话"
+    },
+    {
+      "text": "对方始终不肯离开，她赶紧退到窗边。",
+      "role": "escalation",
+      "evidence_start": 98.0,
+      "evidence_end": 104.0,
+      "visual": "女孩在窗帘前弯腰警惕观察"
+    },
+    {
+      "text": "掀开百叶窗，女孩终于看清了外面。",
+      "role": "context",
+      "evidence_start": 117.0,
+      "evidence_end": 121.6,
+      "visual": "女孩掀开窗户百叶向外看"
+    },
+    {
+      "text": "另一个男人架着梯子，已经爬上她家的房顶。",
+      "role": "twist",
+      "evidence_start": 122.3,
+      "evidence_end": 128.0,
+      "visual": "一个男人沿着梯子爬上屋顶"
+    },
+    {
+      "text": "那对母子一直缠着她，就是在替这个男人望风。",
+      "role": "payoff",
+      "evidence_start": 129.0,
+      "evidence_end": 135.5,
+      "visual": "全景同时显示门口母子和屋顶入侵者"
+    },
+    {
+      "text": "幸好警车及时赶到，她才没有打开那扇门。",
+      "role": "payoff",
+      "evidence_start": 137.7,
+      "evidence_end": 143.7,
+      "visual": "住宅街道出现红蓝灯闪烁的警车"
+    }
+  ]
+}

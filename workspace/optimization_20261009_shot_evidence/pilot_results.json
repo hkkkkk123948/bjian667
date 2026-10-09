@@ -1,0 +1,101 @@
+{
+  "frames": [
+    {
+      "image": 1,
+      "time": 302.5
+    },
+    {
+      "image": 2,
+      "time": 375.5
+    },
+    {
+      "image": 3,
+      "time": 421.5
+    },
+    {
+      "image": 4,
+      "time": 442.5
+    }
+  ],
+  "results": [
+    {
+      "role": "video_analysis",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "response": {
+        "frames": [
+          {
+            "image": 1,
+            "visible": "室内昏暗。一人躺床上盖浅色被，仅露头，张口。一人站或坐床旁，穿深色短袖，双手抓被边，低头看躺着的人。"
+          },
+          {
+            "image": 2,
+            "visible": "雨夜户外。三人淋雨站立：左一人穿深色衣张嘴；中一人穿蓝绿毛衣张嘴；右一人穿深色衣裤张嘴。"
+          },
+          {
+            "image": 3,
+            "visible": "室内。左侧一人戴深色大檐帽穿深色制服侧脸站立。中间一人穿紫红上衣，颈搭白毛巾，睁眼。右侧一人穿蓝绿衣，颈搭白毛巾，站立。窗外下雨。"
+          },
+          {
+            "image": 4,
+            "visible": "昏暗室内。右侧一只狗坐卧，戴项圈张嘴露齿。左下角有另一只狗的部分头部，闭眼状，细节不确定。"
+          }
+        ],
+        "uncertain": [
+          "图1中站立者与躺着的人是否同一人不确定",
+          "图2三人是否与图1、图3人物为同一人不确定",
+          "图4左下角动物是否狗及具体形态不确定"
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 924,
+        "completion_tokens": 235,
+        "total_tokens": 1159,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 924
+      }
+    },
+    {
+      "role": "qc",
+      "model": "zhenzhen/g5.6-sol",
+      "response": {
+        "frames": [
+          {
+            "image": 1,
+            "visible": "2人：左侧黑发深色上衣者在床旁俯身，手搭蓝色被子；右侧棕发者躺在床上白枕处，张嘴仰视。"
+          },
+          {
+            "image": 2,
+            "visible": "3人处于雨中：中间棕发者穿蓝绿色上衣站立；右后黑发者穿深色上衣和棕裤站立；左侧露出一人上半身。"
+          },
+          {
+            "image": 3,
+            "visible": "3人：左侧近景人物戴深色檐帽、穿深色衣并侧身；中间短发者穿红衣站立；右侧棕发者穿蓝绿色衣站立，两人肩搭毛巾。"
+          },
+          {
+            "image": 4,
+            "visible": "1人1狗：右侧棕色狗戴项圈，露齿转头；左侧人物躺着，仅见部分头脸和深色衣物。"
+          }
+        ],
+        "uncertain": [
+          "图2左侧人物下半身未显示，无法确定完整姿态；图4人物身份及狗是站立还是坐着不确定。"
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 5190,
+        "completion_tokens": 378,
+        "total_tokens": 5568,
+        "prompt_tokens_details": {
+          "cached_tokens": 4224
+        },
+        "prompt_cache_hit_tokens": 4224,
+        "prompt_cache_miss_tokens": 966,
+        "completion_tokens_details": {
+          "reasoning_tokens": 111
+        }
+      }
+    }
+  ]
+}

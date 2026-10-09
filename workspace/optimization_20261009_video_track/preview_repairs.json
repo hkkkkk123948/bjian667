@@ -1,0 +1,52 @@
+[
+  {
+    "job_id": "20261009_003907_506bf7",
+    "path": "D:\\惊悚短片剪辑\\workspace\\optimization_20261009_video_track\\repaired_20261009_003907_506bf7\\视频轨修复预览.mp4",
+    "audit": {
+      "path": "D:\\惊悚短片剪辑\\workspace\\optimization_20261009_video_track\\repaired_20261009_003907_506bf7\\视频轨修复预览.mp4",
+      "sha256": "d45e8aeab99407a6fbb00c4fd030e2a17bade81cc00ed8e2f67e34e99a7cafb5",
+      "status": "pass",
+      "issues": [],
+      "duration": 26.375,
+      "decode_exit": 0,
+      "decode_errors": "",
+      "video_duration": 26.375,
+      "audio_duration": 26.362,
+      "integrated_lufs": "-16.21",
+      "true_peak_dbtp": "-1.87",
+      "black_periods": [],
+      "timeline": {
+        "issues": [],
+        "output_duration": 26.362542,
+        "segment_count": 10
+      },
+      "note": "机器审计只验证文件、响度、黑场和剪辑区间；故事及听感需要审阅。"
+    },
+    "note": "仅修复导出视频轨，保留原文案、完整原配音；时长要求和真实语义仍需另审"
+  },
+  {
+    "job_id": "20261009_001504_2cfe45",
+    "path": "D:\\惊悚短片剪辑\\workspace\\optimization_20261009_video_track\\repaired_20261009_001504_2cfe45\\视频轨修复预览.mp4",
+    "audit": {
+      "path": "D:\\惊悚短片剪辑\\workspace\\optimization_20261009_video_track\\repaired_20261009_001504_2cfe45\\视频轨修复预览.mp4",
+      "sha256": "96dc2fa5c42a5a41d3fdee195f7a239fcc48b5568f2ad942dd2afe0b3f940e7a",
+      "status": "pass",
+      "issues": [],
+      "duration": 38.508,
+      "decode_exit": 0,
+      "decode_errors": "",
+      "video_duration": 38.5,
+      "audio_duration": 38.508,
+      "integrated_lufs": "-15.99",
+      "true_peak_dbtp": "-1.81",
+      "black_periods": [],
+      "timeline": {
+        "issues": [],
+        "output_duration": 38.507875,
+        "segment_count": 9
+      },
+      "note": "机器审计只验证文件、响度、黑场和剪辑区间；故事及听感需要审阅。"
+    },
+    "note": "仅修复导出视频轨，保留原文案、完整原配音；时长要求和真实语义仍需另审"
+  }
+]

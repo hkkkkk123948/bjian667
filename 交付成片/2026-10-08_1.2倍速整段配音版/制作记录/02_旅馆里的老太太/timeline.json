@@ -1,0 +1,168 @@
+{
+  "source_start": 298.0,
+  "source_duration": 20.865,
+  "narration_duration": 20.745,
+  "tts_duration": 20.745,
+  "voice_path": "D:\\惊悚短片剪辑\\workspace\\jobs\\20261008_203342_a3efdd\\clips\\clip_001\\voice.wav",
+  "timing_source": "provider_sentence_starts_calibrated",
+  "speed_factor": 1.0,
+  "voice_playback_speed": 1.2,
+  "sentence_timings": [
+    {
+      "index": 1,
+      "text": "女孩住进旅馆，却不知道门外有人盯着她。",
+      "role": "hook",
+      "start": 0.0,
+      "end": 3.1283973443678157
+    },
+    {
+      "index": 2,
+      "text": "她带着两个妹妹在房里玩，根本没有发现异常。",
+      "role": "context",
+      "start": 3.1283973443678157,
+      "end": 6.142341127356322
+    },
+    {
+      "index": 3,
+      "text": "后来她肚子饿了，就独自爬上楼梯找吃的。",
+      "role": "context",
+      "start": 6.142341127356322,
+      "end": 7.4900318125977
+    },
+    {
+      "index": 4,
+      "text": "可厨房的老太太，正抱着一块生肉不停地啃。",
+      "role": "escalation",
+      "start": 7.4900318125977,
+      "end": 10.275068472827584
+    },
+    {
+      "index": 5,
+      "text": "老太太看见她，竟满嘴是血地笑了起来。",
+      "role": "twist",
+      "start": 10.275068472827584,
+      "end": 13.06010513305747
+    },
+    {
+      "index": 6,
+      "text": "两个妹妹也跑了上来，吓得站在楼梯口不敢动。",
+      "role": "escalation",
+      "start": 13.06010513305747,
+      "end": 14.602366872643678
+    },
+    {
+      "index": 7,
+      "text": "男人赶紧抱起女孩，带着三个孩子离开了这里。",
+      "role": "payoff",
+      "start": 14.602366872643678,
+      "end": 17.501857094252873
+    },
+    {
+      "index": 8,
+      "text": "直到警车停在旅馆门口，她们才终于松了口气。",
+      "role": "payoff",
+      "start": 17.501857094252873,
+      "end": 20.744708
+    }
+  ],
+  "segments": [
+    {
+      "src_start": 326.185801,
+      "src_duration": 3.128397,
+      "dur": 3.128397,
+      "out_start": 0.0,
+      "sentence_index": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.0,
+      "motion": "push_in",
+      "evidence_start": 324.0,
+      "evidence_end": 331.5
+    },
+    {
+      "src_start": 298.893028,
+      "src_duration": 3.013944,
+      "dur": 3.013944,
+      "out_start": 3.1283973443678157,
+      "sentence_index": 2,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.0,
+      "motion": "pan_left",
+      "evidence_start": 298.0,
+      "evidence_end": 302.8
+    },
+    {
+      "src_start": 342.726155,
+      "src_duration": 1.347691,
+      "dur": 1.347691,
+      "out_start": 6.142341127356322,
+      "sentence_index": 3,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.0,
+      "motion": "pan_right",
+      "evidence_start": 340.0,
+      "evidence_end": 346.8
+    },
+    {
+      "src_start": 359.857482,
+      "src_duration": 2.785037,
+      "dur": 2.785037,
+      "out_start": 7.4900318125977,
+      "sentence_index": 4,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.0,
+      "motion": "pan_left",
+      "evidence_start": 357.0,
+      "evidence_end": 365.5
+    },
+    {
+      "src_start": 385.732482,
+      "src_duration": 2.435037,
+      "dur": 2.785037,
+      "out_start": 10.275068472827584,
+      "sentence_index": 5,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.35,
+      "motion": "push_in",
+      "evidence_start": 383.4,
+      "evidence_end": 390.5
+    },
+    {
+      "src_start": 395.478869,
+      "src_duration": 1.542262,
+      "dur": 1.542262,
+      "out_start": 13.06010513305747,
+      "sentence_index": 6,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.0,
+      "motion": "pan_left",
+      "evidence_start": 394.9,
+      "evidence_end": 397.6
+    },
+    {
+      "src_start": 406.275255,
+      "src_duration": 2.54949,
+      "dur": 2.89949,
+      "out_start": 14.602366872643678,
+      "sentence_index": 7,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.35,
+      "motion": "push_in",
+      "evidence_start": 405.0,
+      "evidence_end": 410.1
+    },
+    {
+      "src_start": 411.2,
+      "src_duration": 2.8,
+      "dur": 3.242851,
+      "out_start": 17.501857094252873,
+      "sentence_index": 8,
+      "playback_speed": 0.967903,
+      "freeze_duration": 0.35,
+      "motion": "push_in",
+      "evidence_start": 411.2,
+      "evidence_end": 414.0
+    }
+  ],
+  "tail_padding": 0.12,
+  "crop_focus": 0.5
+}

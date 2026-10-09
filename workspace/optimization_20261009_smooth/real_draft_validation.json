@@ -1,0 +1,27 @@
+{
+  "job_id": "20261009_软件优化验证_文案待审",
+  "status": "review_required",
+  "estimated_seconds": 47.58,
+  "estimated_range": [
+    41.87,
+    53.29
+  ],
+  "sample_count": 2,
+  "story_grounding": {
+    "policy": "story_grounding_v1",
+    "basis": "cached_storyboard_facts",
+    "status": "pass",
+    "causal_complete": true,
+    "issues": [],
+    "model_score": null,
+    "checked_complete": true,
+    "evidence_limit": "依据已采样分镜的可见观察预检，保留成片实际画面质检；不确定动作需人工确认",
+    "verified_text_hash": "2bfa6439ff5c802d0744a7f69a44dd561b735c8a8bd457f3cc1d95b79ed57fb7",
+    "facts_signature": "8ef7dab7f9b50d57c9533bbd681297e0238edc6e4b1d4f577bc6bf828ded76ae",
+    "signature": "deba9c78fb9b3484cf01f2682a24f7f3a27621fe5f176ca0cea900b017fd64ac"
+  },
+  "script": "女孩才伸手去捡地上的白色小物件，那人已经俯下身逼到眼前。\n（女孩出门忘记带玫瑰花了）她被牵到楼外后，几名男人很快从四周围住了她。其中一人突然抬起手，她只能僵在原地。\n女孩知道自己不能硬闯，只好蹲在沙地捡拾石块。她装出顺从的样子，暗暗等待逃脱的机会。\n随后女孩走进屋里，发现一个浅色头发的人正守在锅前。对方察觉门口有人，立刻回头看向她。\n白盘里摆着一块块生肉，旁边还放着米饭。女孩又弯腰看进锅里，没想到里面同样堆满肉块。\n她低头看清后猛然瞪大双眼，终于意识到这顿饭根本不正常。屋外那人皱眉望向木屋，她还以为对方愿意帮忙。\n女孩立刻跟到那人身后，满心以为自己终于能离开。可远处几个人仍守在木屋旁，她转眼又被困在桌前。\n几名男人就站在她身后，没有人真的打算带她逃走。女孩最终只能低下头，用叉子吃掉盘中的食物。",
+  "original_job_untouched": true,
+  "tts_called": false,
+  "picture_matching_called": false
+}

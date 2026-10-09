@@ -1,0 +1,8 @@
+{
+  "type": "openai",
+  "base_url": "https://api.seedance.nz/v1",
+  "api_key": "sk-NX2BC2srHPjL6h8y7e2hSR5xgskAzDCA3LFjGUgEZVzsBZOo",
+  "timeout": 120,
+  "max_retry": 1,
+  "backup_models": []
+}

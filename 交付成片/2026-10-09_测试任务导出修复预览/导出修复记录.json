@@ -1,0 +1,22 @@
+[
+  {
+    "job_id": "20261009_003907_506bf7",
+    "path": "D:\\惊悚短片剪辑\\交付成片\\2026-10-09_测试任务导出修复预览\\01_20261009_003907_506bf7_导出修复_内容待审.mp4",
+    "sha256": "d45e8aeab99407a6fbb00c4fd030e2a17bade81cc00ed8e2f67e34e99a7cafb5",
+    "video_duration": 26.375,
+    "audio_duration": 26.362,
+    "media_status": "pass",
+    "black_periods": [],
+    "content_status": "awaiting_review"
+  },
+  {
+    "job_id": "20261009_001504_2cfe45",
+    "path": "D:\\惊悚短片剪辑\\交付成片\\2026-10-09_测试任务导出修复预览\\02_20261009_001504_2cfe45_导出修复_内容待审.mp4",
+    "sha256": "96dc2fa5c42a5a41d3fdee195f7a239fcc48b5568f2ad942dd2afe0b3f940e7a",
+    "video_duration": 38.5,
+    "audio_duration": 38.508,
+    "media_status": "pass",
+    "black_periods": [],
+    "content_status": "awaiting_review"
+  }
+]

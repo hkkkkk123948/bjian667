@@ -1,0 +1,168 @@
+{
+  "source_start": 59.1,
+  "source_duration": 26.25,
+  "narration_duration": 26.13,
+  "tts_duration": 26.13,
+  "voice_path": "D:\\惊悚短片剪辑\\workspace\\jobs\\20261008_200155_66e7a1\\clips\\clip_001\\voice.wav",
+  "timing_source": "measured_sentence_audio",
+  "speed_factor": 1.0,
+  "sentence_timings": [
+    {
+      "index": 1,
+      "text": "两个怪人，盯上了独自在家的女孩。",
+      "role": "hook",
+      "start": 0.0,
+      "end": 2.45
+    },
+    {
+      "index": 2,
+      "text": "女孩透过猫眼，发现门外的人根本不对劲。",
+      "role": "context",
+      "start": 2.45,
+      "end": 5.46
+    },
+    {
+      "index": 3,
+      "text": "女人身上的衣服烂透了，却笑着朝门里招手。",
+      "role": "escalation",
+      "start": 5.46,
+      "end": 8.63
+    },
+    {
+      "index": 4,
+      "text": "她不敢开门，只能隔着门小声应付。",
+      "role": "context",
+      "start": 8.63,
+      "end": 11.16
+    },
+    {
+      "index": 5,
+      "text": "对方始终不肯离开，她赶紧退到窗边。",
+      "role": "escalation",
+      "start": 11.16,
+      "end": 13.65
+    },
+    {
+      "index": 6,
+      "text": "掀开百叶窗，女孩终于看清了外面。",
+      "role": "context",
+      "start": 13.65,
+      "end": 16.02
+    },
+    {
+      "index": 7,
+      "text": "另一个男人架着梯子，已经爬上她家的房顶。",
+      "role": "twist",
+      "start": 16.02,
+      "end": 19.11
+    },
+    {
+      "index": 8,
+      "text": "那对母子一直缠着她，就是在替这个男人望风。",
+      "role": "payoff",
+      "start": 19.11,
+      "end": 23.04
+    },
+    {
+      "index": 9,
+      "text": "幸好警车及时赶到，她才没有打开那扇门。",
+      "role": "payoff",
+      "start": 23.04,
+      "end": 26.13
+    }
+  ],
+  "segments": [
+    {
+      "src_start": 63.425,
+      "src_duration": 2.45,
+      "dur": 2.45,
+      "out_start": 0.0,
+      "sentence_index": 1,
+      "playback_speed": 1.0,
+      "evidence_start": 63.0,
+      "evidence_end": 66.3
+    },
+    {
+      "src_start": 59.195,
+      "src_duration": 3.01,
+      "dur": 3.01,
+      "out_start": 2.45,
+      "sentence_index": 2,
+      "playback_speed": 1.0,
+      "evidence_start": 59.1,
+      "evidence_end": 62.3
+    },
+    {
+      "src_start": 68.565,
+      "src_duration": 3.17,
+      "dur": 3.17,
+      "out_start": 5.46,
+      "sentence_index": 3,
+      "playback_speed": 1.0,
+      "evidence_start": 67.0,
+      "evidence_end": 73.3
+    },
+    {
+      "src_start": 79.135,
+      "src_duration": 2.53,
+      "dur": 2.53,
+      "out_start": 8.63,
+      "sentence_index": 4,
+      "playback_speed": 1.0,
+      "evidence_start": 76.0,
+      "evidence_end": 84.8
+    },
+    {
+      "src_start": 99.755,
+      "src_duration": 2.49,
+      "dur": 2.49,
+      "out_start": 11.16,
+      "sentence_index": 5,
+      "playback_speed": 1.0,
+      "evidence_start": 98.0,
+      "evidence_end": 104.0
+    },
+    {
+      "src_start": 118.115,
+      "src_duration": 2.37,
+      "dur": 2.37,
+      "out_start": 13.65,
+      "sentence_index": 6,
+      "playback_speed": 1.0,
+      "evidence_start": 117.0,
+      "evidence_end": 121.6
+    },
+    {
+      "src_start": 123.605,
+      "src_duration": 3.09,
+      "dur": 3.09,
+      "out_start": 16.02,
+      "sentence_index": 7,
+      "playback_speed": 1.0,
+      "evidence_start": 122.3,
+      "evidence_end": 128.0
+    },
+    {
+      "src_start": 130.285,
+      "src_duration": 3.93,
+      "dur": 3.93,
+      "out_start": 19.11,
+      "sentence_index": 8,
+      "playback_speed": 1.0,
+      "evidence_start": 129.0,
+      "evidence_end": 135.5
+    },
+    {
+      "src_start": 139.155,
+      "src_duration": 3.09,
+      "dur": 3.09,
+      "out_start": 23.04,
+      "sentence_index": 9,
+      "playback_speed": 1.0,
+      "evidence_start": 137.7,
+      "evidence_end": 143.7
+    }
+  ],
+  "tail_padding": 0.12,
+  "crop_focus": 0.5
+}

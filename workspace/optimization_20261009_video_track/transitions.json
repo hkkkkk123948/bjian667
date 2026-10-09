@@ -1,0 +1,78 @@
+{
+  "fps": 24,
+  "output_frames": 384,
+  "handles": [
+    {
+      "nominal_frames": 21,
+      "before": 0,
+      "after": 2
+    },
+    {
+      "nominal_frames": 27,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 48,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 96,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 96,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 96,
+      "before": 1,
+      "after": 0
+    }
+  ],
+  "transitions": [
+    {
+      "index": 1,
+      "boundary_frame": 21,
+      "start_frame": 20,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 2,
+      "boundary_frame": 48,
+      "start_frame": 47,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 3,
+      "boundary_frame": 96,
+      "start_frame": 95,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 4,
+      "boundary_frame": 192,
+      "start_frame": 191,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 5,
+      "boundary_frame": 288,
+      "start_frame": 287,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    }
+  ]
+}

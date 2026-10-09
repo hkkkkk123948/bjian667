@@ -1,0 +1,78 @@
+{
+  "title": "旅馆里的老太太",
+  "source": "D:\\惊悚短片剪辑\\测试素材文件夹\\原片\\3 True Horror Stories Animated [F35JDpVZ27Y].mp4",
+  "story_logic": "女孩住旅馆被窥视→上楼撞见啃生肉的老太→妹妹也走向危险→男人救走三人→回想老太早就在门外",
+  "reviewer": "Codex直接检查源片分镜并编排",
+  "sentences": [
+    {
+      "text": "女孩的房门外，藏着一个东西。",
+      "role": "hook",
+      "evidence_start": 324.0,
+      "evidence_end": 331.5,
+      "visual": "前景是门边阴影，门内女孩趴在床上看电脑"
+    },
+    {
+      "text": "她带着两个妹妹住进旅馆，完全没发现异常。",
+      "role": "context",
+      "evidence_start": 298.0,
+      "evidence_end": 302.8,
+      "visual": "三名女孩在同一客房的床上"
+    },
+    {
+      "text": "趁妹妹们玩耍，她独自爬上楼梯找吃的。",
+      "role": "context",
+      "evidence_start": 340.0,
+      "evidence_end": 346.8,
+      "visual": "女孩沿楼梯上楼，来到上层门口"
+    },
+    {
+      "text": "可厨房的老太太，正抱着一块生肉啃。",
+      "role": "escalation",
+      "evidence_start": 357.0,
+      "evidence_end": 365.5,
+      "visual": "老太背对镜头靠着冰箱吃红色生肉"
+    },
+    {
+      "text": "女孩刚想后退，老太太却慢慢转过了头。",
+      "role": "escalation",
+      "evidence_start": 371.5,
+      "evidence_end": 376.1,
+      "visual": "老太回头，女孩站在后方门口"
+    },
+    {
+      "text": "满是血的嘴，竟然冲着她笑了起来。",
+      "role": "twist",
+      "evidence_start": 383.4,
+      "evidence_end": 390.5,
+      "visual": "老太面部特写，从凝视转为咧嘴笑"
+    },
+    {
+      "text": "两个妹妹也跟了上来，正好撞见这一幕。",
+      "role": "escalation",
+      "evidence_start": 394.9,
+      "evidence_end": 397.6,
+      "visual": "两个孩子从楼梯下方仰望楼上"
+    },
+    {
+      "text": "男人赶紧抱起女孩，把她们全部带了出去。",
+      "role": "payoff",
+      "evidence_start": 405.0,
+      "evidence_end": 410.1,
+      "visual": "男人抱着女孩，两个孩子惊慌站在后方"
+    },
+    {
+      "text": "等到警车赶来，女孩才想起一件事。",
+      "role": "context",
+      "evidence_start": 411.2,
+      "evidence_end": 414.0,
+      "visual": "旅馆外停下红蓝警灯闪烁的警车"
+    },
+    {
+      "text": "自己趴在床上时，那个老太太就已经站在门外。",
+      "role": "payoff",
+      "evidence_start": 423.1,
+      "evidence_end": 429.6,
+      "visual": "回忆画面，门外老太看着床上的女孩"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "path": "D:\\惊悚短片剪辑\\workspace\\optimization_20261009_smooth\\20261009_001504_2cfe45\\02_林地女孩_流畅剪辑_无字幕预览.mp4",
+  "sha256": "93b00b06f7673691f7efe7407e9a4fb2f58778c9d62c5e2c258a497c7bc94d65",
+  "status": "pass",
+  "issues": [],
+  "duration": 38.508,
+  "decode_exit": 0,
+  "decode_errors": "",
+  "video_duration": 38.5,
+  "audio_duration": 38.508,
+  "integrated_lufs": "-15.99",
+  "true_peak_dbtp": "-1.81",
+  "black_periods": [],
+  "timeline": {
+    "issues": [],
+    "output_duration": 38.507875,
+    "segment_count": 8
+  },
+  "pacing": {
+    "rendered_shots": 7,
+    "short_shots": [],
+    "context_joins": 1
+  },
+  "alignment": {
+    "policy": "measured_speech_v1",
+    "source": "local_asr_interpolated",
+    "audio_clock": true,
+    "confidence": "medium",
+    "matched_ratio": 0.9591078066914498,
+    "uncertain_spans": [
+      {
+        "kind": "replace",
+        "start_char": 21,
+        "end_char": 22,
+        "expected": "他",
+        "recognized": "她"
+      },
+      {
+        "kind": "replace",
+        "start_char": 38,
+        "end_char": 39,
+        "expected": "林",
+        "recognized": "灵"
+      },
+      {
+        "kind": "replace",
+        "start_char": 83,
+        "end_char": 85,
+        "expected": "块状",
+        "recognized": "快装"
+      },
+      {
+        "kind": "replace",
+        "start_char": 90,
+        "end_char": 92,
+        "expected": "一场",
+        "recognized": "异常"
+      },
+      {
+        "kind": "replace",
+        "start_char": 130,
+        "end_char": 131,
+        "expected": "像",
+        "recognized": "想"
+      },
+      {
+        "kind": "replace",
+        "start_char": 138,
+        "end_char": 139,
+        "expected": "时",
+        "recognized": "是"
+      },
+      {
+        "kind": "insert",
+        "start_char": 151,
+        "end_char": 151,
+        "expected": "",
+        "recognized": "输"
+      },
+      {
+        "kind": "insert",
+        "start_char": 162,
+        "end_char": 162,
+        "expected": "",
+        "recognized": "女孩"
+      },
+      {
+        "kind": "replace",
+        "start_char": 199,
+        "end_char": 200,
+        "expected": "目",
+        "recognized": "募"
+      },
+      {
+        "kind": "replace",
+        "start_char": 235,
+        "end_char": 236,
+        "expected": "历",
+        "recognized": "力"
+      },
+      {
+        "kind": "replace",
+        "start_char": 254,
+        "end_char": 255,
+        "expected": "木",
+        "recognized": "牧"
+      }
+    ],
+    "word_count": 254,
+    "character_count": 269,
+    "silence_gaps": [],
+    "within_word_interpolation": true,
+    "provider_fallback_reason": "incomplete_provider_text",
+    "audio_duration": 38.507875,
+    "asr_model": "small",
+    "asr_audio_sha256": "ce3eab9da2c36000a6645a883454ff60d0079de851b91a0d99f228729f3754f0"
+  },
+  "note": "机器审计只验证文件、响度、黑场和剪辑区间；故事及听感需要审阅。"
+}

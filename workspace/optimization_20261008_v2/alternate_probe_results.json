@@ -1,0 +1,53 @@
+[
+  {
+    "model": "deepseek/deepseek-v4.1-flash",
+    "data": {
+      "frames": [
+        "图1：夜晚蓝房前，一人站屋顶用工具，梯靠墙，两人在门口，一人开门。",
+        "图2：灰发人背对冰箱，手按脸部，冰箱门敞开，内有白色搁板。"
+      ]
+    },
+    "usage": {
+      "prompt_tokens": 456,
+      "completion_tokens": 55,
+      "total_tokens": 511,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 456
+    },
+    "elapsed": 5.42,
+    "ok": true
+  },
+  {
+    "model": "zhenzhen/gm-3.8-flash",
+    "ok": false,
+    "error": "model returned non-json: {\n  \"frames\": [",
+    "elapsed": 12.06
+  },
+  {
+    "model": "qwen/qwen3.6-flash",
+    "data": {
+      "frames": [
+        "夜晚，两人站在屋前台阶上，一人正攀爬梯子走向屋顶。",
+        "灰发人物手持红色物体，探身查看空荡荡的冰箱内部。"
+      ]
+    },
+    "usage": {
+      "prompt_tokens": 227,
+      "completion_tokens": 572,
+      "total_tokens": 799,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 227,
+      "completion_tokens_details": {
+        "reasoning_tokens": 519
+      }
+    },
+    "elapsed": 5.83,
+    "ok": true
+  }
+]

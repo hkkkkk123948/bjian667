@@ -1,0 +1,204 @@
+{
+  "workspace": "workspace",
+  "providers": {
+    "video_analysis": {
+      "type": "openai",
+      "base_url": "https://api.seedance.nz/v1",
+      "api_key": "sk-NX2BC2srHPjL6h8y7e2hSR5xgskAzDCA3LFjGUgEZVzsBZOo",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "backup_models": [],
+      "timeout": 120,
+      "max_retry": 1,
+      "max_tokens": 2000,
+      "thinking": {
+        "type": "disabled"
+      }
+    },
+    "story_analysis": {
+      "type": "openai",
+      "base_url": "https://api.seedance.nz/v1",
+      "api_key": "sk-NX2BC2srHPjL6h8y7e2hSR5xgskAzDCA3LFjGUgEZVzsBZOo",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "backup_models": [],
+      "timeout": 120,
+      "max_retry": 1,
+      "max_tokens": 2000,
+      "thinking": {
+        "type": "disabled"
+      }
+    },
+    "reference_analysis": {
+      "type": "openai",
+      "base_url": "https://api.seedance.nz/v1",
+      "api_key": "sk-NX2BC2srHPjL6h8y7e2hSR5xgskAzDCA3LFjGUgEZVzsBZOo",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "backup_models": [],
+      "timeout": 120,
+      "max_retry": 1,
+      "max_tokens": 2000,
+      "thinking": {
+        "type": "disabled"
+      }
+    },
+    "script_generation": {
+      "type": "openai",
+      "base_url": "https://api.seedance.nz/v1",
+      "api_key": "sk-NX2BC2srHPjL6h8y7e2hSR5xgskAzDCA3LFjGUgEZVzsBZOo",
+      "model": "zhenzhen/g5.6-sol",
+      "backup_models": [],
+      "timeout": 120,
+      "max_retry": 1,
+      "max_tokens": 2000,
+      "temperature": 0.5
+    },
+    "match_judge": {
+      "type": "openai",
+      "base_url": "https://api.seedance.nz/v1",
+      "api_key": "sk-NX2BC2srHPjL6h8y7e2hSR5xgskAzDCA3LFjGUgEZVzsBZOo",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "backup_models": [],
+      "timeout": 120,
+      "max_retry": 1,
+      "max_tokens": 2000,
+      "thinking": {
+        "type": "disabled"
+      }
+    },
+    "qc": {
+      "type": "openai",
+      "base_url": "https://api.seedance.nz/v1",
+      "api_key": "sk-NX2BC2srHPjL6h8y7e2hSR5xgskAzDCA3LFjGUgEZVzsBZOo",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "backup_models": [],
+      "timeout": 120,
+      "max_retry": 1,
+      "max_tokens": 2000,
+      "thinking": {
+        "type": "disabled"
+      }
+    }
+  },
+  "tts": {
+    "type": "bailian",
+    "voice": "N1",
+    "speed": 1.2,
+    "api_key": "sk-ws-H.PEMIIXY.Qvi7.MEUCIQC4Jpu602xe_82k5dMzalHdP0Y6wqUhWxLYHWcDLGlTcwIgeSCmfa_QVQXsNcqLaFC1CZOO45Onye_sqcLDhIJRkcg",
+    "base_url": "https://dashscope.aliyuncs.com",
+    "model": "qwen3-tts-flash",
+    "rate": "",
+    "volume": "",
+    "language": "",
+    "emotion": "",
+    "voices": [
+      {
+        "name": "N1",
+        "voice_id": "cosyvoice-v2-n1-9f5b5ed6329545829202f3ceb8ec71e0",
+        "model": "cosyvoice-v2"
+      }
+    ]
+  },
+  "judge": {
+    "type": "openai",
+    "base_url": "https://ai.t8star.org/v1",
+    "api_key": "sk-86iOVkl1btTKGSbKJOPo7o3FIrvTbBqLAZUG1Fp1ADJzHTxg",
+    "model": "gemini-3.1-flash-lite-preview",
+    "timeout": 300,
+    "max_retry": 1
+  },
+  "judge_weights": {
+    "match": 0.3,
+    "visual": 0.2,
+    "story": 0.2,
+    "copy": 0.15,
+    "pacing": 0.1,
+    "originality": 0.05
+  },
+  "asr": {
+    "base_url": "https://ai.t8star.org/v1",
+    "api_key": "sk-86iOVkl1btTKGSbKJOPo7o3FIrvTbBqLAZUG1Fp1ADJzHTxg",
+    "model": "whisper-1",
+    "language": "auto"
+  },
+  "ytdlp": {
+    "proxy": "http://127.0.0.1:10809"
+  },
+  "params": {
+    "min_duration": 16,
+    "max_duration": 35,
+    "min_match": 85.0,
+    "max_clips": 1,
+    "candidate_pool": 3,
+    "scripts_per_candidate": 3,
+    "script_candidates": 6,
+    "analyze_max_candidates": 2,
+    "rewrite_margin": 8,
+    "max_rewrite_attempts": 0,
+    "review_mode": "auto",
+    "content_mode": "creative",
+    "creative_strategy": "visual_story",
+    "sentence_tts": "off",
+    "voice_mode": "continuous",
+    "narration_audit": "local",
+    "narration_audit_model": "small",
+    "tts_content_retries": 1,
+    "visual_motion": "on",
+    "motion_oversample": 3,
+    "short_transitions": "on",
+    "transition_duration": 0.125,
+    "picture_enhance": "on",
+    "max_freeze_seconds": 0.7,
+    "story_complexity": "simple",
+    "approved_plan_reuse": "off",
+    "director_overview_frames": 48,
+    "director_detail_frames": 40,
+    "director_rewrite_attempts": 1,
+    "qc_semantic_min": 80,
+    "reference_local_only": "on",
+    "sound_design": "on",
+    "sound_bed_db": -32.0,
+    "aspect_ratio": "auto",
+    "target_width": 1080,
+    "target_height": 1920,
+    "crop_focus": 0.5,
+    "bg_volume": 0.0,
+    "voice_volume": 1.0,
+    "scene_threshold": 0.35,
+    "frame_l1_fps": 0.5,
+    "frame_l2_fps": 4.0,
+    "frame_l3_fps": 8.0,
+    "max_l1_frames": 1800,
+    "transcribe": "force",
+    "whisper_model": "small",
+    "visual_frames_per_scene": 1,
+    "visual_batch_scenes": 6,
+    "visual_workers": 3,
+    "language": "zh",
+    "subtitle_font": "Microsoft YaHei",
+    "subtitle_fontsize": 64,
+    "dedupe_threshold": 0.72,
+    "gate2_drop_tolerance": 8.0,
+    "llm_cache": "on",
+    "transcribe_full": "auto",
+    "window_transcribe_min": 1200,
+    "window_transcribe_pad": 3.0,
+    "mine_prompt_chars": 24000,
+    "reframe_faces": "on",
+    "normalize_loudness": "on",
+    "cleanup_frames": "on",
+    "match_workers": 3,
+    "gate_fallback": "off",
+    "story_rebuild": "off",
+    "ocr": "auto",
+    "pre_tts_compress": "on",
+    "remove_subtitles": "off",
+    "subtitle_band": 0.16,
+    "auto_crop_black": "on",
+    "llm_price_input": 0.0,
+    "llm_price_output": 0.0,
+    "scene_align": "off",
+    "prefer_nvenc": "off",
+    "comment_hook_text": "忘记带玫瑰花了",
+    "comment_hook_position": "auto"
+  },
+  "reference_example": "女孩被杀手杰森抓住了，一进来就听见渗人的嚎叫。她看着里面的房子，全部都是被行刑人居住的地方。里面全是各种各样的行刑工具，房间里面到处都是番茄汁。现在轮到女孩了，她不知道该怎么办，整个人被吓坏了，只能期待有人救她出去。"
+}

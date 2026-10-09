@@ -1,0 +1,33 @@
+{
+  "status": "pass",
+  "issues": [],
+  "warnings": [
+    {
+      "expected": "她",
+      "actual": "他"
+    },
+    {
+      "expected": "巷",
+      "actual": "想"
+    },
+    {
+      "expected": "了",
+      "actual": "的"
+    },
+    {
+      "expected": "她",
+      "actual": "他"
+    },
+    {
+      "expected": "她",
+      "actual": "他"
+    }
+  ],
+  "expected_text": "这三个女孩被一个白发怪人盯上了她们赶紧往后巷跑躲到了垃圾箱后面女孩以为安全了旁边的铁门却慢慢开了一只满是尖指甲的手从门缝里伸了进来紧接着怪人探出了头吓得她们再次逃跑她们逃进仓库可那个怪人又追到了门外女孩正不知道怎么办一个男人推门走了进来他救出女孩们警察接着来问黑发女孩情况",
+  "recognized_text": "这三个女孩被一个白发怪人盯上了他们赶紧往后想跑躲到了垃圾箱后面女孩以为安全了旁边的铁门却慢慢开了一只满是尖指甲的手从门缝里伸的进来紧接着怪人探出了头吓得他们再次逃跑他们逃进仓库可那个怪人又追到了门外女孩正不知道怎么办一个男人推门走了进来他救出女孩们警察接着来问黑发女孩情况",
+  "method": "local_asr_script_comparison",
+  "audio_edits": [],
+  "audio_sha256": "874f24e84bf1d6ba1ff1ffacd14367331555f41dc97e942c91a85cae74406fea",
+  "asr_model": "large-v3-turbo",
+  "model_tokens": 0
+}

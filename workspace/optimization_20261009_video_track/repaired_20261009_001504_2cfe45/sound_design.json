@@ -1,0 +1,18 @@
+{
+  "path": "D:\\惊悚短片剪辑\\workspace\\optimization_20261009_video_track\\repaired_20261009_001504_2cfe45\\soundbed.wav",
+  "rms_db": -32.0,
+  "cues": [
+    {
+      "time": 14.528890493273543,
+      "role": "escalation",
+      "sound": "low_pulse"
+    },
+    {
+      "time": 28.81997450672646,
+      "role": "twist",
+      "sound": "low_pulse"
+    }
+  ],
+  "origin": "locally_synthesized_original",
+  "duration": 38.507875
+}

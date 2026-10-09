@@ -1,0 +1,68 @@
+{
+  "source_sha256": "a29b90f6a67f2e140bd9c9b39c6bc752779a05d746565816e8fcd91ae979a2aa",
+  "source_size": 71195018,
+  "version": "simple_story_v2",
+  "review_basis": "根据已审查原片与参考示例简化；本轮送审版",
+  "script": {
+    "title": "门外的陌生人",
+    "story_logic": "女孩被陌生人纠缠→窥窗发现屋顶同伙→报警获救",
+    "sentences": [
+      {
+        "text": "女孩独自在家，门外突然来了两个陌生人。",
+        "role": "hook",
+        "evidence_start": 59.1,
+        "evidence_end": 62.3,
+        "visual": "猫眼中女孩的蓝色眼睛"
+      },
+      {
+        "text": "两个人衣服破烂，一直对着门里面笑。",
+        "role": "hook",
+        "evidence_start": 63.0,
+        "evidence_end": 66.3,
+        "visual": "门外破衣女人和孩子并肩站着"
+      },
+      {
+        "text": "女孩不敢开门，只能隔着门跟他们说话。",
+        "role": "context",
+        "evidence_start": 76.0,
+        "evidence_end": 84.8,
+        "visual": "女孩靠近关着的房门说话"
+      },
+      {
+        "text": "见对方一直不肯走，她就退到窗边往外看。",
+        "role": "escalation",
+        "evidence_start": 98.0,
+        "evidence_end": 104.0,
+        "visual": "女孩在窗帘前弯腰警惕观察"
+      },
+      {
+        "text": "她掀开百叶窗，才发现外面还有一个人。",
+        "role": "context",
+        "evidence_start": 117.0,
+        "evidence_end": 121.6,
+        "visual": "女孩掀开窗户百叶向外看"
+      },
+      {
+        "text": "那个男人架着梯子，已经爬到了她家的房顶。",
+        "role": "twist",
+        "evidence_start": 122.3,
+        "evidence_end": 128.0,
+        "visual": "一个男人沿着梯子爬上屋顶"
+      },
+      {
+        "text": "原来门口的两个人，是在帮他拖住女孩。",
+        "role": "payoff",
+        "evidence_start": 129.0,
+        "evidence_end": 135.5,
+        "visual": "全景同时显示门口母子和屋顶入侵者"
+      },
+      {
+        "text": "女孩赶紧报警，直到警车赶来才躲过这一劫。",
+        "role": "payoff",
+        "evidence_start": 137.7,
+        "evidence_end": 143.7,
+        "visual": "住宅街道出现红蓝灯闪烁的警车"
+      }
+    ]
+  }
+}

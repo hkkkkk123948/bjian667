@@ -1,0 +1,71 @@
+[
+  {
+    "file": "01_门外的陌生人.mp4",
+    "job_id": "20261008_203342_9ef7ee",
+    "duration": 20.761,
+    "voice_speed": 1.2,
+    "audio_mode": "single_continuous_synthesis",
+    "audio_edits": [],
+    "audio_preserved_sha256": "c39907ed79db6ab94302038e3fb5a065cf2836630e333415ad03c93f11321a83",
+    "audio_byte_identical_to_tts": true,
+    "llm_tokens": 0,
+    "generation_path": "cli.py run → 内置原片哈希复用 → 整段TTS → 动态剪辑 → 文件质检",
+    "motion_styles": [
+      "pan_left",
+      "pan_right",
+      "push_in"
+    ],
+    "freeze_seconds": [
+      0.35,
+      0.35
+    ],
+    "sha256": "4f933880294262cc68c5d69c55b2d9ef8af5d6f4d6a54b3fd8018bf0d23a1681"
+  },
+  {
+    "file": "02_旅馆里的老太太.mp4",
+    "job_id": "20261008_203342_a3efdd",
+    "duration": 20.75,
+    "voice_speed": 1.2,
+    "audio_mode": "single_continuous_synthesis",
+    "audio_edits": [],
+    "audio_preserved_sha256": "1870b89b8040697f2910440b95e51c9041449cd90d04941c416fe0921a6aaaa1",
+    "audio_byte_identical_to_tts": true,
+    "llm_tokens": 0,
+    "generation_path": "cli.py run → 内置原片哈希复用 → 整段TTS → 动态剪辑 → 文件质检",
+    "motion_styles": [
+      "pan_left",
+      "pan_right",
+      "push_in"
+    ],
+    "freeze_seconds": [
+      0.35,
+      0.35,
+      0.35
+    ],
+    "sha256": "42661bf8e022fef48955fe141d64a12dfd5b811e79aee5d3b0f8320b66dc1997"
+  },
+  {
+    "file": "03_后巷里的怪人.mp4",
+    "job_id": "20261008_203342_9130ab",
+    "duration": 20.708008,
+    "voice_speed": 1.2,
+    "audio_mode": "single_continuous_synthesis",
+    "audio_edits": [],
+    "audio_preserved_sha256": "f21fcb493e7ba924c367ef613bdd6c91241b03f0508363ad2af846a50f350573",
+    "audio_byte_identical_to_tts": true,
+    "llm_tokens": 0,
+    "generation_path": "cli.py run → 内置原片哈希复用 → 整段TTS → 动态剪辑 → 文件质检",
+    "motion_styles": [
+      "pan_left",
+      "pan_right",
+      "push_in"
+    ],
+    "freeze_seconds": [
+      0.35,
+      0.35
+    ],
+    "sha256": "82b5485374f563e0308eeb2bafb05db639cf6f8acd93f82e0f455b2a1a5e66b1",
+    "qc": "failed_repeated_narration",
+    "issue": "末句警察随后赶到调查重复；待整段重合成"
+  }
+]

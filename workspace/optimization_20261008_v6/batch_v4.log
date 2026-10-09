@@ -1,0 +1,76 @@
+START 3 20261008_223129_3e2124
+→ URL_ANALYZING 
+  [  6%] 视频信息解析
+[22:31:29] INFO 使用本地视频: D:\惊悚短片剪辑\workspace\jobs\20261008_223129_3e2124\source\The voice in the walls.. (3 Scary Stories Animated) [wqQZiP2lDOY].mp4 (字幕: 无)
+✓ DOWNLOADING 
+✓ URL_ANALYZING 
+→ MEDIA_INDEXING 读取全片分镜，寻找完整故事
+  [ 18%] 建立媒体索引
+✓ MEDIA_INDEXING 
+→ STORY_MINING 从画面选有开端、危险升级与结果的故事
+  [ 29%] 故事挖掘
+[22:31:29] INFO 识别到同一原片，复用选题范围；重新看图编剧，省去全片看图请求
+[info] 识别到同一原片，复用选题范围；重新看图编剧，省去全片看图请求
+✓ STORY_MINING 
+→ REFERENCE_ANALYZED 
+  [ 41%] 参考文案分析
+✓ REFERENCE_ANALYZED 
+→ VISUAL_ANALYSIS 逐帧核实 后巷里的怪人
+  [ 24%] 原片视觉分析
+✓ VISUAL_ANALYSIS 
+→ SCRIPT_GENERATED 按事件编故事，保留画面证据
+  [ 47%] 解说脚本生成
+[info] 导演稿 仓库门后的白眼怪人: 白发怪人站在巷子里露出白眼怪笑，危险已经悄然出现三个女孩发现怪人后逃进后巷，躲到垃圾箱后不敢出声铁门缝里突然伸出一只长指甲的手，女孩们的藏身处被发现怪人紧接着从门缝探出头来，白眼和笑容让女孩更加害怕女孩隔着玻璃小心露头查看，发现白发怪人还在门外另一扇门被男人推开，三个女孩立刻迎上去向他求助男人听完求助后帮她们报警，女孩向警察讲清遭遇完成询问后，三个女孩依次从敞开的仓库门走出并安全脱险
+[22:31:59] INFO 导演稿 仓库门后的白眼怪人: 白发怪人站在巷子里露出白眼怪笑，危险已经悄然出现三个女孩发现怪人后逃进后巷，躲到垃圾箱后不敢出声铁门缝里突然伸出一只长指甲的手，女孩们的藏身处被发现怪人紧接着从门缝探出头来，白眼和笑容让女孩更加害怕女孩隔着玻璃小心露头查看，发现白发怪人还在门外另一扇门被男人推开，三个女孩立刻迎上去向他求助男人听完求助后帮她们报警，女孩向警察讲清遭遇完成询问后，三个女孩依次从敞开的仓库门走出并安全脱险
+[22:32:06] INFO 评论引导话术插在第1句后（ai_text_only）：忘记带玫瑰花了
+[info] 评论引导话术插在第1句后（ai_text_only）：忘记带玫瑰花了
+✓ MEDIA_INDEXING 
+✓ SCRIPT_GENERATED 
+✓ MATCHING 结构和证据本地检查；语义只核验一次实际成片
+✓ CANDIDATE_FILTERED 
+→ TTS_GENERATED 
+  [ 65%] TTS 配音
+[22:32:06] INFO 评论引导话术插在第1句后（cached_ai）：忘记带玫瑰花了
+[info] 评论引导话术插在第1句后（cached_ai）：忘记带玫瑰花了
+
+  0%|          | 0/3218 [00:00<?, ?frames/s]C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:42: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower median kernel implementation...
+  warnings.warn(
+C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:146: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower DTW implementation...
+  warnings.warn(
+
+ 77%|███████▋  | 2470/3218 [00:10<00:03, 227.97frames/s]C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:42: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower median kernel implementation...
+  warnings.warn(
+C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:146: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower DTW implementation...
+  warnings.warn(
+
+100%|██████████| 3218/3218 [00:13<00:00, 246.60frames/s]
+100%|██████████| 3218/3218 [00:13<00:00, 242.05frames/s]
+
+  0%|          | 0/2974 [00:00<?, ?frames/s]
+ 83%|████████▎ | 2468/2974 [00:07<00:01, 321.65frames/s]
+100%|██████████| 2974/2974 [00:09<00:00, 315.85frames/s]
+100%|██████████| 2974/2974 [00:09<00:00, 317.27frames/s]
+  [100%] TTS clip_001
+✓ TTS_GENERATED 
+→ TIMELINE_ALIGNED 
+  [ 71%] 时间轴对齐
+✓ TIMELINE_ALIGNED 
+→ RENDERING 
+  [ 76%] 画面重构与渲染
+[22:33:14] INFO 画幅自适应: 源 1920x1080 → 输出 1920x1080
+[22:33:15] INFO 检测到黑边，裁剪框: (1920, 1080, 0, 0)
+[info] 去字幕: 关闭
+[22:33:15] INFO 去字幕: 关闭
+[22:35:09] INFO 渲染证据剪辑: 10段 29.74s, 旁白使用真实句时长
+  [100%] 渲染 clip_001
+✓ RENDERING 
+→ FINAL_MATCH_CHECK 
+  [ 82%] 成片匹配复检
+✓ FINAL_MATCH_CHECK 
+→ QUALITY_CHECK 
+  [ 88%] 最终质量检查
+[22:35:36] INFO QC clip_001.mp4: fail duration=29.8 issues=['故事少于四个叙事节拍', '开头过长，危险出现太晚']
+[22:35:49] ERROR 所有成片未通过最终质检
+✓ QUALITY_CHECK 
+✗ QUALITY_CHECK 全部成片未过质检
+RESULT 3 20261008_223129_3e2124 REVIEW_REQUIRED 

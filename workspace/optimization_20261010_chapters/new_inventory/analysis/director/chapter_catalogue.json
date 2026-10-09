@@ -1,0 +1,96 @@
+{
+  "policy": "chapter_context_global_chain_v3",
+  "candidates": [
+    {
+      "title": "TRUE SCARY STORY FROM SCANDINAVIA",
+      "source_start": 4,
+      "source_end": 159,
+      "story_summary": "原片独立章节《TRUE SCARY STORY FROM SCANDINAVIA》。本章所有铺垫、遇险、应对和结果一起编写，细节以真实分镜和当前窗原声背景为准。",
+      "chapter_id": "CH01",
+      "chapter_card_frame_ids": [
+        "HUMAN_CH01"
+      ]
+    },
+    {
+      "title": "TRUE PIZZA DELIVERY MAN HORROR STORY",
+      "source_start": 168,
+      "source_end": 442,
+      "story_summary": "原片独立章节《TRUE PIZZA DELIVERY MAN HORROR STORY》。本章所有铺垫、遇险、应对和结果一起编写，细节以真实分镜和当前窗原声背景为准。",
+      "chapter_id": "CH02",
+      "chapter_card_frame_ids": [
+        "HUMAN_CH02"
+      ]
+    },
+    {
+      "title": "TRUE BLACK MAGIC HORROR STORY",
+      "source_start": 448,
+      "source_end": 612,
+      "story_summary": "原片独立章节《TRUE BLACK MAGIC HORROR STORY》。本章所有铺垫、遇险、应对和结果一起编写，细节以真实分镜和当前窗原声背景为准。",
+      "chapter_id": "CH03",
+      "chapter_card_frame_ids": [
+        "HUMAN_CH03"
+      ]
+    }
+  ],
+  "chapter_cards": [
+    {
+      "chapter_id": "CH01",
+      "title": "TRUE SCARY STORY FROM SCANDINAVIA",
+      "frame_ids": [
+        "HUMAN_CH01"
+      ],
+      "frame_times": [
+        1.5
+      ],
+      "frame_paths": [
+        "D:\\惊悚短片剪辑\\workspace\\optimization_20261010_chapters\\source_0001.50.jpg"
+      ],
+      "card_start": 0,
+      "card_end": 3.5,
+      "source_start": 4,
+      "source_end": 159,
+      "basis": "human_observed_actual_frames",
+      "boundary_precision": "human source frame inspection approximately one second"
+    },
+    {
+      "chapter_id": "CH02",
+      "title": "TRUE PIZZA DELIVERY MAN HORROR STORY",
+      "frame_ids": [
+        "HUMAN_CH02"
+      ],
+      "frame_times": [
+        164
+      ],
+      "frame_paths": [
+        "D:\\惊悚短片剪辑\\workspace\\optimization_20261010_chapters\\source_0164.00.jpg"
+      ],
+      "card_start": 161,
+      "card_end": 167,
+      "source_start": 168,
+      "source_end": 442,
+      "basis": "human_observed_actual_frames",
+      "boundary_precision": "human source frame inspection approximately one second"
+    },
+    {
+      "chapter_id": "CH03",
+      "title": "TRUE BLACK MAGIC HORROR STORY",
+      "frame_ids": [
+        "HUMAN_CH03"
+      ],
+      "frame_times": [
+        445
+      ],
+      "frame_paths": [
+        "D:\\惊悚短片剪辑\\workspace\\optimization_20261010_chapters\\source_0445.00.jpg"
+      ],
+      "card_start": 443,
+      "card_end": 447,
+      "source_start": 448,
+      "source_end": 612,
+      "basis": "human_observed_actual_frames",
+      "boundary_precision": "human source frame inspection approximately one second"
+    }
+  ],
+  "basis": "actual_chapter_cards_and_full_event_chains",
+  "source_context_is_visual_evidence": false
+}

@@ -1,0 +1,5 @@
+[02:13:28] INFO 使用本地视频: D:\惊悚短片剪辑\workspace\jobs\20261010_021328_09a764\source\02.mp4 (字幕: 无)
+[02:13:28] INFO 复用同源原声/字幕上下文，用于章节、身份和动机理解；不当镜头证据
+[02:14:47] INFO 读取真实分镜1–2/39：6张独立首中末帧，源时间由软件绑定
+[02:16:04] WARNING llm attempt 1 failed: openai http 400: {"error":{"message":"\u003c400\u003e ***.***.InvalidParameter: Model output became abnormal while generating a JSON response for response_format. The generation was aborted because the partial output may be incomplete or invalid JSON. Please retry the request or adjust your prompt or JSON schema.","type":"invalid_request_error","param":"","code":"invalid_parameter_error"}}
+[02:16:05] WARNING 第1段接口未完成，保留0段已完成文案；未完成部分可继续，已保存文案不重复生成

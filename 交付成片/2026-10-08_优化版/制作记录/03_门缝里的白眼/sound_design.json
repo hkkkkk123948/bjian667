@@ -1,0 +1,38 @@
+{
+  "path": "D:\\惊悚短片剪辑\\workspace\\jobs\\20261008_200155_6b4095\\clips\\clip_001\\soundbed.wav",
+  "rms_db": -32.0,
+  "cues": [
+    {
+      "time": 6.59,
+      "role": "escalation",
+      "sound": "low_pulse"
+    },
+    {
+      "time": 9.12,
+      "role": "escalation",
+      "sound": "low_pulse"
+    },
+    {
+      "time": 16.51,
+      "role": "twist",
+      "sound": "low_pulse"
+    },
+    {
+      "time": 18.88,
+      "role": "payoff",
+      "sound": "low_pulse"
+    },
+    {
+      "time": 22.05,
+      "role": "payoff",
+      "sound": "low_pulse"
+    },
+    {
+      "time": 24.7,
+      "role": "payoff",
+      "sound": "low_pulse"
+    }
+  ],
+  "origin": "locally_synthesized_original",
+  "duration": 27.75
+}

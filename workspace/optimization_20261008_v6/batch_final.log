@@ -1,0 +1,74 @@
+START 3 20261008_223129_3e2124
+→ TIMELINE_ALIGNED 
+  [ 71%] 时间轴对齐
+✓ TIMELINE_ALIGNED 
+→ RENDERING 
+  [ 76%] 画面重构与渲染
+[22:38:40] INFO 画幅自适应: 源 1920x1080 → 输出 1920x1080
+[22:38:41] INFO 检测到黑边，裁剪框: (1920, 1080, 0, 0)
+[info] 去字幕: 关闭
+[22:38:41] INFO 去字幕: 关闭
+[22:40:46] INFO 渲染证据剪辑: 11段 29.74s, 旁白使用真实句时长
+  [100%] 渲染 clip_001
+✓ RENDERING 
+→ FINAL_MATCH_CHECK 
+  [ 82%] 成片匹配复检
+✓ FINAL_MATCH_CHECK 
+→ QUALITY_CHECK 
+  [ 88%] 最终质量检查
+[22:41:29] INFO QC clip_001.mp4: pass duration=29.8 issues=[]
+✓ QUALITY_CHECK 
+→ DRAFT_EXPORT 
+  [ 94%] 剪映草稿导出
+[22:41:44] INFO 剪映草稿已导出: C:\Users\Administrator\AppData\Local\JianyingPro\User Data\Projects\com.lveditor.draft\clip_001_仓库门后的白眼怪人
+[22:41:44] INFO 剪映草稿导出: 1/1 部成片
+[info] 剪映草稿导出: 1/1 部成片
+✓ DRAFT_EXPORT 
+→ COMPLETED 
+  [100%] 完成
+✓ COMPLETED 
+RESULT 3 20261008_223129_3e2124 COMPLETED 
+START 1 20261008_224144_75bbfe
+→ URL_ANALYZING 
+  [  6%] 视频信息解析
+[22:41:44] INFO 使用本地视频: D:\惊悚短片剪辑\workspace\jobs\20261008_224144_75bbfe\source\3 True Horror Stories Animated [F35JDpVZ27Y].mp4 (字幕: 无)
+✓ DOWNLOADING 
+✓ URL_ANALYZING 
+→ MEDIA_INDEXING 读取全片分镜，寻找完整故事
+  [ 18%] 建立媒体索引
+✓ MEDIA_INDEXING 
+→ STORY_MINING 从画面选有开端、危险升级与结果的故事
+  [ 29%] 故事挖掘
+[info] 识别到同一原片，复用选题范围；依据已核对镜头重新编剧，省去全片看图请求
+[22:41:44] INFO 识别到同一原片，复用选题范围；依据已核对镜头重新编剧，省去全片看图请求
+✓ STORY_MINING 
+→ REFERENCE_ANALYZED 
+  [ 41%] 参考文案分析
+✓ REFERENCE_ANALYZED 
+→ VISUAL_ANALYSIS 复用已核对的镜头事实：旅馆里的老太太
+  [ 24%] 原片视觉分析
+✓ VISUAL_ANALYSIS 
+→ SCRIPT_GENERATED 按事件编故事，保留画面证据
+  [ 47%] 解说脚本生成
+[22:42:18] INFO 导演稿 楼上的危险: 女孩独自在客房看电脑时，门边的阴影让她感到不安。随后她和另外两个女孩待在同一张床上，彼此照应。为了确认楼上是否安全，女孩沿着楼梯来到上层门口。她在门内发现老太靠着冰箱，正背对自己吃红色生肉。下一刻老太直直盯住女孩，随后对着她咧嘴笑了起来。楼下两个孩子抬头望向上层，发现女孩正处在危险中。女孩见到赶来的男人便主动求助，男人抱住她并帮忙报警。警车随后赶到旅馆门外，女孩和同伴终于安全获救。
+[info] 导演稿 楼上的危险: 女孩独自在客房看电脑时，门边的阴影让她感到不安。随后她和另外两个女孩待在同一张床上，彼此照应。为了确认楼上是否安全，女孩沿着楼梯来到上层门口。她在门内发现老太靠着冰箱，正背对自己吃红色生肉。下一刻老太直直盯住女孩，随后对着她咧嘴笑了起来。楼下两个孩子抬头望向上层，发现女孩正处在危险中。女孩见到赶来的男人便主动求助，男人抱住她并帮忙报警。警车随后赶到旅馆门外，女孩和同伴终于安全获救。
+[22:42:21] ERROR 任务失败: 评论话术位置无效，未修改故事；请改用‘开场事件后’或重试
+Traceback (most recent call last):
+  File "D:\惊悚短片剪辑\factory\pipeline.py", line 146, in analyze
+    return analyze(self)
+           ^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\mining\visual_story.py", line 215, in analyze
+    return _finish(p, candidates, scenes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\mining\visual_story.py", line 247, in _finish
+    apply_comment_hook(p, variant)
+  File "D:\惊悚短片剪辑\factory\script\comment_hook.py", line 57, in apply_comment_hook
+    selected, basis = _choose_position(pipeline, variant, phrase)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\script\comment_hook.py", line 102, in _choose_position
+    raise ValueError("评论话术位置无效，未修改故事；请改用‘开场事件后’或重试")
+ValueError: 评论话术位置无效，未修改故事；请改用‘开场事件后’或重试
+✗ FAILED 评论话术位置无效，未修改故事；请改用‘开场事件后’或重试
+[22:42:21] ERROR 任务失败: 评论话术位置无效，未修改故事；请改用‘开场事件后’或重试
+[error] 任务失败: 评论话术位置无效，未修改故事；请改用‘开场事件后’或重试
+RESULT 1 20261008_224144_75bbfe FAILED 评论话术位置无效，未修改故事；请改用‘开场事件后’或重试

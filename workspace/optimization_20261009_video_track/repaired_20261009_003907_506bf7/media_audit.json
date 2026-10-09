@@ -1,0 +1,20 @@
+{
+  "path": "D:\\惊悚短片剪辑\\workspace\\optimization_20261009_video_track\\repaired_20261009_003907_506bf7\\视频轨修复预览.mp4",
+  "sha256": "d45e8aeab99407a6fbb00c4fd030e2a17bade81cc00ed8e2f67e34e99a7cafb5",
+  "status": "pass",
+  "issues": [],
+  "duration": 26.375,
+  "decode_exit": 0,
+  "decode_errors": "",
+  "video_duration": 26.375,
+  "audio_duration": 26.362,
+  "integrated_lufs": "-16.21",
+  "true_peak_dbtp": "-1.87",
+  "black_periods": [],
+  "timeline": {
+    "issues": [],
+    "output_duration": 26.362542,
+    "segment_count": 10
+  },
+  "note": "机器审计只验证文件、响度、黑场和剪辑区间；故事及听感需要审阅。"
+}

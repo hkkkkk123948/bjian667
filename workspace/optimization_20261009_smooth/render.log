@@ -1,0 +1,9 @@
+RENDER_START 20261009_003907_506bf7 beats 8 segments 9
+[13:47:41] INFO 渲染证据剪辑: 9段 26.36s, 旁白使用真实句时长
+RENDER_DONE 20261009_003907_506bf7 pass 26.375 26.362 shots 8 joins 1
+RENDER_START 20261009_001504_2cfe45 beats 7 segments 8
+[13:48:44] INFO 渲染证据剪辑: 8段 38.51s, 旁白使用真实句时长
+RENDER_DONE 20261009_001504_2cfe45 pass 38.5 38.508 shots 7 joins 1
+RENDER_START 20261008_230044_95e6cd beats 8 segments 11
+[13:49:59] INFO 渲染证据剪辑: 11段 29.58s, 旁白使用真实句时长
+RENDER_DONE 20261008_230044_95e6cd pass 29.583333 29.576 shots 10 joins 1

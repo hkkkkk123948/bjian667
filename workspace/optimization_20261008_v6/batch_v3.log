@@ -1,0 +1,264 @@
+START 3 20261008_222913_20d253
+→ URL_ANALYZING 
+  [  6%] 视频信息解析
+[22:29:14] INFO 使用本地视频: D:\惊悚短片剪辑\workspace\jobs\20261008_222913_20d253\source\The voice in the walls.. (3 Scary Stories Animated) [wqQZiP2lDOY].mp4 (字幕: 无)
+✓ DOWNLOADING 
+✓ URL_ANALYZING 
+→ MEDIA_INDEXING 读取全片分镜，寻找完整故事
+  [ 18%] 建立媒体索引
+✓ MEDIA_INDEXING 
+→ STORY_MINING 从画面选有开端、危险升级与结果的故事
+  [ 29%] 故事挖掘
+[info] 识别到同一原片，复用选题范围；重新看图编剧，省去全片看图请求
+[22:29:14] INFO 识别到同一原片，复用选题范围；重新看图编剧，省去全片看图请求
+✓ STORY_MINING 
+→ REFERENCE_ANALYZED 
+  [ 41%] 参考文案分析
+✓ REFERENCE_ANALYZED 
+→ VISUAL_ANALYSIS 逐帧核实 后巷里的怪人
+  [ 24%] 原片视觉分析
+✓ VISUAL_ANALYSIS 
+→ SCRIPT_GENERATED 按事件编故事，保留画面证据
+  [ 47%] 解说脚本生成
+[info] 导演稿 后巷逃生: 白发男人站在巷子里露出白眼怪笑，三个女孩吓得转身就逃。她们逃到后巷垃圾箱旁赶紧蹲下，缩在箱后不敢出声。铁门缝里突然伸出长指甲的手，女孩们捂住嘴不敢动弹。怪人从门缝探头露出白眼和笑容，她们只能往仓库深处退。门外出现白发背影，玻璃后一个女孩小心露出头查看。男人推开另一扇仓库门，三个女孩赶紧迎上去向他求助。警察拿笔和本子听黑发女孩讲述，另外两个女孩站在旁边。三个女孩依次从打开的门走出仓库，但怪人还没被抓到。
+[22:29:19] INFO 导演稿 后巷逃生: 白发男人站在巷子里露出白眼怪笑，三个女孩吓得转身就逃。她们逃到后巷垃圾箱旁赶紧蹲下，缩在箱后不敢出声。铁门缝里突然伸出长指甲的手，女孩们捂住嘴不敢动弹。怪人从门缝探头露出白眼和笑容，她们只能往仓库深处退。门外出现白发背影，玻璃后一个女孩小心露出头查看。男人推开另一扇仓库门，三个女孩赶紧迎上去向他求助。警察拿笔和本子听黑发女孩讲述，另外两个女孩站在旁边。三个女孩依次从打开的门走出仓库，但怪人还没被抓到。
+[22:29:21] INFO 评论引导话术插在第3句后（ai_text_only）：忘记带玫瑰花了
+[info] 评论引导话术插在第3句后（ai_text_only）：忘记带玫瑰花了
+✓ MEDIA_INDEXING 
+✓ SCRIPT_GENERATED 
+✓ MATCHING 结构和证据本地检查；语义只核验一次实际成片
+✓ CANDIDATE_FILTERED 
+→ TTS_GENERATED 
+  [ 65%] TTS 配音
+[22:29:21] INFO 评论引导话术插在第3句后（cached_ai）：忘记带玫瑰花了
+[info] 评论引导话术插在第3句后（cached_ai）：忘记带玫瑰花了
+
+  0%|          | 0/2942 [00:00<?, ?frames/s]C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:42: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower median kernel implementation...
+  warnings.warn(
+C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:146: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower DTW implementation...
+  warnings.warn(
+
+ 76%|███████▌  | 2242/2942 [00:08<00:02, 263.18frames/s]C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:42: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower median kernel implementation...
+  warnings.warn(
+C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:146: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower DTW implementation...
+  warnings.warn(
+
+100%|██████████| 2942/2942 [00:09<00:00, 316.22frames/s]
+100%|██████████| 2942/2942 [00:09<00:00, 302.29frames/s]
+  [100%] TTS clip_001
+✓ TTS_GENERATED 
+→ TIMELINE_ALIGNED 
+  [ 71%] 时间轴对齐
+✓ TIMELINE_ALIGNED 
+→ RENDERING 
+  [ 76%] 画面重构与渲染
+[22:30:05] INFO 画幅自适应: 源 1920x1080 → 输出 1920x1080
+[22:30:06] INFO 检测到黑边，裁剪框: (1920, 1080, 0, 0)
+[22:30:06] INFO 去字幕: 关闭
+[info] 去字幕: 关闭
+[22:30:06] ERROR 任务失败: command failed (4294967284): C:\ffmpeg\ffmpeg.EXE -v error -y -filter_complex_threads 1 -ss 531.399904 -t 4.100192 -i D:\惊悚短片剪辑\workspace\jobs\20261008_222913_20d253\source\The voice in the walls.. (3 Scary Stories Animated) [wqQZiP2lDOY].mp4 -filter_complex [0:v]crop=1920:1080:0:0,setpts=0.995888323*(PTS-STARTPTS),scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080:(iw-1920)*0.5000:0,setsar=1,fps=24,format=yu
+[h264 @ 000001dd3a53cbc0] get_buffer() failed
+
+[h264 @ 000001dd3a53cbc0] thread_get_buffer() failed
+
+[h264 @ 000001dd3a53cbc0] no frame!
+
+[h264 @ 000001dd3a53d280] get_buffer() failed
+
+[h264 @ 000001dd3a53d280] thread_get_buffer() failed
+
+[h264 @ 000001dd3a53d280] no frame!
+
+[fc#0 @ 000001dd3a505bc0] Error while filtering: Cannot allocate memory
+
+[h264 @ 000001dd3a53dc00] reference picture missing during reorder
+
+[h264 @ 000001dd3a53dc00] Missing reference picture, default is 0
+
+[fc#0 @ 000001dd3a505bc0] Task finished with error code: -12 (Cannot allocate memory)
+
+[fc#0 @ 000001dd3a505bc0] Terminating thread with return code -12 (Cannot allocate memory)
+
+[vost#0:0/libx264 @ 000001dd3b16f140] [enc:libx264 @ 000001dd3a4ec600] Could not open encoder before EOF
+
+[vost#0:0/libx264 @ 000001dd3b16f140] Task finished with error code: -22 (Invalid argument)
+
+[vost#0:0/libx264 @ 000001dd3b16f140] Terminating thread with return code -22 (Invalid argument)
+
+[out#0/mp4 @ 000001dd3a506e00] Nothing was written into output file, because at least one of its streams received no packets.
+
+Traceback (most recent call last):
+  File "D:\惊悚短片剪辑\factory\pipeline.py", line 202, in produce
+    self._do_render(queue)
+  File "D:\惊悚短片剪辑\factory\pipeline.py", line 723, in _do_render
+    return do_render(self, queue)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\production.py", line 228, in do_render
+    export_clip(video_path, voice, None, timeline, pipeline.config.params, out_path,
+  File "D:\惊悚短片剪辑\factory\render\exporter.py", line 31, in export_clip
+    return _export_evidence(video_path, voice_path, out_path, params, segments,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\惊悚短片剪辑\factory\render\exporter.py", line 111, in _export_evidence
+    run_cmd(args, timeout=300)
+  File "D:\惊悚短片剪辑\factory\utils.py", line 111, in run_cmd
+    raise RuntimeError(
+RuntimeError: command failed (4294967284): C:\ffmpeg\ffmpeg.EXE -v error -y -filter_complex_threads 1 -ss 531.399904 -t 4.100192 -i D:\惊悚短片剪辑\workspace\jobs\20261008_222913_20d253\source\The voice in the walls.. (3 Scary Stories Animated) [wqQZiP2lDOY].mp4 -filter_complex [0:v]crop=1920:1080:0:0,setpts=0.995888323*(PTS-STARTPTS),scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080:(iw-1920)*0.5000:0,setsar=1,fps=24,format=yu
+[h264 @ 000001dd3a53cbc0] get_buffer() failed
+
+[h264 @ 000001dd3a53cbc0] thread_get_buffer() failed
+
+[h264 @ 000001dd3a53cbc0] no frame!
+
+[h264 @ 000001dd3a53d280] get_buffer() failed
+
+[h264 @ 000001dd3a53d280] thread_get_buffer() failed
+
+[h264 @ 000001dd3a53d280] no frame!
+
+[fc#0 @ 000001dd3a505bc0] Error while filtering: Cannot allocate memory
+
+[h264 @ 000001dd3a53dc00] reference picture missing during reorder
+
+[h264 @ 000001dd3a53dc00] Missing reference picture, default is 0
+
+[fc#0 @ 000001dd3a505bc0] Task finished with error code: -12 (Cannot allocate memory)
+
+[fc#0 @ 000001dd3a505bc0] Terminating thread with return code -12 (Cannot allocate memory)
+
+[vost#0:0/libx264 @ 000001dd3b16f140] [enc:libx264 @ 000001dd3a4ec600] Could not open encoder before EOF
+
+[vost#0:0/libx264 @ 000001dd3b16f140] Task finished with error code: -22 (Invalid argument)
+
+[vost#0:0/libx264 @ 000001dd3b16f140] Terminating thread with return code -22 (Invalid argument)
+
+[out#0/mp4 @ 000001dd3a506e00] Nothing was written into output file, because at least one of its streams received no packets.
+
+
+✗ FAILED command failed (4294967284): C:\ffmpeg\ffmpeg.EXE -v error -y -filter_complex_threads 1 -ss 531.399904 -t 4.100192 -i D:\惊悚短片剪辑\workspace\jobs\20261008_222913_20d253\source\The voice in the walls.. (3 Scary Stories Animated) [wqQZiP2lDOY].mp4 -filter_complex [0:v]crop=1920:1080:0:0,setpts=0.995888323*(PTS-STARTPTS),scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080:(iw-1920)*0.5000:0,setsar=1,fps=24,format=yu
+[h264 @ 000001dd3a53cbc0] get_buffer() failed
+
+[h264 @ 000001dd3a53cbc0] thread_get_buffer() failed
+
+[h264 @ 000001dd3a53cbc0] no frame!
+
+[h264 @ 000001dd3a53d280] get_buffer() failed
+
+[h264 @ 000001dd3a53d280] thread_get_buffer() failed
+
+[h264 @ 000001dd3a53d280] no frame!
+
+[fc#0 @ 000001dd3a505bc0] Error while filtering: Cannot allocate memory
+
+[h264 @ 000001dd3a53dc00] reference picture missing during reorder
+
+[h264 @ 000001dd3a53dc00] Missing reference picture, default is 0
+
+[fc#0 @ 000001dd3a505bc0] Task finished with error code: -12 (Cannot allocate memory)
+
+[fc#0 @ 000001dd3a505bc0] Terminating thread with return code -12 (Cannot allocate memory)
+
+[vost#0:0/libx264 @ 000001dd3b16f140] [enc:libx264 @ 000001dd3a4ec600] Could not open encoder before EOF
+
+[vost#0:0/libx264 @ 000001dd3b16f140] Task finished with error code: -22 (Invalid argument)
+
+[vost#0:0/libx264 @ 000001dd3b16f140] Terminating thread with return code -22 (Invalid argument)
+
+[out#0/mp4 @ 000001dd3a506e00] Nothing was written into output file, because at least one of its streams received no packets.
+
+
+[22:30:06] ERROR 任务失败: command failed (4294967284): C:\ffmpeg\ffmpeg.EXE -v error -y -filter_complex_threads 1 -ss 531.399904 -t 4.100192 -i D:\惊悚短片剪辑\workspace\jobs\20261008_222913_20d253\source\The voice in the walls.. (3 Scary Stories Animated) [wqQZiP2lDOY].mp4 -filter_complex [0:v]crop=1920:1080:0:0,setpts=0.995888323*(PTS-STARTPTS),scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080:(iw-1920)*0.5000:0,setsar=1,fps=24,format=yu
+[h264 @ 000001dd3a53cbc0] get_buffer() failed
+
+[h264 @ 000001dd3a53cbc0] thread_get_buffer() failed
+
+[h264 @ 000001dd3a53cbc0] no frame!
+
+[h264 @ 000001dd3a53d280] get_buffer() failed
+
+[h264 @ 000001dd3a53d280] thread_get_buffer() failed
+
+[h264 @ 000001dd3a53d280] no frame!
+
+[fc#0 @ 000001dd3a505bc0] Error while filtering: Cannot allocate memory
+
+[h264 @ 000001dd3a53dc00] reference picture missing during reorder
+
+[h264 @ 000001dd3a53dc00] Missing reference picture, default is 0
+
+[error] 任务失败: command failed (4294967284): C:\ffmpeg\ffmpeg.EXE -v error -y -filter_complex_threads 1 -ss 531.399904 -t 4.100192 -i D:\惊悚短片剪辑\workspace\jobs\20261008_222913_20d253\source\The voice in the walls.. (3 Scary Stories Animated) [wqQZiP2lDOY].mp4 -filter_complex [0:v]crop=1920:1080:0:0,setpts=0.995888323*(PTS-STARTPTS),scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080:(iw-1920)*0.5000:0,setsar=1,fps=24,format=yu
+[h264 @ 000001dd3a53cbc0] get_buffer() failed
+
+[h264 @ 000001dd3a53cbc0] thread_get_buffer() failed
+
+[h264 @ 000001dd3a53cbc0] no frame!
+
+[h264 @ 000001dd3a53d280] get_buffer() failed
+
+[h264 @ 000001dd3a53d280] thread_get_buffer() failed
+
+[h264 @ 000001dd3a53d280] no frame!
+
+[fc#0 @ 000001dd3a505bc0] Error while filtering: Cannot allocate memory
+
+[h264 @ 000001dd3a53dc00] reference picture missing during reorder
+
+[h264 @ 000001dd3a53dc00] Missing reference picture, default is 0
+
+[fc#0 @ 000001dd3a505bc0] Task finished with error code: -12 (Cannot allocate memory)
+
+[fc#0 @ 000001dd3a505bc0] Terminating thread with return code -12 (Cannot allocate memory)
+
+[vost#0:0/libx264 @ 000001dd3b16f140] [enc:libx264 @ 000001dd3a4ec600] Could not open encoder before EOF
+
+[vost#0:0/libx264 @ 000001dd3b16f140] Task finished with error code: -22 (Invalid argument)
+
+[vost#0:0/libx264 @ 000001dd3b16f140] Terminating thread with return code -22 (Invalid argument)
+
+[out#0/mp4 @ 000001dd3a506e00] Nothing was written into output file, because at least one of its streams received no packets.
+
+
+[fc#0 @ 000001dd3a505bc0] Task finished with error code: -12 (Cannot allocate memory)
+
+[fc#0 @ 000001dd3a505bc0] Terminating thread with return code -12 (Cannot allocate memory)
+
+[vost#0:0/libx264 @ 000001dd3b16f140] [enc:libx264 @ 000001dd3a4ec600] Could not open encoder before EOF
+
+[vost#0:0/libx264 @ 000001dd3b16f140] Task finished with error code: -22 (Invalid argument)
+
+[vost#0:0/libx264 @ 000001dd3b16f140] Terminating thread with return code -22 (Invalid argument)
+
+[out#0/mp4 @ 000001dd3a506e00] Nothing was written into output file, because at least one of its streams received no packets.
+
+
+RESULT 3 20261008_222913_20d253 FAILED command failed (4294967284): C:\ffmpeg\ffmpeg.EXE -v error -y -filter_complex_threads 1 -ss 531.399904 -t 4.100192 -i D:\惊悚短片剪辑\workspace\jobs\20261008_222913_20d253\source\The voice in the walls.. (3 Scary Stories Animated) [wqQZiP2lDOY].mp4 -filter_complex [0:v]crop=1920:1080:0:0,setpts=0.995888323*(PTS-STARTPTS),scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080:(iw-1920)*0.5000:0,setsar=1,fps=24,format=yu
+[h264 @ 000001dd3a53cbc0] get_buffer() failed
+
+[h264 @ 000001dd3a53cbc0] thread_get_buffer() failed
+
+[h264 @ 000001dd3a53cbc0] no frame!
+
+[h264 @ 000001dd3a53d280] get_buffer() failed
+
+[h264 @ 000001dd3a53d280] thread_get_buffer() failed
+
+[h264 @ 000001dd3a53d280] no frame!
+
+[fc#0 @ 000001dd3a505bc0] Error while filtering: Cannot allocate memory
+
+[h264 @ 000001dd3a53dc00] reference picture missing during reorder
+
+[h264 @ 000001dd3a53dc00] Missing reference picture, default is 0
+
+[fc#0 @ 000001dd3a505bc0] Task finished with error code: -12 (Cannot allocate memory)
+
+[fc#0 @ 000001dd3a505bc0] Terminating thread with return code -12 (Cannot allocate memory)
+
+[vost#0:0/libx264 @ 000001dd3b16f140] [enc:libx264 @ 000001dd3a4ec600] Could not open encoder before EOF
+
+[vost#0:0/libx264 @ 000001dd3b16f140] Task finished with error code: -22 (Invalid argument)
+
+[vost#0:0/libx264 @ 000001dd3b16f140] Terminating thread with return code -22 (Invalid argument)
+
+[out#0/mp4 @ 000001dd3a506e00] Nothing was written into output file, because at least one of its streams received no packets.
+
+

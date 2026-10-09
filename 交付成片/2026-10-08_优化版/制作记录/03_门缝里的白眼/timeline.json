@@ -1,0 +1,202 @@
+{
+  "source_start": 529.2,
+  "source_duration": 27.87,
+  "narration_duration": 27.75,
+  "tts_duration": 27.75,
+  "voice_path": "D:\\惊悚短片剪辑\\workspace\\jobs\\20261008_200155_6b4095\\clips\\clip_001\\voice.wav",
+  "timing_source": "measured_sentence_audio",
+  "speed_factor": 1.0,
+  "sentence_timings": [
+    {
+      "index": 1,
+      "text": "白发怪人，盯上了三个女孩。",
+      "role": "hook",
+      "start": 0.0,
+      "end": 1.73
+    },
+    {
+      "index": 2,
+      "text": "她们拔腿就跑，一路逃进了后巷。",
+      "role": "context",
+      "start": 1.73,
+      "end": 4.1
+    },
+    {
+      "index": 3,
+      "text": "三个女孩刚躲到垃圾箱旁。",
+      "role": "context",
+      "start": 4.1,
+      "end": 6.59
+    },
+    {
+      "index": 4,
+      "text": "铁门就开了，尖指甲扒住了门缝。",
+      "role": "escalation",
+      "start": 6.59,
+      "end": 9.12
+    },
+    {
+      "index": 5,
+      "text": "下一秒，那张怪脸也探了出来。",
+      "role": "escalation",
+      "start": 9.12,
+      "end": 11.33
+    },
+    {
+      "index": 6,
+      "text": "她们逃进仓库，死死盯着那扇透光的门。",
+      "role": "context",
+      "start": 11.33,
+      "end": 13.94
+    },
+    {
+      "index": 7,
+      "text": "她隔着门上的玻璃，想看看外面。",
+      "role": "context",
+      "start": 13.94,
+      "end": 16.51
+    },
+    {
+      "index": 8,
+      "text": "怪人的脸，却又贴到了她眼前。",
+      "role": "twist",
+      "start": 16.51,
+      "end": 18.88
+    },
+    {
+      "index": 9,
+      "text": "正当她们退无可退，一个男人推门进来了。",
+      "role": "payoff",
+      "start": 18.88,
+      "end": 22.05
+    },
+    {
+      "index": 10,
+      "text": "男人救出了她们，警察也很快赶到。",
+      "role": "payoff",
+      "start": 22.05,
+      "end": 24.7
+    },
+    {
+      "index": 11,
+      "text": "可女孩回头时，门外又闪过那双白眼。",
+      "role": "payoff",
+      "start": 24.7,
+      "end": 27.75
+    }
+  ],
+  "segments": [
+    {
+      "src_start": 532.585,
+      "src_duration": 1.73,
+      "dur": 1.73,
+      "out_start": 0.0,
+      "sentence_index": 1,
+      "playback_speed": 1.0,
+      "evidence_start": 529.2,
+      "evidence_end": 537.7
+    },
+    {
+      "src_start": 542.815,
+      "src_duration": 2.37,
+      "dur": 2.37,
+      "out_start": 1.73,
+      "sentence_index": 2,
+      "playback_speed": 1.0,
+      "evidence_start": 540.0,
+      "evidence_end": 548.0
+    },
+    {
+      "src_start": 554.155,
+      "src_duration": 2.49,
+      "dur": 2.49,
+      "out_start": 4.1,
+      "sentence_index": 3,
+      "playback_speed": 1.0,
+      "evidence_start": 553.0,
+      "evidence_end": 557.8
+    },
+    {
+      "src_start": 568.485,
+      "src_duration": 2.53,
+      "dur": 2.53,
+      "out_start": 6.59,
+      "sentence_index": 4,
+      "playback_speed": 1.0,
+      "evidence_start": 565.5,
+      "evidence_end": 574.0
+    },
+    {
+      "src_start": 577.295,
+      "src_duration": 2.21,
+      "dur": 2.21,
+      "out_start": 9.12,
+      "sentence_index": 5,
+      "playback_speed": 1.0,
+      "evidence_start": 575.0,
+      "evidence_end": 581.8
+    },
+    {
+      "src_start": 601.095,
+      "src_duration": 2.61,
+      "dur": 2.61,
+      "out_start": 11.33,
+      "sentence_index": 6,
+      "playback_speed": 1.0,
+      "evidence_start": 599.0,
+      "evidence_end": 605.8
+    },
+    {
+      "src_start": 624.615,
+      "src_duration": 2.57,
+      "dur": 2.57,
+      "out_start": 13.94,
+      "sentence_index": 7,
+      "playback_speed": 1.0,
+      "evidence_start": 624.1,
+      "evidence_end": 627.7
+    },
+    {
+      "src_start": 629.915,
+      "src_duration": 2.37,
+      "dur": 2.37,
+      "out_start": 16.51,
+      "sentence_index": 8,
+      "playback_speed": 1.0,
+      "evidence_start": 628.5,
+      "evidence_end": 633.7
+    },
+    {
+      "src_start": 653.365,
+      "src_duration": 3.17,
+      "dur": 3.17,
+      "out_start": 18.88,
+      "sentence_index": 9,
+      "playback_speed": 1.0,
+      "evidence_start": 652.2,
+      "evidence_end": 657.7
+    },
+    {
+      "src_start": 668.075,
+      "src_duration": 2.65,
+      "dur": 2.65,
+      "out_start": 22.05,
+      "sentence_index": 10,
+      "playback_speed": 1.0,
+      "evidence_start": 666.5,
+      "evidence_end": 672.3
+    },
+    {
+      "src_start": 679.2,
+      "src_duration": 2.25,
+      "dur": 3.05,
+      "out_start": 24.7,
+      "sentence_index": 11,
+      "playback_speed": 0.737705,
+      "evidence_start": 679.2,
+      "evidence_end": 681.45
+    }
+  ],
+  "tail_padding": 0.12,
+  "crop_focus": 0.5
+}

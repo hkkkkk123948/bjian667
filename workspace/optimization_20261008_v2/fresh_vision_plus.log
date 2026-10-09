@@ -1,0 +1,52 @@
+→ MEDIA_INDEXING 读取全片分镜，寻找完整故事
+  [ 18%] 建立媒体索引
+✓ MEDIA_INDEXING 
+→ STORY_MINING 从画面选有开端、危险升级与结果的故事
+  [ 29%] 故事挖掘
+✓ STORY_MINING 
+→ REFERENCE_ANALYZED 
+  [ 41%] 参考文案分析
+✓ REFERENCE_ANALYZED 
+→ VISUAL_ANALYSIS 逐帧核实 超市货架后的持刀者
+  [ 24%] 原片视觉分析
+✓ VISUAL_ANALYSIS 
+→ SCRIPT_GENERATED 按事件编故事，保留画面证据
+  [ 47%] 解说脚本生成
+[20:37:16] INFO 导演稿 超市暗影: 女孩在深夜超市拿饮料时看见货架后黑影一闪。她转身查看却见男人手持金属棍从牛奶区缓步走来。女孩低头发现购物篮里多了一罐印有红色A字的饮料。男人突然举手机对准她屏幕亮起显示录音界面。女孩惊叫后退撞倒货架商品纷纷坠地。她冲向出口时口袋手机亮起收到一条署名‘你’的短信。女孩扑进车内回头看见男人已站在车门边握着长刀。
+[info] 导演稿 超市暗影: 女孩在深夜超市拿饮料时看见货架后黑影一闪。她转身查看却见男人手持金属棍从牛奶区缓步走来。女孩低头发现购物篮里多了一罐印有红色A字的饮料。男人突然举手机对准她屏幕亮起显示录音界面。女孩惊叫后退撞倒货架商品纷纷坠地。她冲向出口时口袋手机亮起收到一条署名‘你’的短信。女孩扑进车内回头看见男人已站在车门边握着长刀。
+✓ MEDIA_INDEXING 
+✓ SCRIPT_GENERATED 
+✓ MATCHING 结构和证据本地检查；语义只核验一次实际成片
+✓ CANDIDATE_FILTERED 
+→ TTS_GENERATED 
+  [ 65%] TTS 配音
+  [100%] TTS clip_001
+✓ TTS_GENERATED 
+→ TIMELINE_ALIGNED 
+  [ 71%] 时间轴对齐
+✓ TIMELINE_ALIGNED 
+→ RENDERING 
+  [ 76%] 画面重构与渲染
+[20:37:30] INFO 画幅自适应: 源 1920x1080 → 输出 1920x1080
+[20:37:30] INFO 检测到黑边，裁剪框: (1920, 1080, 0, 0)
+[info] 去字幕: 关闭
+[20:37:30] INFO 去字幕: 关闭
+[20:37:40] INFO 渲染证据剪辑: 7段 22.57s, 旁白使用真实句时长
+  [100%] 渲染 clip_001
+✓ RENDERING 
+→ FINAL_MATCH_CHECK 
+  [ 82%] 成片匹配复检
+✓ FINAL_MATCH_CHECK 
+→ QUALITY_CHECK 
+  [ 88%] 最终质量检查
+[20:37:42] INFO QC clip_001.mp4: pass duration=22.6 issues=[]
+✓ QUALITY_CHECK 
+→ DRAFT_EXPORT 
+  [ 94%] 剪映草稿导出
+[20:37:49] INFO 剪映草稿已导出: C:\Users\Administrator\AppData\Local\JianyingPro\User Data\Projects\com.lveditor.draft\clip_001_超市暗影
+[20:37:50] INFO 剪映草稿导出: 1/1 部成片
+[info] 剪映草稿导出: 1/1 部成片
+✓ DRAFT_EXPORT 
+→ COMPLETED 
+  [100%] 完成
+✓ COMPLETED 

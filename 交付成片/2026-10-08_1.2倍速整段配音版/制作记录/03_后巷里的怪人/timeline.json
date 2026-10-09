@@ -1,0 +1,168 @@
+{
+  "source_start": 529.2,
+  "source_duration": 20.82,
+  "narration_duration": 20.701,
+  "tts_duration": 20.701,
+  "voice_path": "D:\\惊悚短片剪辑\\workspace\\jobs\\20261008_203342_9130ab\\clips\\clip_001\\voice.wav",
+  "timing_source": "provider_sentence_starts_calibrated",
+  "speed_factor": 1.0,
+  "voice_playback_speed": 1.2,
+  "sentence_timings": [
+    {
+      "index": 1,
+      "text": "这三个女孩，被一个白发怪人盯上了。",
+      "role": "hook",
+      "start": 0.0,
+      "end": 2.84
+    },
+    {
+      "index": 2,
+      "text": "她们赶紧往后巷跑，躲到了垃圾箱后面。",
+      "role": "context",
+      "start": 2.84,
+      "end": 5.6
+    },
+    {
+      "index": 3,
+      "text": "女孩以为安全了，旁边的铁门却慢慢开了。",
+      "role": "escalation",
+      "start": 5.6,
+      "end": 7.16
+    },
+    {
+      "index": 4,
+      "text": "一只满是尖指甲的手，从门缝里伸了进来。",
+      "role": "escalation",
+      "start": 7.16,
+      "end": 9.88
+    },
+    {
+      "index": 5,
+      "text": "紧接着怪人探出了头，吓得她们再次逃跑。",
+      "role": "escalation",
+      "start": 9.88,
+      "end": 12.92
+    },
+    {
+      "index": 6,
+      "text": "她们逃进仓库，可那个怪人又追到了门外。",
+      "role": "context",
+      "start": 12.92,
+      "end": 14.638
+    },
+    {
+      "index": 7,
+      "text": "女孩正不知道怎么办，一个男人推门走了进来。",
+      "role": "payoff",
+      "start": 14.638,
+      "end": 17.438
+    },
+    {
+      "index": 8,
+      "text": "他把女孩们救了出来，警察随后赶到调查。",
+      "role": "payoff",
+      "start": 17.438,
+      "end": 20.7005
+    }
+  ],
+  "segments": [
+    {
+      "src_start": 532.03,
+      "src_duration": 2.84,
+      "dur": 2.84,
+      "out_start": 0.0,
+      "sentence_index": 1,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.0,
+      "motion": "push_in",
+      "evidence_start": 529.2,
+      "evidence_end": 537.7
+    },
+    {
+      "src_start": 554.02,
+      "src_duration": 2.76,
+      "dur": 2.76,
+      "out_start": 2.84,
+      "sentence_index": 2,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.0,
+      "motion": "pan_left",
+      "evidence_start": 553.0,
+      "evidence_end": 557.8
+    },
+    {
+      "src_start": 559.67,
+      "src_duration": 1.56,
+      "dur": 1.56,
+      "out_start": 5.6,
+      "sentence_index": 3,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.0,
+      "motion": "pan_right",
+      "evidence_start": 559.0,
+      "evidence_end": 561.9
+    },
+    {
+      "src_start": 568.64,
+      "src_duration": 2.72,
+      "dur": 2.72,
+      "out_start": 7.16,
+      "sentence_index": 4,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.0,
+      "motion": "pan_left",
+      "evidence_start": 566.0,
+      "evidence_end": 574.0
+    },
+    {
+      "src_start": 576.88,
+      "src_duration": 3.04,
+      "dur": 3.04,
+      "out_start": 9.88,
+      "sentence_index": 5,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.0,
+      "motion": "pan_right",
+      "evidence_start": 575.0,
+      "evidence_end": 581.8
+    },
+    {
+      "src_start": 625.041,
+      "src_duration": 1.718,
+      "dur": 1.718,
+      "out_start": 12.92,
+      "sentence_index": 6,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.0,
+      "motion": "pan_left",
+      "evidence_start": 624.1,
+      "evidence_end": 627.7
+    },
+    {
+      "src_start": 653.725,
+      "src_duration": 2.45,
+      "dur": 2.8,
+      "out_start": 14.638,
+      "sentence_index": 7,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.35,
+      "motion": "push_in",
+      "evidence_start": 652.2,
+      "evidence_end": 657.7
+    },
+    {
+      "src_start": 667.94375,
+      "src_duration": 2.9125,
+      "dur": 3.2625,
+      "out_start": 17.438,
+      "sentence_index": 8,
+      "playback_speed": 1.0,
+      "freeze_duration": 0.35,
+      "motion": "push_in",
+      "evidence_start": 666.5,
+      "evidence_end": 672.3
+    }
+  ],
+  "tail_padding": 0.12,
+  "crop_focus": 0.5
+}

@@ -1,0 +1,117 @@
+{
+  "fps": 24,
+  "output_frames": 489,
+  "handles": [
+    {
+      "nominal_frames": 65,
+      "before": 0,
+      "after": 2
+    },
+    {
+      "nominal_frames": 30,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 33,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 35,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 62,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 70,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 39,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 72,
+      "before": 1,
+      "after": 2
+    },
+    {
+      "nominal_frames": 83,
+      "before": 1,
+      "after": 0
+    }
+  ],
+  "transitions": [
+    {
+      "index": 1,
+      "boundary_frame": 65,
+      "start_frame": 64,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 2,
+      "boundary_frame": 95,
+      "start_frame": 94,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 3,
+      "boundary_frame": 128,
+      "start_frame": 127,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 4,
+      "boundary_frame": 163,
+      "start_frame": 162,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 5,
+      "boundary_frame": 225,
+      "start_frame": 224,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 6,
+      "boundary_frame": 295,
+      "start_frame": 294,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 7,
+      "boundary_frame": 334,
+      "start_frame": 333,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    },
+    {
+      "index": 8,
+      "boundary_frame": 406,
+      "start_frame": 405,
+      "duration_frames": 3,
+      "duration": 0.125,
+      "type": "fade"
+    }
+  ]
+}

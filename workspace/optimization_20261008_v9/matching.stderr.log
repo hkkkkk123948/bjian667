@@ -1,0 +1,22 @@
+[00:07:41] INFO 画幅自适应: 源 1920x1080 → 输出 1920x1080
+[00:07:42] INFO 检测到黑边，裁剪框: (1920, 1080, 0, 0)
+[00:07:42] INFO 去字幕: 关闭
+[00:08:46] INFO 渲染证据剪辑: 8段 26.03s, 旁白使用真实句时长
+[00:09:01] INFO QC clip_001.mp4: fail duration=26.0 issues=['时长异常 26.0s']
+[00:09:32] ERROR 所有成片未通过最终质检
+  0%|          | 0/2640 [00:00<?, ?frames/s]C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:42: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower median kernel implementation...
+  warnings.warn(
+C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:146: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower DTW implementation...
+  warnings.warn(
+ 80%|████████  | 2122/2640 [00:06<00:01, 326.01frames/s]C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:42: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower median kernel implementation...
+  warnings.warn(
+C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:146: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower DTW implementation...
+  warnings.warn(
+100%|██████████| 2640/2640 [00:07<00:00, 356.36frames/s]100%|██████████| 2640/2640 [00:07<00:00, 348.49frames/s]
+  0%|          | 0/2612 [00:00<?, ?frames/s] 86%|████████▌ | 2252/2612 [00:04<00:00, 548.71frames/s]100%|██████████| 2612/2612 [00:04<00:00, 545.30frames/s]100%|██████████| 2612/2612 [00:04<00:00, 546.18frames/s]
+[00:11:56] INFO 画幅自适应: 源 1920x1080 → 输出 1920x1080
+[00:11:57] INFO 检测到黑边，裁剪框: (1920, 1080, 0, 0)
+[00:11:57] INFO 去字幕: 关闭
+[00:13:01] INFO 渲染证据剪辑: 8段 26.03s, 旁白使用真实句时长
+[00:13:55] INFO 渲染证据剪辑: 10段 26.13s, 旁白使用真实句时长
+[00:14:08] INFO QC clip_001.mp4: fail duration=26.0 issues=['时长异常 26.0s']

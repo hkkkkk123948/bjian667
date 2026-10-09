@@ -1,0 +1,51 @@
+→ URL_ANALYZING 
+  [  6%] 视频信息解析
+[23:00:44] INFO 使用本地视频: D:\惊悚短片剪辑\workspace\jobs\20261008_230044_95e6cd\source\The voice in the walls.. (3 Scary Stories Animated) [wqQZiP2lDOY].mp4 (字幕: 无)
+✓ DOWNLOADING 
+✓ URL_ANALYZING 
+[info] 评论引导话术插在第1句后（user_review）：忘记带玫瑰花了
+[23:00:44] INFO 评论引导话术插在第1句后（user_review）：忘记带玫瑰花了
+✓ MEDIA_INDEXING 
+✓ SCRIPT_GENERATED 
+✓ CANDIDATE_FILTERED 
+→ TTS_GENERATED 
+  [ 65%] TTS 配音
+[23:00:44] INFO 评论引导话术插在第1句后（user_review）：忘记带玫瑰花了
+[info] 评论引导话术插在第1句后（user_review）：忘记带玫瑰花了
+
+  0%|          | 0/2957 [00:00<?, ?frames/s]C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:42: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower median kernel implementation...
+  warnings.warn(
+C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:146: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower DTW implementation...
+  warnings.warn(
+
+ 81%|████████  | 2398/2957 [00:05<00:01, 405.72frames/s]C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:42: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower median kernel implementation...
+  warnings.warn(
+C:\Users\Administrator\AppData\Local\Programs\Python\Python312\Lib\site-packages\whisper\timing.py:146: UserWarning: Failed to launch Triton kernels, likely due to missing CUDA toolkit; falling back to a slower DTW implementation...
+  warnings.warn(
+
+100%|██████████| 2957/2957 [00:06<00:00, 438.17frames/s]
+100%|██████████| 2957/2957 [00:06<00:00, 429.81frames/s]
+  [100%] TTS clip_001
+✓ TTS_GENERATED 
+→ TIMELINE_ALIGNED 
+  [ 71%] 时间轴对齐
+✓ TIMELINE_ALIGNED 
+→ RENDERING 
+  [ 76%] 画面重构与渲染
+[23:01:13] INFO 画幅自适应: 源 1920x1080 → 输出 1920x1080
+[23:01:14] INFO 检测到黑边，裁剪框: (1920, 1080, 0, 0)
+[23:01:14] INFO 去字幕: 关闭
+[info] 去字幕: 关闭
+[23:03:02] INFO 渲染证据剪辑: 11段 29.58s, 旁白使用真实句时长
+  [100%] 渲染 clip_001
+✓ RENDERING 
+→ FINAL_MATCH_CHECK 
+  [ 82%] 成片匹配复检
+✓ FINAL_MATCH_CHECK 
+→ QUALITY_CHECK 
+  [ 88%] 最终质量检查
+[23:03:24] INFO QC clip_001.mp4: pass duration=29.6 issues=[]
+[23:03:38] ERROR 所有成片未通过最终质检
+✓ QUALITY_CHECK 
+✗ QUALITY_CHECK 全部成片未过质检
+RESULT 20261008_230044_95e6cd REVIEW_REQUIRED

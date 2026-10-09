@@ -255,34 +255,43 @@ class LLMProvider:
 
     def complete_json(self, prompt, system=None, images=None, audios=None, json_mode=True, timeout=None, default=None):
         last_err = None
-        for attempt in range(max(1, self.max_retry)):
-            try:
-                text = self.complete(prompt, system=system, images=images, audios=audios,
-                                     json_mode=json_mode, timeout=timeout)
-                data = extract_json(text)
-                if data is not None:
-                    return data
-                last_err = ProviderError("model returned non-json: %s" % str(text)[:200])
-            except ProviderQuotaError:
-                raise
-            except ProviderTimeoutError:
-                raise
-            except ProviderEmptyResponseError:
-                # A higher-level caller may make one changed, justified
-                # request; nested JSON/model retries must not replay this one.
-                raise
-            except ProviderBlockedError as exc:
-                last_err = exc
-                get_logger().warning("llm 内容被拒(含后备模型): %s", str(exc)[:200])
+        modes = [True, False] if json_mode else [False]
+        for mode in modes:
+            for attempt in range(max(1, self.max_retry)):
+                try:
+                    text = self.complete(prompt, system=system, images=images, audios=audios,
+                                         json_mode=mode, timeout=timeout)
+                    data = extract_json(text)
+                    if data is not None:
+                        return data
+                    last_err = ProviderError("model returned non-json: %s" % str(text)[:200])
+                except ProviderQuotaError:
+                    raise
+                except ProviderTimeoutError:
+                    raise
+                except ProviderEmptyResponseError:
+                    # A higher-level caller may make one changed, justified
+                    # request; nested JSON/model retries must not replay this one.
+                    raise
+                except ProviderBlockedError as exc:
+                    last_err = exc
+                    get_logger().warning("llm 内容被拒(含后备模型): %s", str(exc)[:200])
+                    break
+                except Exception as exc:
+                    last_err = exc
+                    get_logger().warning("llm attempt %d failed (json_mode=%s): %s", attempt + 1, mode, exc)
+                    # response_format failures should immediately try plain text JSON
+                    if mode and any(x in str(exc).lower() for x in ("response_format", "invalid_parameter", "abnormal", "invalid json")):
+                        break
+            else:
+                continue
+            # blocked: stop all modes
+            if isinstance(last_err, ProviderBlockedError):
                 break
-            except Exception as exc:
-                last_err = exc
-                get_logger().warning("llm attempt %d failed: %s", attempt + 1, exc)
-            time.sleep(min(8.0, 1.5 * (attempt + 1)))
         if default is not None:
-            get_logger().warning("llm falling back to default: %s", last_err)
             return default
-        raise ProviderError(str(last_err))
+        raise last_err or ProviderError("complete_json failed")
+
 
     def test_connection(self):
         try:

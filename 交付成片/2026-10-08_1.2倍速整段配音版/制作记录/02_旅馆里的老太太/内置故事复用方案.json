@@ -1,0 +1,68 @@
+{
+  "source_sha256": "895afa3f856ffc3a4e6c3685a2fa9a60e629880a777160b4a9cadc1a53c46a77",
+  "source_size": 88989980,
+  "version": "simple_story_v2",
+  "review_basis": "根据已审查原片与参考示例简化；本轮送审版",
+  "script": {
+    "title": "旅馆里的老太太",
+    "story_logic": "女孩上楼撞见怪老太→妹妹也遇险→男人带走三人并报警",
+    "sentences": [
+      {
+        "text": "女孩住进旅馆，却不知道门外有人盯着她。",
+        "role": "hook",
+        "evidence_start": 324.0,
+        "evidence_end": 331.5,
+        "visual": "前景是门边阴影，门内女孩趴在床上看电脑"
+      },
+      {
+        "text": "她带着两个妹妹在房里玩，根本没有发现异常。",
+        "role": "context",
+        "evidence_start": 298.0,
+        "evidence_end": 302.8,
+        "visual": "三名女孩在同一客房的床上"
+      },
+      {
+        "text": "后来她肚子饿了，就独自爬上楼梯找吃的。",
+        "role": "context",
+        "evidence_start": 340.0,
+        "evidence_end": 346.8,
+        "visual": "女孩沿楼梯上楼，来到上层门口"
+      },
+      {
+        "text": "可厨房的老太太，正抱着一块生肉不停地啃。",
+        "role": "escalation",
+        "evidence_start": 357.0,
+        "evidence_end": 365.5,
+        "visual": "老太背对镜头靠着冰箱吃红色生肉"
+      },
+      {
+        "text": "老太太看见她，竟满嘴是血地笑了起来。",
+        "role": "twist",
+        "evidence_start": 383.4,
+        "evidence_end": 390.5,
+        "visual": "老太面部特写，从凝视转为咧嘴笑"
+      },
+      {
+        "text": "两个妹妹也跑了上来，吓得站在楼梯口不敢动。",
+        "role": "escalation",
+        "evidence_start": 394.9,
+        "evidence_end": 397.6,
+        "visual": "两个孩子从楼梯下方仰望楼上"
+      },
+      {
+        "text": "男人赶紧抱起女孩，带着三个孩子离开了这里。",
+        "role": "payoff",
+        "evidence_start": 405.0,
+        "evidence_end": 410.1,
+        "visual": "男人抱着女孩，两个孩子惊慌站在后方"
+      },
+      {
+        "text": "直到警车停在旅馆门口，她们才终于松了口气。",
+        "role": "payoff",
+        "evidence_start": 411.2,
+        "evidence_end": 414.0,
+        "visual": "旅馆外停下红蓝警灯闪烁的警车"
+      }
+    ]
+  }
+}

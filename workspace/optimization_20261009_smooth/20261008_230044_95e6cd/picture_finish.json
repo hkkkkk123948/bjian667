@@ -1,0 +1,11 @@
+{
+  "filters": "hqdn3d=0.8:0.6:1.2:0.8,unsharp=5:5:0.35:3:3:0.0",
+  "method": "mild_denoise_and_luma_sharpen",
+  "output_crf": 17,
+  "resolution_change": false,
+  "audio_stream": "copy",
+  "audio_time_edits": [],
+  "source_audio_sha256": "8de6b1aae7f140c484370f0d5536626139971426c7fc22229cfe20c7fd02014a",
+  "output_audio_sha256": "8de6b1aae7f140c484370f0d5536626139971426c7fc22229cfe20c7fd02014a",
+  "note": "轻去噪与亮度锐化，保留原始分辨率，不宣称恢复源片不存在的细节。"
+}

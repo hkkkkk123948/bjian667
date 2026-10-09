@@ -1,0 +1,117 @@
+{
+  "fps": 24,
+  "output_frames": 924,
+  "handles": [
+    {
+      "nominal_frames": 3,
+      "before": 0,
+      "after": 1
+    },
+    {
+      "nominal_frames": 42,
+      "before": 0,
+      "after": 1
+    },
+    {
+      "nominal_frames": 86,
+      "before": 0,
+      "after": 1
+    },
+    {
+      "nominal_frames": 97,
+      "before": 0,
+      "after": 1
+    },
+    {
+      "nominal_frames": 121,
+      "before": 0,
+      "after": 1
+    },
+    {
+      "nominal_frames": 134,
+      "before": 0,
+      "after": 1
+    },
+    {
+      "nominal_frames": 114,
+      "before": 0,
+      "after": 1
+    },
+    {
+      "nominal_frames": 95,
+      "before": 0,
+      "after": 1
+    },
+    {
+      "nominal_frames": 232,
+      "before": 0,
+      "after": 0
+    }
+  ],
+  "transitions": [
+    {
+      "index": 1,
+      "boundary_frame": 3,
+      "start_frame": 3,
+      "duration_frames": 1,
+      "duration": 0.041666666666666664,
+      "type": "fade"
+    },
+    {
+      "index": 2,
+      "boundary_frame": 45,
+      "start_frame": 45,
+      "duration_frames": 1,
+      "duration": 0.041666666666666664,
+      "type": "fade"
+    },
+    {
+      "index": 3,
+      "boundary_frame": 131,
+      "start_frame": 131,
+      "duration_frames": 1,
+      "duration": 0.041666666666666664,
+      "type": "fade"
+    },
+    {
+      "index": 4,
+      "boundary_frame": 228,
+      "start_frame": 228,
+      "duration_frames": 1,
+      "duration": 0.041666666666666664,
+      "type": "fade"
+    },
+    {
+      "index": 5,
+      "boundary_frame": 349,
+      "start_frame": 349,
+      "duration_frames": 1,
+      "duration": 0.041666666666666664,
+      "type": "fade"
+    },
+    {
+      "index": 6,
+      "boundary_frame": 483,
+      "start_frame": 483,
+      "duration_frames": 1,
+      "duration": 0.041666666666666664,
+      "type": "fade"
+    },
+    {
+      "index": 7,
+      "boundary_frame": 597,
+      "start_frame": 597,
+      "duration_frames": 1,
+      "duration": 0.041666666666666664,
+      "type": "fade"
+    },
+    {
+      "index": 8,
+      "boundary_frame": 692,
+      "start_frame": 692,
+      "duration_frames": 1,
+      "duration": 0.041666666666666664,
+      "type": "fade"
+    }
+  ]
+}
