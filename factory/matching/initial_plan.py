@@ -12,7 +12,91 @@ from ..script.comment_hook import story_text
 from ..script.quality import compact
 from ..utils import read_json, write_json
 
-POLICY = "real_action_frames_and_request_controls_v2"
+POLICY = "real_action_frames_and_request_controls_v3"
+
+
+def phrase_overlap(phrase, text):
+    """How much of the shorter string is a contiguous match. 1.0 means containment."""
+    left, right = compact(phrase), compact(text)
+    if not left or not right:
+        return 0.0
+    if left in right or right in left:
+        return 1.0
+    best = 0
+    for start in range(len(left)):
+        for end in range(start + 1, len(left) + 1):
+            if left[start:end] in right:
+                best = max(best, end - start)
+            else:
+                break
+    return best / min(len(left), len(right))
+
+
+def resolve_frame_ids(phrase, shot):
+    """Pick the frames whose action or observation best matches the spoken phrase."""
+    supported = {frame["frame_id"] for frame in shot.get("frames") or []}
+    best_score, best_ids = 0.0, []
+    for action in shot.get("actions") or []:
+        score = phrase_overlap(phrase, action.get("text") or "")
+        ids = [fid for fid in (action.get("frame_ids") or []) if fid in supported]
+        if ids and score > best_score:
+            best_score, best_ids = score, ids
+    if best_score < 0.45:
+        for observation in shot.get("observations") or []:
+            score = phrase_overlap(phrase, observation.get("visible") or "")
+            fid = observation.get("frame_id")
+            if fid in supported and score > best_score:
+                best_score, best_ids = score, [fid]
+    if best_score >= 0.45 and best_ids:
+        return list(dict.fromkeys(best_ids))
+    frames = shot.get("frames") or []
+    if frames:
+        mid = frames[len(frames) // 2]["frame_id"]
+        if mid in supported:
+            return [mid]
+    return []
+
+
+def frame_anchor_time(span, shot):
+    lookup = {frame["frame_id"]: float(frame["time"]) for frame in shot.get("frames") or []}
+    times = [lookup[fid] for fid in span.get("frame_ids") or [] if fid in lookup]
+    if times:
+        return sum(times) / len(times)
+    return (float(shot["start"]) + float(shot["end"])) / 2
+
+
+def anchor_window(start, end, length, anchor):
+    """Place `length` seconds inside [start, end], centered on the action frame."""
+    span = max(0.0, float(end) - float(start))
+    length = min(max(0.0, float(length)), span)
+    if length <= 0:
+        return float(start)
+    return min(float(end) - length, max(float(start), float(anchor) - length / 2))
+
+
+def place_shot_windows(start, end, items):
+    """Lay source windows inside one shot, each biased toward its action frame.
+
+    Narration order is preserved and windows do not overlap. One window is
+    simply centered on its anchor.
+    """
+    if not items:
+        return []
+    start, end = float(start), float(end)
+    room = max(0.0, end - start)
+    lengths = [min(max(0.0, float(item["length"])), room) for item in items]
+    ideals = [anchor_window(start, end, length, item.get("anchor", (start + end) / 2))
+              for item, length in zip(items, lengths)]
+    placed, cursor = [], start
+    for ideal, length in zip(ideals, lengths):
+        at = min(max(ideal, cursor), end - length)
+        placed.append(at)
+        cursor = at + length
+    for index in range(len(placed) - 2, -1, -1):
+        nxt = placed[index + 1]
+        if placed[index] + lengths[index] > nxt + 1e-9:
+            placed[index] = max(start, nxt - lengths[index])
+    return placed
 
 
 class InitialPlanError(ValueError):
@@ -92,24 +176,8 @@ def normalize_choices(data, variant, catalog):
             supported = {frame['frame_id'] for frame in lookup_shots[sid]['frames']}
             frame_ids = beat.get('frame_ids')
             if not isinstance(frame_ids, list) or not frame_ids:
-                # Models often return only shot_id+phrase; bind to catalog action frames.
-                shot = lookup_shots[sid]
-                resolved = []
-                for action in shot.get('actions') or []:
-                    action_text = compact(str(action.get('text') or ''))
-                    if action_text and (action_text in phrase or phrase in action_text):
-                        resolved.extend([fid for fid in (action.get('frame_ids') or []) if fid in supported])
-                if not resolved:
-                    for observation in shot.get('observations') or []:
-                        if phrase and phrase in compact(str(observation.get('visible') or '')):
-                            fid = observation.get('frame_id')
-                            if fid in supported:
-                                resolved.append(fid)
-                if not resolved and shot.get('frames'):
-                    mid = shot['frames'][len(shot['frames']) // 2]['frame_id']
-                    if mid in supported:
-                        resolved = [mid]
-                frame_ids = list(dict.fromkeys(resolved))
+                # Models often return only shot_id+phrase; bind to the action frame.
+                frame_ids = resolve_frame_ids(phrase, lookup_shots[sid])
             if (not isinstance(frame_ids, list) or not frame_ids
                     or any(not isinstance(fid, str) or fid not in supported for fid in frame_ids)
                     or len(set(frame_ids)) != len(frame_ids)):
@@ -160,6 +228,7 @@ def choose_shots(pipeline, candidate, variant, catalog):
         '不要按原片编号顺序硬排，不沿用旧文案证据。提到狗/刀/门/人物动作时，镜头须在该短语出现时切到对应对象和动作。'
         '每句通常1镜头，含不同关键动作时2镜头，最多3个。连续同场景尽量承接，避免几帧碎切。'
         'target_text必须逐字取自该句正文的动作或对象短语，按其在句中出现顺序列出；若相同短语重复，occurrence从1开始。'
+        '若镜头有多帧，frame_ids指向说出的那个动作，不要总选镜头正中。'
         '第一镜头同时承接句子开头语境。镜头不够则unmatched说明缺什么，不编道具、不修改文字。'
         '只返JSON {"sentences":[{"sentence_index":1,"beats":[{"target_text":"正文原短语","shot_id":"真实ID","occurrence":1,"frame_ids":["可选真实帧ID"]}]}],'
         '"unmatched":[]}。不要返回时间、分数、改稿或长解释。软件自行定位文字并绑定真实源片与配音时间。\n正文：'
@@ -260,25 +329,33 @@ def build_initial_timeline(pipeline, candidate, variant, result, catalog=None):
     totals = {}
     for span in spans:
         totals[span['shot_id']] = totals.get(span['shot_id'], 0.) + span['dur']
-    lookup, used, segments = {item['shot_id']: item for item in catalog}, {}, []
-    beginnings = {}
-    for sid, needed in totals.items():
-        shot = lookup[sid]
+    lookup = {item['shot_id']: item for item in catalog}
+    grouped = {}
+    for index, span in enumerate(spans):
+        shot = lookup[span['shot_id']]
         available = shot['end'] - shot['start']
+        needed = totals[span['shot_id']]
         if available < .1 or needed > available * 5:
             raise InitialPlanError('真实镜头%s可用%.2f秒，却需承接%.2f秒旁白；可用动作镜头不够，不能把几帧硬拉长' %
-                                   (sid, available, needed))
-        # A whole shot observation proves its sampled middle most strongly.
-        # Use the centre excerpt rather than blindly starting at its opening.
-        beginnings[sid] = shot['start'] + max(0., available - min(available, needed)) / 2
-    for span in spans:
+                                   (span['shot_id'], available, needed))
+        length = min(1., available / needed) * span['dur']
+        grouped.setdefault(span['shot_id'], []).append(
+            {'index': index, 'length': length, 'anchor': frame_anchor_time(span, shot)})
+    starts = {}
+    for sid, items in grouped.items():
+        shot = lookup[sid]
+        for item, start in zip(items, place_shot_windows(shot['start'], shot['end'], items)):
+            starts[item['index']] = start
+    segments = []
+    for index, span in enumerate(spans):
         shot = lookup[span['shot_id']]
-        length = min(1., (shot['end'] - shot['start']) / totals[span['shot_id']]) * span['dur']
-        start = beginnings[span['shot_id']] + used.get(span['shot_id'], 0.)
-        used[span['shot_id']] = used.get(span['shot_id'], 0.) + length
+        length = next(item['length'] for item in grouped[span['shot_id']] if item['index'] == index)
+        start = starts[index]
         role = ''
-        if 0 <= int(span['sentence_index']) < len(variant.sentences):
-            role = getattr(variant.sentences[int(span['sentence_index'])], 'role', '') or ''
+        for sentence in variant.sentences:
+            if sentence.index == span['sentence_index']:
+                role = getattr(sentence, 'role', '') or ''
+                break
         segments.append({**span, 'src_start': start, 'src_duration': length,
                          'evidence_start': shot['start'], 'evidence_end': shot['end'],
                          'playback_speed': length / span['dur'], 'freeze_duration': 0.,

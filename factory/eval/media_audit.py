@@ -4,7 +4,7 @@ import json
 import re
 from pathlib import Path
 
-from ..utils import ffmpeg_bin, run_cmd, read_json, write_json, media_duration
+from ..utils import ffmpeg_bin, ffprobe_bin, run_cmd, read_json, write_json, media_duration
 from .judge import audit_timeline
 
 
@@ -24,8 +24,11 @@ def audit_media(path, timeline=None):
     blacks = re.findall(r"black_start:([\d.]+) black_end:([\d.]+) black_duration:([\d.]+)", blacklog or "")
     provenance = audit_timeline(timeline)
     duration = media_duration(path)
-    out,_,_ = run_cmd(['ffprobe','-v','error','-show_entries','stream=codec_type,duration','-of','json',str(path)],timeout=60)
-    streams = json.loads(out).get('streams',[])
+    out,_,_ = run_cmd([ffprobe_bin(),'-v','error','-show_entries','stream=codec_type,duration','-of','json',str(path)],timeout=60)
+    try:
+        streams = json.loads(out or '{}').get('streams', [])
+    except json.JSONDecodeError:
+        streams = []
     video_duration = next((float(s['duration']) for s in streams if s.get('codec_type')=='video' and s.get('duration') not in (None,'N/A')),None)
     audio_duration = next((float(s['duration']) for s in streams if s.get('codec_type')=='audio' and s.get('duration') not in (None,'N/A')),None)
     issues = list(provenance["issues"])

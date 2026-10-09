@@ -19,6 +19,25 @@ BLOCK_PATTERNS = {
 }
 
 
+def apply_model_budget(body, model):
+    """Keep DeepSeek from spending the output budget on hidden reasoning.
+
+    An explicit thinking setting or a caller-chosen max_tokens is left alone.
+    Missing budgets get a JSON-sized ceiling instead of a truncated story.
+    """
+    if "deepseek" not in str(model or "").lower():
+        return body
+    thinking = body.get("thinking")
+    thinking_on = body.get("enable_thinking") is True or (
+        isinstance(thinking, dict) and thinking.get("type") not in (None, "disabled", False))
+    if not thinking_on:
+        body["enable_thinking"] = False
+        if not isinstance(thinking, dict):
+            body["thinking"] = {"type": "disabled"}
+    body.setdefault("max_tokens", 4096)
+    return body
+
+
 def _is_blocked(text):
     low = (text or "").lower()
     return any(p in low for p in BLOCK_PATTERNS)
@@ -74,6 +93,7 @@ class OpenAICompatProvider(LLMProvider):
         for option in ("max_tokens", "thinking", "enable_thinking", "reasoning_effort"):
             if option in self.conf:
                 body[option] = self.conf[option]
+        apply_model_budget(body, model)
         if json_mode:
             body["response_format"] = {"type": "json_object"}
         resp = requests.post(self.endpoint(), headers=headers, json=body, timeout=timeout or self.timeout)
@@ -125,29 +145,16 @@ class OpenAICompatProvider(LLMProvider):
     def _complete(self, prompt, system=None, images=None, audios=None, json_mode=False, timeout=None):
         models = self._models()
         last = None
-        budget_retries = 0
         for model in models:
-            attempts = max(1, int(self.max_retry)) + 2  # extra room for SSL / length
+            attempts = max(1, int(self.max_retry)) + 2  # extra room for SSL / JSON
             for attempt in range(attempts):
                 try:
                     return self._request(model, prompt, system, images, json_mode, timeout, audios=audios)
                 except ProviderQuotaError:
                     raise
-                except ProviderEmptyResponseError as exc:
-                    # Reasoning models often burn a tiny max_tokens budget on thinking.
-                    if exc.budget_exhausted and budget_retries < 2:
-                        budget_retries += 1
-                        current = int(self.conf.get("max_tokens") or 512)
-                        boosted = min(8192, max(current * 2, current + 512, 1024))
-                        self.conf["max_tokens"] = boosted
-                        self.conf["enable_thinking"] = False
-                        if "thinking" in self.conf:
-                            self.conf["thinking"] = {"type": "disabled"}
-                        get_logger().warning(
-                            "模型 %s 输出预算耗尽(finish=length)，提高 max_tokens %s→%s 并关闭思考后重试",
-                            model, current, boosted)
-                        last = exc
-                        continue
+                except ProviderEmptyResponseError:
+                    # A higher-level caller may make one changed request. Replaying
+                    # the same prompt here would bill twice and skip that control.
                     raise
                 except requests.Timeout as exc:
                     raise ProviderTimeoutError("模型接口等待响应超时（%.0f秒）。已保存的内容可继续使用，请续跑未完成部分。" %

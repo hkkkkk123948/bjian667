@@ -9,9 +9,12 @@ from ..providers.tts.base import write_wav
 # Role → layered cue kinds. All tones are synthesized locally (no borrowed music).
 _ROLE_CUES = {
     "hook": ("door_pulse",),
+    "setup": ("door_pulse",),
+    "context": ("whoosh",),
     "escalation": ("heartbeat", "whoosh"),
     "twist": ("whoosh", "hit", "heartbeat"),
     "payoff": ("hit", "door_pulse"),
+    "ending": ("hit", "door_pulse"),
     "爆点": ("whoosh", "hit"),
     "转折": ("whoosh", "hit", "heartbeat"),
 }

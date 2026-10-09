@@ -59,4 +59,18 @@ python cli.py render-plan "方案.json"
 
 任务保存在 `workspace/jobs/<job_id>/`：`job.json` 保存状态，`analysis/` 保存章节、文案与真实分镜，`clips/<clip_id>/` 保存完整配音、时间轴和 MP4。失败的实际匹配不会冒充通过；已导出文件与问题报告保留。
 
+## 三条样片
+
+原片在 `测试素材文件夹/原片`，参考文案是 `测试素材文件夹/示例参考文案.txt`。每条源片做一条成片。本机需要 FFmpeg，以及 `workspace/config.json` 里已经填好的接口。若原片仍是 Git LFS 指针，先在仓库根目录执行 `git lfs pull`。
+
+在可交互终端里运行。`--mode semi` 会停下来等你看文案；输入 `y` 通过后再配音和导出。
+
+```powershell
+python cli.py run "测试素材文件夹/原片/3 True Horror Stories Animated [sChF5ilNHaM].mp4" --refs "测试素材文件夹/示例参考文案.txt" --mode semi --max 1
+python cli.py run "测试素材文件夹/原片/3 True Horror Stories Animated [F35JDpVZ27Y].mp4" --refs "测试素材文件夹/示例参考文案.txt" --mode semi --max 1
+python cli.py run "测试素材文件夹/原片/The voice in the walls.. (3 Scary Stories Animated) [wqQZiP2lDOY].mp4" --refs "测试素材文件夹/示例参考文案.txt" --mode semi --max 1
+```
+
+续跑已确认或中断的任务：`python cli.py run "<上面的原片路径>" --resume <job_id> --max 1`。成片在 `workspace/jobs/<job_id>/clips/`。
+
 验证：`python -m pytest`、`python -m ruff check factory tests`。

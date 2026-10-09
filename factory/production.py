@@ -37,12 +37,20 @@ def resume_export_repairs(pipeline):
         if not path.is_file():
             render_again=True
             continue
-        out,_,_=run_cmd(['ffprobe','-v','error','-select_streams','v:0','-show_entries','stream=duration','-of','json',str(path)],timeout=60)
-        streams=json.loads(out).get('streams',[])
-        video=float(streams[0].get('duration',0)) if streams else 0
         voice=float((clip.scores or {}).get('tts_duration',clip.duration))
         black=(clip.qc or {}).get('media_audit',{}).get('black_periods')
-        if abs(video-voice)>.16 or black:
+        video, probe_ok = 0.0, False
+        try:
+            from .utils import ffprobe_bin
+            out, _, code = run_cmd([ffprobe_bin(), '-v', 'error', '-select_streams', 'v:0',
+                                    '-show_entries', 'stream=duration', '-of', 'json', str(path)],
+                                   check=False, timeout=60)
+            streams = json.loads(out or '{}').get('streams', [])
+            video = float(streams[0].get('duration', 0)) if streams else 0.0
+            probe_ok = code == 0 and video > 0
+        except (json.JSONDecodeError, ValueError, TypeError, IndexError, RuntimeError):
+            probe_ok = False
+        if not probe_ok or abs(video-voice)>.16 or black:
             render_again=True
         timeline=read_json(path.parent/'timeline.json') or {}
         needed=2*len(timeline.get('sentence_timings',[]))

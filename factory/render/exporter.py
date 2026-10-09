@@ -277,7 +277,8 @@ def _context_run_graph(run, handle, params, base_filter):
 
 def _check_video_frames(path,expected):
     import json
-    out,_,_ = run_cmd(['ffprobe','-v','error','-select_streams','v:0','-count_packets',
+    from ..utils import ffprobe_bin
+    out,_,_ = run_cmd([ffprobe_bin(),'-v','error','-select_streams','v:0','-count_packets',
                        '-show_entries','stream=nb_read_packets','-of','json',str(path)],timeout=120)
     streams=json.loads(out).get('streams',[])
     count=int(streams[0].get('nb_read_packets',0)) if streams else 0
@@ -295,10 +296,10 @@ def _segment_role(seg, timeline=None):
     timings = (timeline or {}).get("sentence_timings") or []
     if isinstance(idx, int):
         for item in timings:
-            if item.get("sentence_index") == idx:
+            if item.get("sentence_index") == idx or item.get("index") == idx:
                 return str(item.get("role") or "")
-        if 0 <= idx < len(timings):
-            return str(timings[idx].get("role") or "")
+        if 1 <= idx <= len(timings):
+            return str(timings[idx - 1].get("role") or "")
     return ""
 
 
