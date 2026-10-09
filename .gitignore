@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# 运行时产物 / 缓存（可能含 API Key 与素材内容）
+workspace/
+.cache/
+
+# 生成/下载的测试与素材
+tests/assets/source_video.mp4
+tests/assets/*.srt
+tests/assets/*.vtt
+tests/assets/*.json3
+
+# secrets / notes with keys
+summary.md
+
+# delivery outputs and large media (local only)
+交付成片/
+测试素材文件夹/
+设计文档.txt
+
+# editor / OS
+.ruff_cache/
+*.mp4
+*.wav
+*.zip
+*.mov
+*.mkv

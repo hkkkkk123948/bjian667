@@ -1,0 +1,317 @@
+{
+  "version": "simple_story_v2",
+  "reference_prefix": "女孩被杀手杰森抓住了",
+  "stories": [
+    {
+      "source_sha256": "a29b90f6a67f2e140bd9c9b39c6bc752779a05d746565816e8fcd91ae979a2aa",
+      "source_size": 71195018,
+      "version": "simple_story_v2",
+      "review_basis": "根据已审查原片与参考示例简化；本轮送审版",
+      "script": {
+        "title": "门外的陌生人",
+        "story_logic": "女孩被陌生人纠缠→窥窗发现屋顶同伙→报警获救",
+        "sentences": [
+          {
+            "text": "女孩独自在家，门外突然来了两个陌生人。",
+            "role": "hook",
+            "evidence_start": 59.1,
+            "evidence_end": 62.3,
+            "visual": "猫眼中女孩的蓝色眼睛"
+          },
+          {
+            "text": "两个人衣服破烂，一直对着门里面笑。",
+            "role": "hook",
+            "evidence_start": 63.0,
+            "evidence_end": 66.3,
+            "visual": "门外破衣女人和孩子并肩站着"
+          },
+          {
+            "text": "女孩不敢开门，只能隔着门跟他们说话。",
+            "role": "context",
+            "evidence_start": 76.0,
+            "evidence_end": 84.8,
+            "visual": "女孩靠近关着的房门说话"
+          },
+          {
+            "text": "见对方一直不肯走，她就退到窗边往外看。",
+            "role": "escalation",
+            "evidence_start": 98.0,
+            "evidence_end": 104.0,
+            "visual": "女孩在窗帘前弯腰警惕观察"
+          },
+          {
+            "text": "她掀开百叶窗，才发现外面还有一个人。",
+            "role": "context",
+            "evidence_start": 117.0,
+            "evidence_end": 121.6,
+            "visual": "女孩掀开窗户百叶向外看"
+          },
+          {
+            "text": "那个男人架着梯子，已经爬到了她家的房顶。",
+            "role": "twist",
+            "evidence_start": 122.3,
+            "evidence_end": 128.0,
+            "visual": "一个男人沿着梯子爬上屋顶"
+          },
+          {
+            "text": "原来门口的两个人，是在帮他拖住女孩。",
+            "role": "payoff",
+            "evidence_start": 129.0,
+            "evidence_end": 135.5,
+            "visual": "全景同时显示门口母子和屋顶入侵者"
+          },
+          {
+            "text": "女孩赶紧报警，直到警车赶来才躲过这一劫。",
+            "role": "payoff",
+            "evidence_start": 137.7,
+            "evidence_end": 143.7,
+            "visual": "住宅街道出现红蓝灯闪烁的警车"
+          }
+        ]
+      }
+    },
+    {
+      "source_sha256": "895afa3f856ffc3a4e6c3685a2fa9a60e629880a777160b4a9cadc1a53c46a77",
+      "source_size": 88989980,
+      "version": "simple_story_v2",
+      "review_basis": "根据已审查原片与参考示例简化；本轮送审版",
+      "script": {
+        "title": "旅馆里的老太太",
+        "story_logic": "女孩上楼撞见怪老太→妹妹也遇险→男人带走三人并报警",
+        "sentences": [
+          {
+            "text": "女孩住进旅馆，却不知道门外有人盯着她。",
+            "role": "hook",
+            "evidence_start": 324.0,
+            "evidence_end": 331.5,
+            "visual": "前景是门边阴影，门内女孩趴在床上看电脑"
+          },
+          {
+            "text": "她带着两个妹妹在房里玩，根本没有发现异常。",
+            "role": "context",
+            "evidence_start": 298.0,
+            "evidence_end": 302.8,
+            "visual": "三名女孩在同一客房的床上"
+          },
+          {
+            "text": "后来她肚子饿了，就独自爬上楼梯找吃的。",
+            "role": "context",
+            "evidence_start": 340.0,
+            "evidence_end": 346.8,
+            "visual": "女孩沿楼梯上楼，来到上层门口"
+          },
+          {
+            "text": "可厨房的老太太，正抱着一块生肉不停地啃。",
+            "role": "escalation",
+            "evidence_start": 357.0,
+            "evidence_end": 365.5,
+            "visual": "老太背对镜头靠着冰箱吃红色生肉"
+          },
+          {
+            "text": "老太太看见她，竟满嘴是血地笑了起来。",
+            "role": "twist",
+            "evidence_start": 383.4,
+            "evidence_end": 390.5,
+            "visual": "老太面部特写，从凝视转为咧嘴笑"
+          },
+          {
+            "text": "两个妹妹也跑了上来，吓得站在楼梯口不敢动。",
+            "role": "escalation",
+            "evidence_start": 394.9,
+            "evidence_end": 397.6,
+            "visual": "两个孩子从楼梯下方仰望楼上"
+          },
+          {
+            "text": "男人赶紧抱起女孩，带着三个孩子离开了这里。",
+            "role": "payoff",
+            "evidence_start": 405.0,
+            "evidence_end": 410.1,
+            "visual": "男人抱着女孩，两个孩子惊慌站在后方"
+          },
+          {
+            "text": "直到警车停在旅馆门口，她们才终于松了口气。",
+            "role": "payoff",
+            "evidence_start": 411.2,
+            "evidence_end": 414.0,
+            "visual": "旅馆外停下红蓝警灯闪烁的警车"
+          }
+        ]
+      }
+    },
+    {
+      "source_sha256": "8509c91e62cb2cdf21b67e112ca32d98f88337835092f5d4615069b30f554319",
+      "source_size": 97082542,
+      "version": "simple_story_v2",
+      "review_basis": "用户指出故事完整性不足；保留镜头记录，禁止自动复用旧文案",
+      "script": {
+        "title": "后巷里的怪人",
+        "story_logic": "怪人追赶女孩→扒门逼近→仓库遇险→男人开门救人并报警",
+        "sentences": [
+          {
+            "text": "这三个女孩，被一个白发怪人盯上了。",
+            "role": "hook",
+            "evidence_start": 529.2,
+            "evidence_end": 537.7,
+            "visual": "白发苍白男子站在巷子里并露出白眼怪笑"
+          },
+          {
+            "text": "她们赶紧往后巷跑，躲到了垃圾箱后面。",
+            "role": "context",
+            "evidence_start": 548.2,
+            "evidence_end": 557.8,
+            "visual": "三名女孩逃到后巷垃圾箱旁，随后蹲下躲在箱后",
+            "source_windows": [
+              {
+                "start": 548.2,
+                "end": 549.8,
+                "weight": 0.48
+              },
+              {
+                "start": 553.2,
+                "end": 556.0,
+                "weight": 0.52
+              }
+            ]
+          },
+          {
+            "text": "女孩以为安全了，旁边的铁门却慢慢开了。",
+            "role": "escalation",
+            "evidence_start": 559.0,
+            "evidence_end": 561.9,
+            "visual": "垃圾箱旁的铁门逐渐打开"
+          },
+          {
+            "text": "一只满是尖指甲的手，从门缝里伸了进来。",
+            "role": "escalation",
+            "evidence_start": 566.0,
+            "evidence_end": 574.0,
+            "visual": "铁门缝伸出有长指甲的手"
+          },
+          {
+            "text": "紧接着怪人探出了头，吓得她们再次逃跑。",
+            "role": "escalation",
+            "evidence_start": 575.0,
+            "evidence_end": 581.8,
+            "visual": "怪人从门缝探头露出白眼和笑容"
+          },
+          {
+            "text": "她们逃进仓库，可那个怪人又追到了门外。",
+            "role": "context",
+            "evidence_start": 624.1,
+            "evidence_end": 627.7,
+            "visual": "门外白发背影，玻璃后女孩小心露出头"
+          },
+          {
+            "text": "女孩正不知道怎么办，一个男人推门走了进来。",
+            "role": "payoff",
+            "evidence_start": 652.2,
+            "evidence_end": 657.7,
+            "visual": "穿深色衬衫的正常男人打开仓库门，女孩迎过去"
+          },
+          {
+            "text": "他把女孩们救了出来，警察随后赶到调查。",
+            "role": "payoff",
+            "evidence_start": 670.5,
+            "evidence_end": 672.3,
+            "visual": "警察询问黑发女孩，另外两人站在旁边"
+          }
+        ]
+      },
+      "review_status": "rejected_incomplete",
+      "verified_shots": [
+        {
+          "evidence_start": 529.2,
+          "evidence_end": 537.7,
+          "visual": "白发苍白男子站在巷子里并露出白眼怪笑"
+        },
+        {
+          "evidence_start": 548.2,
+          "evidence_end": 557.8,
+          "visual": "三名女孩逃到后巷垃圾箱旁，随后蹲下躲在箱后",
+          "source_windows": [
+            {
+              "start": 548.2,
+              "end": 549.8,
+              "weight": 0.48
+            },
+            {
+              "start": 553.2,
+              "end": 556.0,
+              "weight": 0.52
+            }
+          ]
+        },
+        {
+          "evidence_start": 559.0,
+          "evidence_end": 561.9,
+          "visual": "垃圾箱旁的铁门逐渐打开"
+        },
+        {
+          "evidence_start": 566.0,
+          "evidence_end": 574.0,
+          "visual": "铁门缝伸出有长指甲的手"
+        },
+        {
+          "evidence_start": 575.0,
+          "evidence_end": 581.8,
+          "visual": "怪人从门缝探头露出白眼和笑容"
+        },
+        {
+          "evidence_start": 624.1,
+          "evidence_end": 627.7,
+          "visual": "门外白发背影，玻璃后女孩小心露出头"
+        },
+        {
+          "evidence_start": 652.2,
+          "evidence_end": 660.2,
+          "visual": "正常男人推开另一扇仓库门，三个女孩赶紧迎上去，黑发女孩对男人说话",
+          "source_windows": [
+            {
+              "start": 652.2,
+              "end": 654.5,
+              "weight": 0.35
+            },
+            {
+              "start": 657.1,
+              "end": 660.2,
+              "weight": 0.65
+            }
+          ]
+        },
+        {
+          "evidence_start": 666.5,
+          "evidence_end": 672.3,
+          "visual": "警察拿笔和本子听黑发女孩讲述，另外两个女孩在旁边；没有抓捕怪人的画面",
+          "source_windows": [
+            {
+              "start": 666.6,
+              "end": 668.1,
+              "weight": 0.5
+            },
+            {
+              "start": 670.8,
+              "end": 672.3,
+              "weight": 0.5
+            }
+          ]
+        },
+        {
+          "evidence_start": 673.2,
+          "evidence_end": 680.0,
+          "visual": "三个女孩依次从打开的门走出仓库；避开681秒的怪人闪现"
+        }
+      ],
+      "script_shot_ids": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    }
+  ],
+  "reference_sha256": "fb0a2f9c12dfcf95d82ea606f491a22032db2884e99cc22883421d110deb1fbe"
+}
