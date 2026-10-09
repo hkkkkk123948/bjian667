@@ -20,3 +20,5 @@ workspace/run_resume_*.log
 交付成片/**/*.wav
 交付成片/**/*.zip
 tests/assets/source_video.mp4
+
+.github/workflows/
