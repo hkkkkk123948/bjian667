@@ -10,14 +10,15 @@ def readable_windows(windows, lo, hi, duration, params=None):
     non-blocking editing diagnostics instead of forcing another script/TTS.
     """
     params = params or {}
-    minimum = max(.4, float(params.get('min_shot_seconds', .7)))
+    # Floor above the saved default so a 0.4s flash cannot survive as its own cut.
+    minimum = max(.85, float(params.get('min_shot_seconds', .85)))
     rows = []
     for window in windows:
         start, end = max(lo, float(window['start'])), min(hi, float(window['end']))
         if end - start < 1 / 24:
             continue
         row = dict(window, start=start, end=end, weight=max(.001, float(window.get('weight', 1))))
-        if rows and 0 <= start - rows[-1]['end'] <= .08:
+        if rows and 0 <= start - rows[-1]['end'] <= .16:
             rows[-1]['end'] = end
             rows[-1]['weight'] += row['weight']
         else:
@@ -94,3 +95,65 @@ def render_runs(segments):
         run['src_duration'] = max(float(p['src_start']) + float(p['src_duration']) for p in parts) - run['src_start']
         run['visual_kind'] = 'context_run' if len(parts) > 1 else parts[0].get('visual_kind', 'source')
     return runs
+
+
+def fill_plan(source_duration, output_duration, fps=24):
+    """Cover `output_duration` without a stuttering slideshow.
+
+    A mild shortfall is blended slow motion. A severe shortfall plays at a
+    readable slow speed and holds the last frame for the rest. The hold is
+    what a freeze is for; stretching a few source frames across many seconds
+    is not.
+    """
+    fps = float(fps or 24)
+    tick = 1.0 / fps
+    output = max(tick, float(output_duration))
+    source = max(tick, float(source_duration or 0))
+    if source + 1e-6 >= output:
+        # The selected action is at least as long as the slot. Play all of it,
+        # speeding up only as much as the slot requires.
+        return {"speed": source / output, "active": output, "freeze": 0.0, "src_used": source,
+                "interpolate": False, "freeze_position": "end"}
+    natural = source / output
+    if natural >= 0.42:
+        return {"speed": natural, "active": output, "freeze": 0.0, "src_used": source,
+                "interpolate": natural < 0.90, "freeze_position": "end"}
+    hold_cap = 0.70
+    speed = min(0.50, max(0.34, source / max(tick, output - hold_cap)))
+    active = min(output, source / speed)
+    freeze = output - active
+    if freeze < tick:
+        return {"speed": natural, "active": output, "freeze": 0.0, "src_used": source,
+                "interpolate": True, "freeze_position": "end"}
+    return {"speed": source / active, "active": active, "freeze": freeze, "src_used": source,
+            "interpolate": True, "freeze_position": "end"}
+
+
+def time_resample(interpolate, frames):
+    """Blend only when stretched frames would otherwise repeat."""
+    if interpolate and int(frames) >= 8:
+        return "minterpolate=fps=24:mi_mode=blend"
+    return "fps=24"
+
+
+def boundary_is_jump(left, right):
+    """A dissolve across a near-repeat or a tiny time gap ghosts the cut."""
+    if not left or not right:
+        return False
+    if left.get("visual_kind") == "comment_still" or right.get("visual_kind") == "comment_still":
+        return False
+    if left.get("shot_id") and left.get("shot_id") == right.get("shot_id"):
+        return True
+    try:
+        left_start, left_end = float(left["src_start"]), float(left["src_start"]) + float(left["src_duration"])
+        right_start, right_end = float(right["src_start"]), float(right["src_start"]) + float(right["src_duration"])
+    except (KeyError, TypeError, ValueError):
+        return False
+    gap = right_start - left_end
+    left_key = (left.get("evidence_start"), left.get("evidence_end"))
+    right_key = (right.get("evidence_start"), right.get("evidence_end"))
+    same = None not in left_key and left_key == right_key
+    overlap = min(left_end, right_end) - max(left_start, right_start)
+    if overlap > 0.2:
+        return True
+    return bool(same and 0.04 < abs(gap) < 0.45)

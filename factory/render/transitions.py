@@ -1,14 +1,16 @@
 """Frame-counted short dissolves; handles preserve every narration cut point."""
 
 # Seconds by incoming shot role. Always capped at 0.18 by the planner.
+# Impacts are hard cuts. A one-frame dissolve reads as a flash, so the
+# planner keeps a fade only when it has at least three frames.
 ROLE_TRANSITION_SECONDS = {
-    "hook": 0.10,
-    "setup": 0.08,
-    "escalation": 0.14,
-    "twist": 0.16,
-    "payoff": 0.18,
-    "爆点": 0.16,
-    "转折": 0.16,
+    "hook": 0.125,
+    "setup": 0.125,
+    "escalation": 0.0,
+    "twist": 0.0,
+    "payoff": 0.167,
+    "爆点": 0.0,
+    "转折": 0.0,
 }
 
 
@@ -16,7 +18,7 @@ def transition_seconds_for_role(role, default=0.125):
     return float(ROLE_TRANSITION_SECONDS.get(str(role or ""), default))
 
 
-def transition_plan(durations, enabled=True, seconds=0.125, fps=24, roles=None):
+def transition_plan(durations, enabled=True, seconds=0.125, fps=24, roles=None, force_hard=None):
     lengths, elapsed, previous = [], 0.0, 0
     for duration in durations:
         elapsed += float(duration)
@@ -24,12 +26,17 @@ def transition_plan(durations, enabled=True, seconds=0.125, fps=24, roles=None):
         lengths.append(max(1, end - previous))
         previous = end
     roles = list(roles or [])
+    force_hard = set(force_hard or [])
     counts = []
     for i, (left, right) in enumerate(zip(lengths, lengths[1:])):
         incoming = roles[i + 1] if i + 1 < len(roles) else ""
         sec = transition_seconds_for_role(incoming, seconds)
         desired = round(max(0.0, min(float(sec), 0.18)) * fps) if enabled else 0
-        counts.append(max(0, min(desired, min(left, right) // 3)))
+        count = 0 if i in force_hard else max(0, min(desired, min(left, right) // 3))
+        # Two-frame fades flash. A cut is cleaner than a broken dissolve.
+        if 0 < count < 3:
+            count = 0
+        counts.append(count)
     handles = [{"nominal_frames": n, "before": counts[i - 1] // 2 if i else 0,
                 "after": counts[i] - counts[i] // 2 if i < len(counts) else 0}
                for i, n in enumerate(lengths)]

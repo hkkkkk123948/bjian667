@@ -12,7 +12,7 @@ from ..script.comment_hook import story_text
 from ..script.quality import compact
 from ..utils import read_json, write_json
 
-POLICY = "real_action_frames_and_request_controls_v2"
+POLICY = "real_action_frames_and_request_controls_v3"
 
 
 class InitialPlanError(ValueError):
@@ -67,6 +67,59 @@ def normalize_catalog(catalog, candidate):
     return result
 
 
+def _overlap_length(left, right):
+    """Longest shared slice. A contained phrase counts as the shorter length."""
+    if not left or not right:
+        return 0
+    if left in right or right in left:
+        return min(len(left), len(right))
+    shorter, longer = (left, right) if len(left) <= len(right) else (right, left)
+    for size in range(len(shorter), 0, -1):
+        for start in range(0, len(shorter) - size + 1):
+            if shorter[start:start + size] in longer:
+                return size
+    return 0
+
+
+def _frames_for_phrase(shot, phrase, supported):
+    """Bind the action whose text overlaps the spoken phrase the most."""
+    best_ids, best_score = [], 0
+    for action in shot.get('actions') or []:
+        score = _overlap_length(compact(str(action.get('text') or '')), phrase)
+        if score <= best_score:
+            continue
+        ids = [fid for fid in (action.get('frame_ids') or []) if fid in supported]
+        if ids:
+            best_ids, best_score = ids, score
+    if best_ids:
+        return list(dict.fromkeys(best_ids))
+    for observation in shot.get('observations') or []:
+        if phrase and phrase in compact(str(observation.get('visible') or '')):
+            fid = observation.get('frame_id')
+            if fid in supported:
+                return [fid]
+    frames = shot.get('frames') or []
+    if frames:
+        mid = frames[len(frames) // 2]['frame_id']
+        if mid in supported:
+            return [mid]
+    return []
+
+
+def _merge_repeated_shots(beats):
+    """Adjacent beats of one shot are one hold, not a jump back to itself."""
+    merged = []
+    for beat in beats:
+        if merged and merged[-1]['shot_id'] == beat['shot_id']:
+            frames = merged[-1]['frame_ids']
+            for fid in beat['frame_ids']:
+                if fid not in frames:
+                    frames.append(fid)
+            continue
+        merged.append(beat)
+    return merged
+
+
 def normalize_choices(data, variant, catalog):
     lookup_shots = {item['shot_id']: item for item in catalog}
     ids = set(lookup_shots)
@@ -93,23 +146,7 @@ def normalize_choices(data, variant, catalog):
             frame_ids = beat.get('frame_ids')
             if not isinstance(frame_ids, list) or not frame_ids:
                 # Models often return only shot_id+phrase; bind to catalog action frames.
-                shot = lookup_shots[sid]
-                resolved = []
-                for action in shot.get('actions') or []:
-                    action_text = compact(str(action.get('text') or ''))
-                    if action_text and (action_text in phrase or phrase in action_text):
-                        resolved.extend([fid for fid in (action.get('frame_ids') or []) if fid in supported])
-                if not resolved:
-                    for observation in shot.get('observations') or []:
-                        if phrase and phrase in compact(str(observation.get('visible') or '')):
-                            fid = observation.get('frame_id')
-                            if fid in supported:
-                                resolved.append(fid)
-                if not resolved and shot.get('frames'):
-                    mid = shot['frames'][len(shot['frames']) // 2]['frame_id']
-                    if mid in supported:
-                        resolved = [mid]
-                frame_ids = list(dict.fromkeys(resolved))
+                frame_ids = _frames_for_phrase(lookup_shots[sid], phrase, supported)
             if (not isinstance(frame_ids, list) or not frame_ids
                     or any(not isinstance(fid, str) or fid not in supported for fid in frame_ids)
                     or len(set(frame_ids)) != len(frame_ids)):
@@ -129,6 +166,7 @@ def normalize_choices(data, variant, catalog):
             beats.append({'shot_id': sid, 'target_text': beat['target_text'], 'body_offset': offset,
                           'frame_ids': frame_ids})
             previous = offset
+        beats = _merge_repeated_shots(beats)
         if len(beats) > 3:
             raise InitialPlanError('一句分配过多镜头会产生碎切，请减少动作分段')
         output[index] = beats
@@ -159,6 +197,9 @@ def choose_shots(pipeline, candidate, variant, catalog):
         '从独立观察的真实镜头目录中，为每句及句内主要动作选择shot_id。允许同一故事镜头按旁白重排，'
         '不要按原片编号顺序硬排，不沿用旧文案证据。提到狗/刀/门/人物动作时，镜头须在该短语出现时切到对应对象和动作。'
         '每句通常1镜头，含不同关键动作时2镜头，最多3个。连续同场景尽量承接，避免几帧碎切。'
+        '不要把同一机位拆成相邻跳切，不要切回刚离开的同一角度。'
+        '不要选用黑场、空镜或只有字幕的镜头。'
+        '评论插话不是镜头，停在当前这句的画面上，不得占用下一句的画面。'
         'target_text必须逐字取自该句正文的动作或对象短语，按其在句中出现顺序列出；若相同短语重复，occurrence从1开始。'
         '第一镜头同时承接句子开头语境。镜头不够则unmatched说明缺什么，不编道具、不修改文字。'
         '只返JSON {"sentences":[{"sentence_index":1,"beats":[{"target_text":"正文原短语","shot_id":"真实ID","occurrence":1,"frame_ids":["可选真实帧ID"]}]}],'
@@ -251,10 +292,13 @@ def build_initial_timeline(pipeline, candidate, variant, result, catalog=None):
         cuts.append(timing['end'])
         if cuts[-1] - cuts[0] < minimum * len(plan['beats']):
             raise InitialPlanError('第%d句动作过密，无法在实测配音中分配可读镜头；不插入几帧碎切' % plan['sentence_index'])
-        # Slightly move a close cut instead of inserting a few-frame flash.
+        # On a long line, keep each action readable. A cut that already sits
+        # well clear of its neighbours is left on the spoken word.
+        span = cuts[-1] - cuts[0]
+        floor = .55 if span >= .55 * len(plan['beats']) else minimum
         for index in range(1, len(cuts) - 1):
-            cuts[index] = max(cuts[index - 1] + minimum,
-                              min(cuts[index], cuts[-1] - minimum * (len(cuts) - 1 - index)))
+            cuts[index] = max(cuts[index - 1] + floor,
+                              min(cuts[index], cuts[-1] - floor * (len(cuts) - 1 - index)))
         for beat, start, end in zip(plan['beats'], cuts, cuts[1:]):
             spans.append({**beat, 'sentence_index': plan['sentence_index'], 'out_start': start, 'dur': end - start})
     totals = {}

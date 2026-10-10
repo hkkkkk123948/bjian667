@@ -23,15 +23,17 @@ def test_transition_handles_do_not_shorten_narration():
 
 def test_subpixel_pan_does_not_jump_by_whole_pixels(tmp_path):
     cv2 = pytest.importorskip("cv2")
-    im = np.zeros((180, 320), dtype=np.uint8)
-    cv2.circle(im, (175, 90), 25, 240, -1)
-    cv2.rectangle(im, (75, 45), (100, 140), 120, -1)
-    source = tmp_path / "grid.png"
-    cv2.imwrite(str(source), im)
-    data = subprocess.check_output([ffmpeg_bin(), "-v", "error", "-filter_threads", "1", "-loop", "1", "-framerate", "24",
-                                    "-i", str(source), "-vf", motion_filter("pan_right", 320, 180, 2, 48),
-                                    "-frames:v", "48", "-f", "rawvideo", "-pix_fmt", "gray", "-"])
-    frames = np.frombuffer(data, dtype=np.uint8).reshape(-1, 180, 320)
+    from factory.render.motion import frame_motion, warp_frame
+    im = np.zeros((180, 320, 3), dtype=np.uint8)
+    cv2.circle(im, (175, 90), 25, (240, 240, 240), -1)
+    cv2.rectangle(im, (75, 45), (100, 140), (120, 120, 120), -1)
+    graph = motion_filter("pan_right", 320, 180, 2, 48)
+    assert "zoompan" not in graph and "scale=" in graph and "crop=" in graph
+    frames = []
+    for index in range(48):
+        zoom, fraction = frame_motion("pan_right", index, 48, 2)
+        warped = warp_frame(im, zoom, fraction)
+        frames.append(cv2.cvtColor(warped, cv2.COLOR_BGR2GRAY))
     shifts = [cv2.phaseCorrelate(a.astype(np.float32), b.astype(np.float32))[0][0]
               for a, b in zip(frames, frames[1:])]
     assert max(abs(s) for s in shifts) < .8

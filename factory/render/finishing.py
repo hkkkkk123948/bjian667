@@ -4,7 +4,7 @@ import subprocess
 
 from ..utils import ffmpeg_bin, run_cmd, write_json
 
-BASE_PICTURE_FILTER = "hqdn3d=0.8:0.6:1.2:0.8,unsharp=5:5:0.35:3:3:0.0"
+BASE_PICTURE_FILTER = "hqdn3d=0.8:0.6:1.2:0.8,unsharp=5:5:0.22:3:3:0.0"
 GRADE_FILTER = "eq=contrast=1.035:gamma=0.985"
 # Kept for callers/tests that import the historical name.
 PICTURE_FILTER = BASE_PICTURE_FILTER

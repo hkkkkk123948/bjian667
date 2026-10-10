@@ -11,7 +11,7 @@ from .render.qc import semantic_final_check
 from .matching import quality_gate as quality_gate  # Compatibility export for older callers.
 from .utils import ensure_dir, read_json, slugify, write_json
 
-RENDER_POLICY = 'continuous_context_v3'
+RENDER_POLICY = 'continuous_context_v4'
 
 
 def reconcile_production_queue(pipeline, queue):

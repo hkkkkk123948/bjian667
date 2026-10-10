@@ -103,7 +103,7 @@ def _smooth_short_contexts(segments, params):
     """
     from .pacing import render_runs
     minimum = max(.35, float(params.get('min_required_shot_seconds', .35)))
-    preferred = max(minimum, float(params.get('min_shot_seconds', .7)))
+    preferred = max(.85, minimum, float(params.get('min_shot_seconds', .85)))
     diagnostics = [{'sentence_index':s.get('sentence_index'), 'kind':'continuous_primary_picture',
                     'omitted_windows':s['continuity_omitted_windows']}
                    for s in segments if s.get('continuity_omitted_windows')]
@@ -151,10 +151,10 @@ def _smooth_short_contexts(segments, params):
                 donor = current[donor_index]
                 if len(donor['parts']) != 1 or sensitive(donor):
                     continue
-                # At most 0.35 s per boundary, with the neighbouring picture
+                # At most 0.50 s per boundary, with the neighbouring picture
                 # retaining readable dwell time. Source playback stays bounded
                 # by the selected evidence, without moving the audio clock.
-                amount = min(need, .35, max(0.0, float(donor['parts'][0]['dur'])-preferred))
+                amount = min(need, .50, max(0.0, float(donor['parts'][0]['dur'])-preferred))
                 if amount > 1e-8:
                     resize(donor['parts'][0], float(donor['parts'][0]['dur'])-amount, anchor)
                     resize(run['parts'][0], float(run['parts'][0]['dur'])+amount)
