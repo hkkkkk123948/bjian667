@@ -83,59 +83,37 @@ def _export_evidence(video_path, voice_path, out_path, params, segments, base_fi
     trimmed = _prepare_context_sources(video_path, segments)
     if trimmed:
         write_json(out_path.parent/'timeline.json', timeline)
+    from .motion import warp_available
+    from .pacing import boundary_is_jump
     runs = render_runs(segments)
     roles = [_segment_role(s, timeline) for s in runs]
+    force_hard = [i for i in range(len(runs) - 1) if boundary_is_jump(runs[i], runs[i + 1])]
     plan = transition_plan([s["dur"] for s in runs],
                            enabled=str(params.get("short_transitions", "on")) == "on",
                            seconds=params.get("transition_duration", .125),
-                           roles=roles)
+                           roles=roles, force_hard=force_hard)
+    use_warp = warp_available()
     write_json(out_path.parent/'edit_decisions.json', {
-        'policy':'continuous_context_v3','logical_segments':len(segments),'rendered_shots':len(runs),
+        'policy':'continuous_context_v4','motion':'cubic_warp' if use_warp else 'scale_crop',
+        'hard_cuts':force_hard,'logical_segments':len(segments),'rendered_shots':len(runs),
         'context_joins':len(segments)-len(runs),
         'shots':[{'start':s.get('out_start',0),'duration':s['dur'],
-                  'parts':len(s['parts']),'kind':s['visual_kind']} for s in runs]})
+                  'parts':len(s['parts']),'kind':s['visual_kind'],
+                  'motion':[p.get('motion') or 'none' for p in s.get('parts') or [s]]} for s in runs]})
     write_json(out_path.parent / "transitions.json", plan)
     # Sequential render bounds decoder/filter memory for long shot lists.
     with tempfile.TemporaryDirectory(prefix="evidence_", dir=out_path.parent) as tmp:
         tmp = Path(tmp)
         rendered = []
         for i, seg in enumerate(runs):
-            src_dur = float(seg.get("src_duration", seg["dur"]))
             handle = plan["handles"][i]
-            frame_count = handle["nominal_frames"]
-            render_frames = frame_count + handle["before"] + handle["after"]
-            out_dur = frame_count / 24.0
-            if src_dur <= 0 or out_dur <= 0:
+            src_dur = float(seg.get("src_duration", seg["dur"]))
+            if src_dur <= 0 or handle["nominal_frames"] <= 0:
                 raise ValueError("无效剪辑时长")
-            from .motion import motion_filter
-            freeze = min(float(seg.get("freeze_duration", 0)), max(0, out_dur - .2))
-            active = out_dur - freeze
-            motion = motion_filter(seg.get("motion", "none"), int(params.get("target_width", 1920)),
-                                   int(params.get("target_height", 1080)), active, round(active * 24),
-                                   oversample=params.get("motion_oversample", 3))
-            freeze_start = freeze if seg.get("freeze_position") == "start" else 0
-            freeze_end = freeze - freeze_start
-            filters = "setpts=%.9f*(PTS-STARTPTS),%s,fps=24,%s,tpad=start_mode=clone:start_duration=%.9f:stop_mode=clone:stop_duration=%.9f,trim=end_frame=%d,setpts=PTS-STARTPTS" % (
-                active / src_dur, base_filter, motion, handle["before"] / 24 + freeze_start,
-                freeze_end + handle["after"] / 24 + .15, render_frames)
-            if seg.get("visual_kind") == "comment_still":
-                filters = ("loop=loop=-1:size=1:start=0,setpts=N/(24*TB),%s,fps=24,%s,"
-                           "tpad=start_mode=clone:start_duration=%.9f,trim=end_frame=%d,setpts=PTS-STARTPTS") % (
-                               base_filter,motion,handle['before']/24+freeze_start,render_frames)
-            graph = build_video_graph(params, filters, black_box=black_box, tail=tail,
-                                      src_size=src_size, regions=regions, region_method=region_method)
-            if seg.get('visual_kind') == 'context_run':
-                prefix, context_filter = _context_run_graph(seg, handle, params, base_filter)
-                graph = prefix + ';' + build_video_graph(
-                    params, context_filter, black_box=black_box, tail=tail,
-                    src_size=src_size, regions=regions, region_method=region_method).replace('[0:v]', '[context]')
             target = tmp / ("shot_%03d.mp4" % i)
-            args = [ffmpeg_bin(), "-v", "error", "-y", "-filter_complex_threads", "1", "-ss", str(seg["src_start"]),
-                    "-t", str(src_dur), "-threads", "1", "-i", str(video_path), "-filter_complex", graph,
-                    "-map", "[vout]", "-an", "-frames:v", str(render_frames)]
-            args += _encoder_args(target, dict(params, render_crf=16))
-            run_cmd(args, timeout=300)
-            _check_video_frames(target,render_frames)
+            _render_shot(video_path, seg, handle, params, base_filter, black_box, tail,
+                         src_size, regions, region_method, target, use_warp)
+            _check_video_frames(target, handle["nominal_frames"] + handle["before"] + handle["after"])
             rendered.append(target)
         manifest = tmp / "shots.txt"
         manifest.write_text("\n".join("file '%s'" % p.as_posix().replace("'", "'\\''") for p in rendered), encoding="utf-8")
@@ -234,45 +212,217 @@ def _prepare_context_sources(video_path, segments):
     return changed
 
 
-def _context_run_graph(run, handle, params, base_filter):
-    """Assemble continuous source/holds before applying one local motion clock.
+def _shot_moves(seg):
+    if seg.get("visual_kind") == "context_run":
+        return any(p.get("motion") not in (None, "", "none") for p in seg.get("parts") or [])
+    return seg.get("motion") not in (None, "", "none")
 
-    A three-frame prelude is part of this shot, never a separate dissolve.
-    Local motion starts and ends at the original scale, avoiding zoom snaps.
+
+def _timing_chain(seg, nominal, base_filter, motion):
+    """Build the nominal frames. Handles are cloned after motion, not inside it."""
+    from .pacing import fill_plan, time_resample
+    out_dur = nominal / 24.0
+    if seg.get("visual_kind") == "comment_still":
+        return ("loop=loop=-1:size=1:start=0,setpts=N/(24*TB),%s,fps=24,%s,"
+                "trim=end_frame=%d,setpts=PTS-STARTPTS") % (base_filter, motion, nominal)
+    src_dur = max(1 / 24, float(seg.get("src_duration", seg["dur"])))
+    preset = min(float(seg.get("freeze_duration") or 0), max(0.0, out_dur - .2))
+    preset_start = preset if seg.get("freeze_position") == "start" else 0.0
+    body = max(1 / 24, out_dur - preset)
+    fill = fill_plan(src_dur, body)
+    freeze_end = (preset - preset_start) + fill["freeze"]
+    resample = time_resample(fill["interpolate"], nominal)
+    return ("trim=duration=%.9f,setpts=%.9f*(PTS-STARTPTS),%s,%s,"
+            "tpad=start_mode=clone:start_duration=%.9f:stop_mode=clone:stop_duration=%.9f,"
+            "trim=end_frame=%d,setpts=PTS-STARTPTS,%s") % (
+                fill["src_used"], fill["active"] / max(fill["src_used"], 1 / 24),
+                base_filter, resample, preset_start, freeze_end + 0.25, nominal, motion)
+
+
+def _with_handles(chain, handle, include):
+    nominal = handle["nominal_frames"]
+    if not include:
+        return chain
+    render_frames = nominal + handle["before"] + handle["after"]
+    return ("%s,tpad=start_mode=clone:start_duration=%.9f:stop_mode=clone:stop_duration=%.9f,"
+            "trim=end_frame=%d,setpts=PTS-STARTPTS") % (
+                chain, handle["before"] / 24, handle["after"] / 24 + 0.2, render_frames)
+
+
+def _render_shot(video_path, seg, handle, params, base_filter, black_box, tail,
+                 src_size, regions, region_method, target, use_warp):
+    from .motion import hold_spans, motion_filter
+    nominal = handle["nominal_frames"]
+    width = int(params.get("target_width", 1920)) // 2 * 2
+    height = int(params.get("target_height", 1080)) // 2 * 2
+    warp = bool(use_warp and _shot_moves(seg))
+    spans = []
+    kind = seg.get("motion") or "none"
+    if seg.get("visual_kind") == "context_run":
+        prefix, context_filter, spans = _context_run_graph(
+            seg, handle, params, base_filter, with_motion=not warp, include_handles=not warp)
+        graph = prefix + ";" + build_video_graph(
+            params, context_filter, black_box=black_box, tail=tail,
+            src_size=src_size, regions=regions, region_method=region_method).replace("[0:v]", "[context]")
+    else:
+        if seg.get("visual_kind") == "comment_still":
+            preset = min(float(seg.get("freeze_duration") or 0), max(0.0, nominal / 24 - .2))
+            preset_start = preset if seg.get("freeze_position") == "start" else 0.0
+            spans = hold_spans(nominal, kind, freeze_frames=round(preset_start * 24))
+            kind = "none"
+        motion = "null"
+        if not warp:
+            motion = motion_filter(kind, width, height, nominal / 24.0, nominal,
+                                   oversample=params.get("motion_oversample", 8),
+                                   local_spans=spans or None)
+        chain = _with_handles(_timing_chain(seg, nominal, base_filter, motion), handle, include=not warp)
+        graph = build_video_graph(params, chain, black_box=black_box, tail=tail,
+                                  src_size=src_size, regions=regions, region_method=region_method)
+    src_dur = float(seg.get("src_duration", seg["dur"]))
+    decode = [ffmpeg_bin(), "-v", "error", "-filter_complex_threads", "1", "-ss", str(seg["src_start"]),
+              "-t", str(max(src_dur, 1 / 24)), "-threads", "1", "-i", str(video_path),
+              "-filter_complex", graph, "-map", "[vout]", "-an"]
+    if warp:
+        _encode_warped(decode, width, height, nominal, handle, kind, spans, seg, target, params)
+        return
+    render_frames = nominal + handle["before"] + handle["after"]
+    decode = [ffmpeg_bin(), "-v", "error", "-y", *decode[3:], "-frames:v", str(render_frames)]
+    decode += _encoder_args(target, dict(params, render_crf=16))
+    run_cmd(decode, timeout=300)
+
+
+def _encode_warped(decode, width, height, nominal, handle, kind, spans, seg, target, params):
+    import subprocess
+    import threading
+    import numpy as np
+    from .motion import frame_motion, warp_frame
+    frame_bytes = width * height * 3
+    total = nominal + handle["before"] + handle["after"]
+    duration = nominal / 24.0
+    decode_proc = subprocess.Popen(decode + ["-frames:v", str(nominal), "-f", "rawvideo", "-pix_fmt", "bgr24", "pipe:1"],
+                                   stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    encode_cmd = [ffmpeg_bin(), "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgr24",
+                  "-s", "%dx%d" % (width, height), "-r", "24", "-i", "pipe:0",
+                  "-an", "-frames:v", str(total)]
+    encode_cmd += _encoder_args(target, dict(params, render_crf=16))
+    encode_proc = subprocess.Popen(encode_cmd, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
+    errors = {}
+
+    def drain(proc, key):
+        errors[key] = proc.stderr.read()
+
+    threading.Thread(target=drain, args=(decode_proc, "decode"), daemon=True).start()
+    threading.Thread(target=drain, args=(encode_proc, "encode"), daemon=True).start()
+
+    def read_frame():
+        buf = bytearray()
+        while len(buf) < frame_bytes:
+            chunk = decode_proc.stdout.read(frame_bytes - len(buf))
+            if not chunk:
+                break
+            buf += chunk
+        return buf if len(buf) == frame_bytes else None
+
+    def move(raw, index):
+        frame = np.frombuffer(raw, np.uint8).reshape(height, width, 3)
+        zoom, fraction = frame_motion(kind, index, nominal, duration, spans or None)
+        if abs(zoom - 1) < 1e-5 and abs(fraction - 0.5) < 1e-5:
+            return bytes(raw)
+        return np.ascontiguousarray(warp_frame(frame, zoom, fraction)).tobytes()
+
+    failed = None
+    try:
+        first = read_frame()
+        if first is None:
+            raise RuntimeError("镜头没有输出画面")
+        payload = move(first, 0)
+        for _ in range(handle["before"] + 1):
+            encode_proc.stdin.write(payload)
+        last = payload
+        for index in range(1, nominal):
+            raw = read_frame()
+            if raw is None:
+                raise RuntimeError("镜头帧不足：需要%d帧" % nominal)
+            last = move(raw, index)
+            encode_proc.stdin.write(last)
+        for _ in range(handle["after"]):
+            encode_proc.stdin.write(last)
+    except Exception as exc:
+        failed = exc
+    finally:
+        try:
+            encode_proc.stdin.close()
+        except Exception:
+            pass
+        try:
+            decode_proc.stdout.read()
+        except Exception:
+            pass
+        decode_proc.wait()
+        encode_proc.wait()
+    if failed:
+        raise failed
+    if decode_proc.returncode or encode_proc.returncode:
+        detail = (errors.get("decode") or b"").decode("utf-8", "replace")[-400:]
+        detail += (errors.get("encode") or b"").decode("utf-8", "replace")[-400:]
+        raise RuntimeError("镜头平滑采样失败: %s" % detail.strip())
+
+
+def _context_run_graph(run, handle, params, base_filter, with_motion=True, include_handles=True):
+    """Assemble continuous source/holds, then one local motion clock.
+
+    A short prelude stays inside this shot. The aside eases away from the
+    current frame and back, so the join is the same picture.
     """
     from .motion import motion_filter
-    parts, frames = run['parts'], handle['nominal_frames']
-    total = sum(float(p['dur']) for p in parts)
-    graph = ['[0:v]setpts=PTS-STARTPTS,split=%d%s' % (
-        len(parts), ''.join('[ctxin%d]' % i for i in range(len(parts))))]
-    spans, outputs, elapsed, previous = [], [], 0., 0
+    from .pacing import fill_plan, time_resample
+    parts, frames = run["parts"], handle["nominal_frames"]
+    total = sum(float(p["dur"]) for p in parts)
+    graph = ["[0:v]setpts=PTS-STARTPTS,split=%d%s" % (
+        len(parts), "".join("[ctxin%d]" % i for i in range(len(parts))))]
+    spans, outputs, elapsed, previous = [], [], 0.0, 0
     for i, part in enumerate(parts):
-        elapsed += float(part['dur'])
+        elapsed += float(part["dur"])
         end = round(elapsed / total * frames)
         count = end - previous
         if count <= 0:
-            graph.append('[ctxin%d]nullsink' % i)
+            graph.append("[ctxin%d]nullsink" % i)
             continue
-        offset = max(0., float(part['src_start']) - run['src_start'])
-        source_duration = float(part['src_duration'])
-        if part.get('visual_kind') == 'comment_still':
-            clip = 'trim=start=%.9f:duration=%.9f,setpts=PTS-STARTPTS,loop=loop=-1:size=1:start=0,setpts=N/(24*TB)' % (offset,source_duration)
-            start_frame = previous + round(float(part.get('freeze_duration',0)) * 24)
-            spans.append({'start_frame':min(end-1,start_frame),'end_frame':end,
-                          'motion':part.get('motion','none')})
+        offset = max(0.0, float(part["src_start"]) - run["src_start"])
+        source_duration = float(part["src_duration"])
+        if part.get("visual_kind") == "comment_still":
+            clip = ("trim=start=%.9f:duration=%.9f,setpts=PTS-STARTPTS,"
+                    "loop=loop=-1:size=1:start=0,setpts=N/(24*TB)") % (offset, max(source_duration, 1 / 24))
+            start_frame = previous + round(float(part.get("freeze_duration") or 0) * 24)
+            spans.append({"start_frame": min(end - 1, start_frame), "end_frame": end,
+                          "motion": part.get("motion") or "none"})
+            stop = 0.2
         else:
-            clip = 'trim=start=%.9f:duration=%.9f,setpts=%.9f*(PTS-STARTPTS),fps=24' % (
-                offset,source_duration,(count/24)/source_duration)
-        graph.append('[ctxin%d]%s,tpad=stop_mode=clone:stop_duration=0.15,trim=end_frame=%d,setpts=N/(24*TB)[ctxpart%d]' % (i,clip,count,i))
-        outputs.append('[ctxpart%d]' % i)
+            fill = fill_plan(source_duration, count / 24.0)
+            clip = ("trim=start=%.9f:end=%.9f,setpts=%.9f*(PTS-STARTPTS),%s" % (
+                offset, offset + fill["src_used"],
+                fill["active"] / max(fill["src_used"], 1 / 24),
+                time_resample(fill["interpolate"], count)))
+            stop = fill["freeze"] + 0.2
+        graph.append("[ctxin%d]%s,tpad=stop_mode=clone:stop_duration=%.9f,trim=end_frame=%d,setpts=N/(24*TB)[ctxpart%d]" % (
+            i, clip, stop, count, i))
+        outputs.append("[ctxpart%d]" % i)
         previous = end
-    graph.append('%sconcat=n=%d:v=1:a=0[context]' % (''.join(outputs),len(outputs)))
-    motion = motion_filter('none',int(params.get('target_width',1920)),int(params.get('target_height',1080)),
-                           frames/24,frames,oversample=params.get('motion_oversample',3),local_spans=spans)
-    filters = '%s,fps=24,%s,tpad=start_mode=clone:start_duration=%.9f:stop_mode=clone:stop_duration=%.9f,trim=end_frame=%d,setpts=PTS-STARTPTS' % (
-        base_filter,motion,handle['before']/24,handle['after']/24+.15,
-        frames+handle['before']+handle['after'])
-    return ';'.join(graph), filters
+    if not outputs:
+        raise RuntimeError("连续镜头没有可输出的画面")
+    graph.append("%sconcat=n=%d:v=1:a=0[context]" % ("".join(outputs), len(outputs)))
+    motion = "null"
+    if with_motion:
+        motion = motion_filter("none", int(params.get("target_width", 1920)), int(params.get("target_height", 1080)),
+                               frames / 24.0, frames, oversample=params.get("motion_oversample", 8),
+                               local_spans=spans)
+    before = handle["before"] / 24 if include_handles else 0
+    after = handle["after"] / 24 + 0.2 if include_handles else 0.2
+    trim_frames = frames + (handle["before"] + handle["after"] if include_handles else 0)
+    filters = ("%s,fps=24,%s,tpad=start_mode=clone:start_duration=%.9f:"
+               "stop_mode=clone:stop_duration=%.9f,trim=end_frame=%d,setpts=PTS-STARTPTS") % (
+                   base_filter, motion, before, after, trim_frames)
+    return ";".join(graph), filters, spans
 
 
 def _check_video_frames(path,expected):
@@ -305,7 +455,7 @@ def _segment_role(seg, timeline=None):
 def _trim_black_edges(source,start,duration):
     import re
     _,log,code=run_cmd([ffmpeg_bin(),'-hide_banner','-nostats','-threads','1','-ss',str(start),'-t',str(duration),
-                       '-i',str(source),'-vf','setpts=PTS-STARTPTS,blackdetect=d=0.18:pix_th=0.08:pic_th=0.98',
+                       '-i',str(source),'-vf','setpts=PTS-STARTPTS,blackdetect=d=0.08:pix_th=0.08:pic_th=0.98',
                        '-an','-f','null','-'],check=False,timeout=120)
     if code:
         raise RuntimeError('原片黑场检查失败，已停止该镜头导出')

@@ -22,6 +22,12 @@ def available_memory():
 
 
 def render_budget(params):
+    """Memory budget for the scale/crop fallback.
+
+    The cubic warp path does not read motion_oversample. When the fallback
+    runs, its supersample never drops below 8, even if this budget lowers
+    the requested value on a small machine.
+    """
     result=dict(params)
     free=available_memory()
     requested=int(result.get('motion_oversample',3))

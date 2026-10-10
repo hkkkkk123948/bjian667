@@ -225,16 +225,41 @@ def judge_video(provider, our_video, our_srt, ref_video, ref_text, workdir,
     return result
 
 
+def _uncovered_span(start, end, pictures):
+    """Seconds of [start, end] that no output picture occupies."""
+    if end <= start:
+        return 0.0
+    spans = []
+    for left, right in pictures:
+        lo, hi = max(start, left), min(end, right)
+        if hi > lo:
+            spans.append((lo, hi))
+    spans.sort()
+    covered, cursor = 0.0, start
+    for left, right in spans:
+        if right <= cursor:
+            continue
+        covered += right - max(left, cursor)
+        cursor = right
+    return (end - start) - covered
+
+
 def audit_timeline(timeline):
     issues, intervals = [], []
     timings = timeline.get("sentence_timings") or []
     segments = timeline.get("segments") or []
     cursor = 0.0
     if segments and all("sentence_index" in s for s in segments):
+        # Borrowed dwell and a continued frame still cover the spoken line.
+        # Ownership of each second is not required; a hole in that line is.
+        pictures, clock = [], 0.0
+        for seg in segments:
+            start = float(seg["out_start"]) if "out_start" in seg else clock
+            pictures.append((start, start + float(seg["dur"])))
+            clock = start + float(seg["dur"])
         for tm in timings:
-            pieces = [s for s in segments if s["sentence_index"] == tm["index"]]
-            expected = float(tm["end"]) - float(tm["start"])
-            if not pieces or abs(sum(float(s["dur"]) for s in pieces) - expected) > .06:
+            spoken_start, spoken_end = float(tm["start"]), float(tm["end"])
+            if _uncovered_span(spoken_start, spoken_end, pictures) > .06:
                 issues.append("第%d句镜头未完整覆盖旁白" % tm["index"])
     elif len(timings) != len(segments):
         issues.append("旁白与剪辑段数量不一致")

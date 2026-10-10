@@ -28,6 +28,49 @@ def candidate_scenes(index, candidate, margin=8.0):
     return out
 
 
+def _assign_matches(scores):
+    """Pick a scene column per sentence.
+
+    Adjacent scenes are discounted slightly so the picture keeps moving.
+    A weak unused scene loses to a shot already used when that shot still
+    matches strongly: a bad unique jump is worse than staying on the angle.
+    """
+    if not scores:
+        return []
+    width = max(len(row) for row in scores)
+    used = [False] * width
+    previous = -1
+    picks = [-1] * len(scores)
+    for index, row in enumerate(scores):
+        best_j, best_value, best_raw = -1, -1.0, -1.0
+        for column, raw in enumerate(row):
+            if used[column]:
+                continue
+            value = raw
+            if previous >= 0 and abs(column - previous) <= 1:
+                value -= 0.18
+            if column < previous - 1:
+                value -= 0.15 * (previous - 1 - column)
+            if value > 0.05 and value > best_value:
+                best_value, best_j, best_raw = value, column, raw
+        reuse_j, reuse_raw = -1, -1.0
+        if best_j < 0 or best_raw < 0.35:
+            for column, raw in enumerate(row):
+                if used[column] and raw >= 0.55 and raw > reuse_raw:
+                    reuse_raw, reuse_j = raw, column
+        if reuse_j >= 0 and (best_j < 0 or best_raw < 0.35):
+            picks[index] = reuse_j
+            previous = reuse_j
+            continue
+        if best_j >= 0:
+            picks[index] = best_j
+            used[best_j] = True
+            previous = best_j
+        else:
+            previous = -1
+    return picks
+
+
 def align_sentences_to_scenes(candidate, sentences, index, router, role="match_judge",
                               language="zh", margin=8.0):
     """句子→场景匹配：让 LLM 输出 NxM 相似度矩阵，再做“贪心唯一分配+相邻惩罚”。
@@ -79,28 +122,14 @@ def align_sentences_to_scenes(candidate, sentences, index, router, role="match_j
                 scores[i][j] = min(1.0, max(0.0, float(v)))
             except (TypeError, ValueError):
                 scores[i][j] = 0.0
-    # 贪心唯一分配：按解说顺序，挑未使用场景里得分最高的，遇相邻场景打折
+    picks = _assign_matches(scores)
     used = [False] * n
-    prev_j = -1
     matches: list = [None] * m
-    for i in range(m):
-        best_j, best_v = -1, -1.0
-        for j in range(n):
-            if used[j]:
-                continue
-            v = scores[i][j]
-            if prev_j >= 0 and abs(j - prev_j) <= 1:
-                v -= 0.45
-            if j < prev_j - 1:  # 倒退惩罚（保持画面时间递增）
-                v -= 0.15 * (prev_j - 1 - j)
-            if v > 0.05 and v > best_v:
-                best_v, best_j = v, j
-        if best_j >= 0:
-            matches[i] = scenes[best_j].scene_id
-            used[best_j] = True
-            prev_j = best_j
-        else:
-            prev_j = -1
+    for i, pick in enumerate(picks):
+        if pick < 0:
+            continue
+        matches[i] = scenes[pick].scene_id
+        used[pick] = True
     if not any(m is not None for m in matches):
         return []
     used_count = sum(1 for v in matches if v is not None)
@@ -108,7 +137,7 @@ def align_sentences_to_scenes(candidate, sentences, index, router, role="match_j
     if used_count < need:
         return []
     used_ids = {scenes[sc].scene_id for sc in range(n) if used[sc]}
-    logger.info("句子-场景匹配: %d/%d 唯一命中（%d 个场景被用）", used_count, m, len(used_ids))
+    logger.info("句子-场景匹配: %d/%d 命中（%d 个场景被用）", used_count, m, len(used_ids))
     return matches
 
 

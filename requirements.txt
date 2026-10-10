@@ -2,6 +2,7 @@ yt-dlp>=2025.1.1
 requests>=2.31
 numpy>=1.26
 pillow>=10.0
+opencv-python-headless>=4.8
 websocket-client>=1.7
 scenedetect>=0.6.7
 edge-tts>=7.0
